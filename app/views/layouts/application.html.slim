@@ -7,7 +7,19 @@ html
 
   body
 
+    div.navbar.navbar-fixed-top
+      div.navbar-inner
+        div.container
+          a.brand href="/" home
+          div.nav-collapse
+            ul.nav
+              = yield :navbar_left
+          ul.nav.pull-right
+            li
+              a#authenticate href="#" login
+
     div.container
       = yield
 
     = javascript_include_tag 'application'
+    = yield :js
