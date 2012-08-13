@@ -1,3 +1,10 @@
 //= require jquery
 //= require jquery_ujs
-//= require_tree
+//= require bootstrap
+
+$ ->
+  $('#authenticate').click ->
+    navigator.id.get (assertion) ->
+      if assertion
+        $.post '/home/verify', { assertion: assertion }, (data) ->
+          window.location = '/'
