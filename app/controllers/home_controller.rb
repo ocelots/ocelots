@@ -1,8 +1,15 @@
 require 'net/http'
 
 class HomeController < ApplicationController
+  skip_filter :require_login, only: [:index, :verify]
+
   def index
     redirect_to :home if logged_in?
+  end
+
+  def logout
+    session[:email] = nil
+    redirect_to root_url
   end
 
   def verify

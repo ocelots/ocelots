@@ -16,7 +16,7 @@ html
               = yield :navbar_left
           ul.nav.pull-right
             li
-              a#authenticate href="#" login
+              = link_for_login_status
 
     div.container
       = yield
