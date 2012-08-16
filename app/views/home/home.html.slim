@@ -8,7 +8,7 @@ h2 This is your team:
       div.span4
         img src="assets/person-#{person.id}.jpg"
       div.span4
-        h1 #{person.family_name} #{person.given_name}
+        h1 = person.full_name
 
         - if person.chinese_name
          h1 = person.chinese_name
@@ -16,6 +16,8 @@ h2 This is your team:
         - if person.preferred_name
           h2
             i #{person.preferred_name}
+
+        p = person.email
 
         audio controls='controls'
           source src="audio/person-#{person.id}.mp3" type="audio/mpeg"

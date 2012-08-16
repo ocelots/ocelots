@@ -11,27 +11,22 @@ class Person
   end
 
   add id: 'liyanhui',
-      family_name: 'Li',
-      given_name: 'Yanhui',
+      full_name: 'Li Yanhui',
       chinese_name: '李彦辉',
       email: 'yhli@thoughtworks.com'
   add id: 'tengyun',
-      family_name: 'Téng',
-      given_name: 'Yǔn',
+      full_name: 'Téng Yǔn',
       chinese_name: '滕云',
       preferred_name: 'Chinese Tom',
       email: 'yteng@thoughtworks.com'
   add id: 'wangbiao',
-      family_name: 'Wang',
-      given_name: 'Biao',
+      full_name: 'Wang Biao',
       email: 'biaowang@thoughtworks.com'
   add id: 'zhangyi',
-      family_name: 'Zhang',
-      given_name: 'Yi',
+      full_name: 'Zhang Yi',
       email: 'yizhang@thoughtworks.com'
   add id: 'markryall',
-      family_name: 'Ryall',
-      given_name: 'Mark',
+      full_name: 'Mark Ryall',
       chinese_name: '马克',
       email: 'mryall@thoughtworks.com'
 
