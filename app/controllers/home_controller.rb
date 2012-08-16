@@ -7,6 +7,10 @@ class HomeController < ApplicationController
     redirect_to :home if logged_in?
   end
 
+  def home
+    @team = Person.all
+  end
+
   def logout
     session[:email] = nil
     redirect_to root_url
