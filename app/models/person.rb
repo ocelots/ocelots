@@ -19,16 +19,17 @@ class Person
       chinese_name: '滕云',
       preferred_name: 'Chinese Tom',
       email: 'yteng@thoughtworks.com',
-      audio: 'tengyun.mp4'
+      audio: 'tengyun'
   add id: 'wangbiao',
       full_name: 'Wang Biao',
       email: 'biaowang@thoughtworks.com',
-      audio: 'wangbiao.mp4'
+      audio: 'wangbiao'
   add id: 'zhangyi',
       full_name: 'Zhang Yi',
       email: 'yizhang@thoughtworks.com'
   add id: 'markryall',
       full_name: 'Mark Ryall',
+      pinyin_name: 'Mǎkè',
       chinese_name: '马克',
       email: 'mryall@thoughtworks.com'
 

@@ -1,7 +1,3 @@
-h1 Hi #{@current_user}!
-
-h2 This is your team:
-
 - @team.each do |person|
   div.hero-unit
     div.row.person
@@ -11,7 +7,7 @@ h2 This is your team:
         h1 = person.full_name
 
         - if person.chinese_name
-         h1 = person.chinese_name
+          h1 = person.chinese_name
 
         - if person.preferred_name
           h2
@@ -21,4 +17,4 @@ h2 This is your team:
 
         - if person.audio
           audio controls='controls'
-            source src="/audio/#{person.audio}" type="audio/mpeg"
+            source src="/audio/#{person.audio}.mp4" type="audio/mpeg"
