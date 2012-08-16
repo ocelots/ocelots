@@ -11,7 +11,7 @@ class Person
   end
 
   add id: 'liyanhui',
-      full_name: 'Li Yanhui',
+      full_name: 'Li Yànhuī',
       chinese_name: '李彦辉',
       email: 'yhli@thoughtworks.com'
   add id: 'tengyun',
