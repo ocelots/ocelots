@@ -18,10 +18,12 @@ class Person
       full_name: 'Téng Yǔn',
       chinese_name: '滕云',
       preferred_name: 'Chinese Tom',
-      email: 'yteng@thoughtworks.com'
+      email: 'yteng@thoughtworks.com',
+      audio: 'tengyun.mp4'
   add id: 'wangbiao',
       full_name: 'Wang Biao',
-      email: 'biaowang@thoughtworks.com'
+      email: 'biaowang@thoughtworks.com',
+      audio: 'wangbiao.mp4'
   add id: 'zhangyi',
       full_name: 'Zhang Yi',
       email: 'yizhang@thoughtworks.com'

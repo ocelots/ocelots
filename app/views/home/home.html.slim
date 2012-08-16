@@ -19,5 +19,6 @@ h2 This is your team:
 
         p = person.email
 
-        audio controls='controls'
-          source src="audio/person-#{person.id}.mp3" type="audio/mpeg"
+        - if person.audio
+          audio controls='controls'
+            source src="/audio/#{person.audio}" type="audio/mpeg"
