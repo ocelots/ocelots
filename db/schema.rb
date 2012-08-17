@@ -11,6 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120817092833) do
+
+  create_table "people", :force => true do |t|
+    t.string   "account"
+    t.string   "full_name"
+    t.string   "chinese_name"
+    t.string   "preferred_name"
+    t.string   "email"
+    t.string   "pinyin_name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end

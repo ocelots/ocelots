@@ -2,7 +2,7 @@
   div.hero-unit
     div.row.person
       div.span4
-        img src="https://s3.amazonaws.com/ocelots/photo/#{person.id}.jpg"
+        img src="https://s3.amazonaws.com/ocelots/photo/#{person.account}.jpg"
       div.span4
         h1 = person.full_name
 
@@ -16,4 +16,4 @@
         p = person.email
 
         audio controls='controls'
-          source src="https://s3.amazonaws.com/ocelots/audio/#{person.id}.mp4" type="audio/mpeg"
+          source src="https://s3.amazonaws.com/ocelots/audio/#{person.account}.mp4" type="audio/mpeg"
