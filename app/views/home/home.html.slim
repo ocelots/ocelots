@@ -2,7 +2,7 @@
   div.hero-unit
     div.row.person
       div.span4
-        img src="https://s3.amazonaws.com/ocelots/#{person.id}.jpg"
+        img src="https://s3.amazonaws.com/ocelots/photo/#{person.id}.jpg"
       div.span4
         h1 = person.full_name
 
@@ -15,6 +15,5 @@
 
         p = person.email
 
-        - if person.audio
-          audio controls='controls'
-            source src="https://s3.amazonaws.com/ocelots/#{person.audio}.mp4" type="audio/mpeg"
+        audio controls='controls'
+          source src="https://s3.amazonaws.com/ocelots/audio/#{person.id}.mp4" type="audio/mpeg"
