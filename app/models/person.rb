@@ -21,11 +21,13 @@ class Person
       email: 'yteng@thoughtworks.com',
       audio: 'tengyun'
   add id: 'wangbiao',
-      full_name: 'Wang Biao',
+      full_name: 'Wáng Biāo',
+      chinese_name: '王彪',
       email: 'biaowang@thoughtworks.com',
       audio: 'wangbiao'
   add id: 'zhangyi',
-      full_name: 'Zhang Yi',
+      full_name: 'Zhāng Yì',
+      chinese_name: '张逸',
       email: 'yizhang@thoughtworks.com'
   add id: 'markryall',
       full_name: 'Mark Ryall',
