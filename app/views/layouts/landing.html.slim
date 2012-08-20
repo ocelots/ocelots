@@ -11,15 +11,12 @@ html
       div.navbar-inner
         div.container
           a.brand href="/" home
-          div.nav-collapse
-            ul.nav
-              li
-                = link_to 'Profile', person_url
           ul.nav.pull-right
             li
-              = link_to "logout #{@current_user}", logout_url
+              = link_to 'login', '#', id: :authenticate
 
     div.container
       = yield
 
     = javascript_include_tag 'application'
+    = javascript_include_tag 'https://login.persona.org/include.js'

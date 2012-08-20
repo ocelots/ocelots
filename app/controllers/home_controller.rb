@@ -4,7 +4,11 @@ class HomeController < ApplicationController
   skip_filter :require_login, only: [:index, :verify]
 
   def index
-    redirect_to :home if logged_in?
+    if logged_in?
+      redirect_to :home
+    else
+      render layout: 'landing'
+    end
   end
 
   def home
