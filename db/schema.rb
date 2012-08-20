@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817092833) do
+ActiveRecord::Schema.define(:version => 20120820130947) do
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "team_id"
+    t.date     "started"
+    t.date     "ended"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "people", :force => true do |t|
     t.string   "account"
@@ -22,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20120817092833) do
     t.string   "pinyin_name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
