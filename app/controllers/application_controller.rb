@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
     return nil unless session[:email]
     @current_user = session[:email]
   end
+
+  def current_person
+    @person = Person.find_by_email @current_user
+    @person = Person.create email: @current_user unless @person
+    @person
+  end
 end

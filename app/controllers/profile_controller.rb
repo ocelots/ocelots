@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_filter :find_or_create_person
+  before_filter :current_person
 
   def update
     if @person.update_attributes params[:person]
@@ -7,10 +7,5 @@ class ProfileController < ApplicationController
     else
       render action: 'edit'
     end
-  end
-private
-  def find_or_create_person
-    @person = Person.find_by_email @current_user
-    @person = Person.create email: @current_user unless @person
   end
 end

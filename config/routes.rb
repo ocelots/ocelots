@@ -7,5 +7,7 @@ Ocelots::Application.routes.draw do
   get 'person' => 'profile#edit'
   put 'person' => 'profile#update'
 
+  get 'team/:slug' => 'team#show'
+
   root to: 'home#index'
 end

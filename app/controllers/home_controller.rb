@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def home
-    @team = Person.all
+    @teams = current_person.teams
   end
 
   def logout

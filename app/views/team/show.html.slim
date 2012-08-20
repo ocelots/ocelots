@@ -1,0 +1,20 @@
+- @team.memberships.map(&:person).each do |person|
+  div.hero-unit
+    div.row.person
+      div.span4
+        img src="https://s3.amazonaws.com/ocelots/photo/#{person.account}.jpg"
+      div.span4
+        h1 = person.full_name
+
+        - if person.chinese_name
+          h1 = person.chinese_name
+
+        - if person.preferred_name
+          h2
+            i #{person.preferred_name}
+
+        p = person.email
+
+        audio controls='controls'
+          source src="https://s3.amazonaws.com/ocelots/audio/#{person.account}.mp4" type="audio/mpeg"
+          source src="https://s3.amazonaws.com/ocelots/audio/#{person.account}.ogg" type="audio/ogg"
