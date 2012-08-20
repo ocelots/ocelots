@@ -13,7 +13,8 @@ html
           a.brand href="/" home
           div.nav-collapse
             ul.nav
-              = yield :navbar_left
+              li
+                = link_to 'Profile', person_url
           ul.nav.pull-right
             li
               = link_for_login_status
