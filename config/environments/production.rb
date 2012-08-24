@@ -73,6 +73,6 @@ Ocelots::Application.configure do
               :secret_access_key => 'EnmwzxMSIj7E/SZ+L6sdrKbT9MZ5QltiHRafvlx5'
             },
             :url => "https://s3.amazonaws.com/ocelots",
-            :path => "photo/:class/:attachment/:id/:style/:basename.:extension"
+            :path => "/:persona_id/photos/:style/:basename.:extension"
     }
 end
