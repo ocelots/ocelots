@@ -34,4 +34,18 @@ Ocelots::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # paperclip will save to public/system/[object] when running local
+  config.paperclip_storage_options = {}
+
+  config.paperclip_storage_options = {
+            :storage => :s3,
+            :bucket => 'ocelots-dev',
+            :s3_credentials => {
+              :access_key_id => 'AKIAJQK3VYPF544LJSTQ',
+              :secret_access_key => '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'
+            },
+            :url => "https://s3.amazonaws.com/ocelots",
+            :path => "photo/:class/:attachment/:id/:style/:basename.:extension"
+    }
 end

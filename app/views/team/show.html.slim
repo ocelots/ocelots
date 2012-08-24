@@ -2,7 +2,8 @@
   div.hero-unit
     div.row.person
       div.span4
-        img src="https://s3.amazonaws.com/ocelots/photo/#{person.account}.jpg"
+        - if @person.photo_file_name
+          img src="#{@person.photo.url()}"
       div.span4
         h1 = person.full_name
 

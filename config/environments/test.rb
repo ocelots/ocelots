@@ -34,4 +34,15 @@ Ocelots::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  config.paperclip_storage_options = {
+    :storage => :s3,
+    :bucket => 'ocelots',
+        :s3_credentials => {
+          :access_key_id => '0ENGGNG6K5J81QBBPD02',
+          :secret_access_key => 'EnmwzxMSIj7E/SZ+L6sdrKbT9MZ5QltiHRafvlx5'
+        },
+    :url => "https://s3.amazonaws.com/ocelots",
+    :path => "photo/:class/:attachment/:id/:style/:basename.:extension"
+}
 end
