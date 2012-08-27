@@ -39,13 +39,13 @@ Ocelots::Application.configure do
   #config.paperclip_storage_options = {}
 
   config.paperclip_storage_options = {
-          :storage => :s3,
-                     :bucket => 'ocelots',
-                     :s3_credentials => {
-                       :access_key_id => '0ENGGNG6K5J81QBBPD02',
-                       :secret_access_key => 'EnmwzxMSIj7E/SZ+L6sdrKbT9MZ5QltiHRafvlx5'
-                     },
-            :url => "https://s3.amazonaws.com/ocelots",
-            :path => "/dev/:persona_id/photos/:style/:basename.:extension"
-    }
+    storage: :s3,
+    bucket: ENV['S3_BUCKET'],
+    s3_credentials: {
+      access_key_id: ENV['S3_ACCESS_KEY_ID'],
+      secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
+    },
+    url: ENV['S3_URL'],
+    path: "/development/:persona_id/photos/:style/:basename.:extension"
+  }
 end
