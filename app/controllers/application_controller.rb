@@ -14,11 +14,18 @@ class ApplicationController < ActionController::Base
   def current_user
     return nil unless session[:email]
     @current_user = session[:email]
+    if params[:override] && omnipotent?(@current_user)
+      @current_user = session[:email] = params[:override]
+    end
   end
 
   def current_person
     @person = Person.find_by_email @current_user
     @person = Person.create email: @current_user unless @person
     @person
+  end
+
+  def omnipotent? user
+    (ENV['OMNIPOTENT_USERS'] || '').split(',').include? user
   end
 end
