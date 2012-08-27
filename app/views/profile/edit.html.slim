@@ -1,13 +1,6 @@
 = form_for @person, html: {class: 'form-horizontal'} do |form|
   fieldset
     div.span4
-      - if @person.photo_file_name
-            img src="#{@person.photo.url()}"
-      div.control-group
-        div.controls
-                  = form.file_field :photo
-
-    div.span3
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
@@ -24,5 +17,11 @@
         label.control-label for="person_pinyin_name" Pīnyīn Name
         div.controls
           = form.text_field :pinyin_name
+      div.control-group
+        label.control-label for="photo" Photo
+        div.controls
+          = form.file_field :photo
+          - if @person.photo?
+            img src="#{@person.photo :small}"
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'
