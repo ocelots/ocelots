@@ -1,11 +1,15 @@
-require 'net/http'
+require 'persona'
 
 class HomeController < ApplicationController
+  include Persona
+
   skip_filter :require_login, only: [:index, :verify]
 
   def index
     if logged_in?
-      redirect_to :home
+      redirect_url = session[:initial_url] || :home
+      session[:initial_url] = nil
+      redirect_to redirect_url
     else
       render layout: 'landing'
     end
@@ -21,22 +25,8 @@ class HomeController < ApplicationController
   end
 
   def verify
-    bid_resp = {}
-    if params['assertion']
-      http = Net::HTTP.new 'browserid.org', 443
-      http.use_ssl = true
-      response = http.post '/verify',
-        "audience=#{request.host_with_port}&assertion=#{params['assertion']}",
-        { 'Content-Type' => 'application/x-www-form-urlencoded' }
-      begin
-        bid_resp = JSON.parse response.body
-        if bid_resp['status'] == 'okay'
-          session[:email] = bid_resp['email']
-        end
-      rescue JSON::ParserError
-        logger.info 'BrowserId returning bad JSON?'
-      end
-    end
-    render json: bid_resp
+    response = {}
+    verify_persona { |email, response| session[:email] = email }
+    render json: response
   end
 end
