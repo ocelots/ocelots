@@ -3,7 +3,7 @@
     div.row.person
       div.span4
         - if person.photo?
-          img src="#{person.photo.url}"
+          img src="#{person.photo.url}" width=300
       div.span4
         h1 = person.full_name
 
