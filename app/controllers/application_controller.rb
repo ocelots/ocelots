@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
     if params[:override] && omnipotent?(@current_user)
       @current_user = session[:email] = params[:override]
     end
+    @current_user
   end
 
   def current_person
