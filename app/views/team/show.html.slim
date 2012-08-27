@@ -2,8 +2,8 @@
   div.hero-unit
     div.row.person
       div.span4
-        - if @person.photo_file_name
-          img src="#{@person.photo.url()}"
+        - if person.photo?
+          img src="#{person.photo.url}"
       div.span4
         h1 = person.full_name
 
