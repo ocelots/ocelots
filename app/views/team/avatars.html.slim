@@ -1,0 +1,6 @@
+- @team.people.each do |person|
+  div.avatar
+    img src="#{person.photo? ? person.photo.url : '/assets/silhouette.png'}"
+    h2 #{person.full_name}
+    - if person.preferred_name
+      p #{person.preferred_name}

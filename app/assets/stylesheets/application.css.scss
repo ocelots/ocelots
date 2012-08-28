@@ -16,3 +16,17 @@ body {
 .team:hover {
   background: #ccc;
 }
+
+.avatar {
+  border: 1px #ccc solid;
+  width: 200px;
+  height: 300px;
+  float: left;
+  text-align: center;
+}
+
+.avatar img {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 180px;
+}

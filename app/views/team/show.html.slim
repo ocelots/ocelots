@@ -1,9 +1,12 @@
+- content_for :menu_items do
+  li
+    = link_to 'Avatars', "/avatars/#{@team.slug}"
+
 - @team.people.each do |person|
   div.hero-unit
     div.row.person
       div.span4
-        - if person.photo?
-          img src="#{person.photo.url}" width=300
+        img src="#{person.photo? ? person.photo.url : '/assets/silhouette.png'}" width=300
       div.span4
         h1 = person.full_name
 

@@ -15,6 +15,7 @@ html
             ul.nav
               li
                 = link_to 'Profile', person_url
+              = yield :menu_items
           ul.nav.pull-right
             li
               = link_to "logout #{@current_user}", logout_url

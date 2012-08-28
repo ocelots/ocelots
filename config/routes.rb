@@ -8,6 +8,7 @@ Ocelots::Application.routes.draw do
   put 'person' => 'profile#update'
 
   get 'team/:slug' => 'team#show'
+  get 'avatars/:slug' => 'team#avatars'
 
   root to: 'home#index'
 end
