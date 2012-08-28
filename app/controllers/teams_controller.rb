@@ -8,7 +8,19 @@ class TeamsController < ApplicationController
     if current_person.blessed?
       team = Team.create params[:team]
       redirect_to "/teams/#{team.slug}"
+    else
+      redirect_to :teams
     end
+  end
+
+  def add
+    if current_person.blessed?
+      team = Team.find_by_slug params[:slug]
+      person = Person.find_by_email params[:email]
+      person = Person.create email: params[:email] unless person
+      Membership.create team: team, person: person
+    end
+    redirect_to "/teams/#{team.slug}"
   end
 
   def show

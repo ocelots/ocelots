@@ -9,6 +9,7 @@ Ocelots::Application.routes.draw do
   get 'teams' => 'teams#index'
   post 'teams' => 'teams#create'
   get 'teams/:slug' => 'teams#show'
+  post 'teams/:slug/add' => 'teams#add'
 
   get 'avatars/:slug' => 'teams#avatars'
 
