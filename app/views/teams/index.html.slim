@@ -1,0 +1,17 @@
+- if @person.blessed?
+  div.row
+    div.offset3
+      = form_for @team, html: {class: 'form-inline'} do |form|
+        = form.text_field :slug, placeholder: 'slug'
+        = form.text_field :name, placeholder: 'Team Name'
+        = form.submit 'Create', class: 'btn'
+
+- @teams.each do |team|
+  a href="/team/#{team.slug}"
+    div.hero-unit.team
+      div.row
+        div.span4
+          img src="/assets/team.gif"
+        div.span4
+          h1 = team.name
+          p = team.description

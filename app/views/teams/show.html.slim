@@ -1,6 +1,6 @@
 - content_for :menu_items do
   li
-    = link_to 'Avatars', "/avatars/#{@team.slug}"
+    = link_to 'avatars', "/avatars/#{@team.slug}"
 
 - @team.people.each do |person|
   div.hero-unit

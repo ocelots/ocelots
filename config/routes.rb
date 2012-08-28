@@ -1,5 +1,4 @@
 Ocelots::Application.routes.draw do
-  get 'home' => 'home#home', as: 'home'
   get 'logout' => 'home#logout', as: 'logout'
 
   post 'home/verify' => 'home#verify'
@@ -7,8 +6,11 @@ Ocelots::Application.routes.draw do
   get 'person' => 'profile#edit'
   put 'person' => 'profile#update'
 
-  get 'team/:slug' => 'team#show'
-  get 'avatars/:slug' => 'team#avatars'
+  get 'teams' => 'teams#index'
+  post 'teams' => 'teams#create'
+  get 'teams/:slug' => 'teams#show'
+
+  get 'avatars/:slug' => 'teams#avatars'
 
   root to: 'home#index'
 end

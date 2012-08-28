@@ -1,4 +1,16 @@
-class TeamController < ApplicationController
+class TeamsController < ApplicationController
+  def index
+    @teams = current_person.teams
+    @team = Team.new
+  end
+
+  def create
+    if current_person.blessed?
+      team = Team.create params[:team]
+      redirect_to "/teams/#{team.slug}"
+    end
+  end
+
   def show
     show_team :show
   end

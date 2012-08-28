@@ -7,16 +7,12 @@ class HomeController < ApplicationController
 
   def index
     if logged_in?
-      redirect_url = session[:initial_url] || :home
+      redirect_url = session[:initial_url] || :teams
       session[:initial_url] = nil
       redirect_to redirect_url
     else
       render layout: 'landing'
     end
-  end
-
-  def home
-    @teams = current_person.teams
   end
 
   def logout
