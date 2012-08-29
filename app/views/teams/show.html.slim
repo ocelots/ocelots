@@ -20,6 +20,9 @@
         - if person.chinese_name
           h1 = person.chinese_name
 
+        - if person.pinyin_name
+          h2 = person.pinyin_name
+
         - if person.preferred_name
           h2
             i #{person.preferred_name}
