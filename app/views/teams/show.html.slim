@@ -28,3 +28,8 @@
             i #{membership.person.preferred_name}
 
         p = membership.person.email
+
+        - if membership.person == @person
+          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form=inline' do
+            = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
+            = submit_tag 'add', class: 'btn'
