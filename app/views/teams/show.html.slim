@@ -9,26 +9,22 @@
         = text_field_tag :email, nil, placeholder: 'email'
         = submit_tag 'add', class: 'btn'
 
-- @team.people.each do |person|
+- @team.memberships.each do |membership|
   div.hero-unit
     div.row.person
       div.span4
-        img src="#{person.photo? ? person.photo.url : '/assets/silhouette.png'}" width=300
+        img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
       div.span4
-        h1 = person.full_name
+        h1 = membership.person.full_name
 
-        - if person.chinese_name
-          h1 = person.chinese_name
+        - if membership.person.chinese_name
+          h1 = membership.person.chinese_name
 
-        - if person.pinyin_name
-          h2 = person.pinyin_name
+        - if membership.person.pinyin_name
+          h2 = membership.person.pinyin_name
 
-        - if person.preferred_name
+        - if membership.person.preferred_name
           h2
-            i #{person.preferred_name}
+            i #{membership.person.preferred_name}
 
-        p = person.email
-
-        audio controls='controls'
-          source src="https://s3.amazonaws.com/ocelots/audio/#{person.account}.mp4" type="audio/mpeg"
-          source src="https://s3.amazonaws.com/ocelots/audio/#{person.account}.ogg" type="audio/ogg"
+        p = membership.person.email
