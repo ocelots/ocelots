@@ -11,6 +11,8 @@ Ocelots::Application.routes.draw do
   get 'teams/:slug' => 'teams#show'
   post 'teams/:slug/add' => 'teams#add'
 
+  post 'membership/:id/soundcloud' => 'membership#soundcloud'
+
   get 'avatars/:slug' => 'teams#avatars'
 
   root to: 'home#index'
