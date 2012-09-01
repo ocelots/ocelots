@@ -30,7 +30,9 @@
         p = membership.person.email
 
         - if membership.track
-          iframe height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{membership.track}%3F#{membership.secret ? "secret_token%3D#{membership.secret}" : ''}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
+          = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
+        - elsif membership.person.track
+          = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
 
         - if membership.person == @person
           = form_tag "/membership/#{membership.id}/soundcloud", class: 'form=inline' do
