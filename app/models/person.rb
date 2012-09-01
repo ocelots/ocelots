@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
 
   attr_accessible :account, :chinese_name, :email, :full_name, :pinyin_name, :preferred_name, :photo, :persona_id
 
+  has_many :facts
   has_many :memberships
   has_many :teams, through: :memberships
 
