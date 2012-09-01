@@ -7,7 +7,7 @@ class ProfileController < ApplicationController
   def update
     process_sc_embed_code @person, @person
     if @person.update_attributes params[:person]
-      redirect_to '/', notice: 'Profile successfully updated.'
+      redirect_to profile_url, notice: 'Profile successfully updated.'
     else
       render action: 'edit'
     end

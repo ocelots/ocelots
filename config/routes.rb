@@ -3,8 +3,11 @@ Ocelots::Application.routes.draw do
 
   post 'home/verify' => 'home#verify'
 
-  get 'person' => 'profile#edit'
+  get 'profile' => 'profile#edit'
   put 'person' => 'profile#update'
+
+  post 'fact' => 'fact#create'
+  delete 'fact/:id' => 'fact#destroy'
 
   get 'teams' => 'teams#index'
   post 'teams' => 'teams#create'
