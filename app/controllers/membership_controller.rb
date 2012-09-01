@@ -3,6 +3,7 @@ class MembershipController < ApplicationController
     membership = Membership.find params[:id]
     process_sc_embed_code membership
     if membership
+      membership.save
       redirect_to "/teams/#{membership.team.slug}"
     else
       redirect_to '/'
@@ -11,15 +12,8 @@ class MembershipController < ApplicationController
 private
   def process_sc_embed_code membership
     return unless membership
-    logger.info "attempting to attach soundcloud information to membership #{membership.id}"
     return unless membership.person == current_person
-    if params[:sc_embed_code] =~ /tracks%2F(\d+)%3Fsecret_token%3D([^&]+)&/
-      logger.info "matched soundcloud track #{$1} and secret #{$2}"
-      membership.track = $1
-      membership.secret = $2
-      membership.save
-    else
-      logger.info 'no match'
-    end
+    membership.track = $1 if params[:sc_embed_code] =~ /tracks%2F(\d+)/
+    membership.secret = $1 if params[:sc_embed_code] =~ /secret_token%3D(s-[0-9a-zA-Z]+)/
   end
 end
