@@ -1,7 +1,7 @@
 a name='general'
   h1 General
 
-= form_for @person, html: {class: 'form-horizontal'} do |form|
+= form_for @person, url: profile_url, html: {class: 'form-horizontal'} do |form|
   fieldset
     div.span6
       div.control-group

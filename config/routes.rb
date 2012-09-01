@@ -4,7 +4,7 @@ Ocelots::Application.routes.draw do
   post 'home/verify' => 'home#verify'
 
   get 'profile' => 'profile#edit'
-  put 'person' => 'profile#update'
+  put 'profile' => 'profile#update'
 
   post 'fact' => 'fact#create'
   delete 'fact/:id' => 'fact#destroy'
