@@ -24,20 +24,26 @@ class TeamsController < ApplicationController
   end
 
   def show
-    show_team :show
+    with_team { render :show }
   end
 
   def avatars
-    show_team :avatars, layout: 'no_header'
+    with_team { render :avatars, layout: 'no_header' }
+  end
+
+  def quiz
+    with_team do |team|
+      render :quiz
+    end
   end
 private
-  def show_team *args
+  def with_team *args
     @team = Team.find_by_slug params[:slug]
     unless current_person.blessed?
       @team = nil unless current_person.teams.include? @team
     end
     if @team
-      render *args
+      yield @team
     else
       render :unknown_team
     end

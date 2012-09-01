@@ -18,5 +18,7 @@ Ocelots::Application.routes.draw do
 
   get 'avatars/:slug' => 'teams#avatars'
 
+  get 'quiz/:slug' => 'teams#quiz'
+
   root to: 'home#index'
 end
