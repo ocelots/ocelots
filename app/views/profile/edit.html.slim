@@ -10,13 +10,17 @@
         div.controls
           = form.text_field :chinese_name
       div.control-group
+        label.control-label for="person_pinyin_name" Pīnyīn Name
+        div.controls
+          = form.text_field :pinyin_name
+      div.control-group
         label.control-label for="person_preferred_name" Preferred Name
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_pinyin_name" Pīnyīn Name
+        label.control-label for="person_sc_embed_code" Soundcloud embed code
         div.controls
-          = form.text_field :pinyin_name
+          = text_field_tag :sc_embed_code, nil
       div.control-group
         label.control-label for="photo" Photo
         div.controls
