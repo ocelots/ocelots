@@ -7,14 +7,22 @@ body {
   padding-bottom: 40px;
 }
 
-.team {
+.highlight {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
 }
 
-.team:hover {
+.highlight:hover {
   background: #ccc;
+}
+
+.correct {
+  background: #090;
+}
+
+.incorrect {
+  background: #900;
 }
 
 .avatar {
