@@ -1,3 +1,7 @@
+- content_for :menu_items do
+  li
+    = link_to 'quiz', "/quiz/#{@team.slug}"
+
 ul
   - @facts.each do |fact|
     li
