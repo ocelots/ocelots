@@ -29,8 +29,8 @@
 
         p = membership.person.email
 
-        - if membership.track && membership.secret
-          iframe height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{membership.track}%3Fsecret_token%3D#{membership.secret}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
+        - if membership.track
+          iframe height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{membership.track}%3F#{membership.secret ? "secret_token%3D#{membership.secret}" : ''}&amp;auto_play=false&amp;show_artwork=false&amp;color=ff7700"
 
         - if membership.person == @person
           = form_tag "/membership/#{membership.id}/soundcloud", class: 'form=inline' do
