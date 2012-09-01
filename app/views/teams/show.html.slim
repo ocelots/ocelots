@@ -5,7 +5,7 @@
 - if @person.blessed?
   div.row
     div.offset3
-      = form_tag "/teams/#{@team.slug}/add", class: 'form=inline' do
+      = form_tag "/teams/#{@team.slug}/add", class: 'form-inline' do
         = text_field_tag :email, nil, placeholder: 'email'
         = submit_tag 'add', class: 'btn'
 
@@ -35,6 +35,6 @@
           = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
 
         - if membership.person == @person
-          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form=inline' do
+          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
             = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
             = submit_tag 'add', class: 'btn'
