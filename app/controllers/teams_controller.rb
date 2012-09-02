@@ -5,22 +5,22 @@ class TeamsController < ApplicationController
   end
 
   def create
-    if current_person.blessed?
-      team = Team.create params[:team]
-      redirect_to "/teams/#{team.slug}"
+    @teams = current_person.teams
+    @team = Team.new params[:team].merge creator: current_person
+    if @team.save
+      redirect_to "/teams/#{@team.slug}"
     else
-      redirect_to :teams
+      render :index
     end
   end
 
   def add
-    if current_person.blessed?
-      team = Team.find_by_slug params[:slug]
+    with_team do |team|
       person = Person.find_by_email params[:email]
       person = Person.create email: params[:email] unless person
       Membership.create team: team, person: person
+      redirect_to "/teams/#{team.slug}"
     end
-    redirect_to "/teams/#{team.slug}"
   end
 
   def show
@@ -43,7 +43,7 @@ private
   def with_team *args
     @team = Team.find_by_slug params[:slug]
     unless current_person.blessed?
-      @team = nil unless current_person.teams.include? @team
+      @team = nil unless current_person.teams.include?(@team) or @team.creator == current_person
     end
     if @team
       yield @team

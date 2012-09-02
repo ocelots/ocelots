@@ -1,10 +1,9 @@
-- if @person.blessed?
-  div.row
-    div.offset3
-      = form_for @team, html: {class: 'form-inline'} do |form|
-        = form.text_field :slug, placeholder: 'slug'
-        = form.text_field :name, placeholder: 'Team Name'
-        = form.submit 'Create', class: 'btn'
+div.row
+  div.offset3
+    = form_for @team, html: {class: 'form-inline'} do |form|
+      = form.text_field :slug, placeholder: 'slug'
+      = form.text_field :name, placeholder: 'Team Name'
+      = form.submit 'Create', class: 'btn'
 
 - @teams.each do |team|
   a href="/teams/#{team.slug}"
