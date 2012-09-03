@@ -1,7 +1,9 @@
 class Person < ActiveRecord::Base
   before_create :create_persona_id
 
-  attr_accessible :account, :chinese_name, :email, :full_name, :pinyin_name, :preferred_name, :photo, :persona_id
+  attr_accessible :email, :full_name, :chinese_name, :pinyin_name, :preferred_name
+  attr_accessible :photo, :persona_id
+  attr_accessible :phone, :twitter, :facebook
 
   has_many :facts
   has_many :memberships
