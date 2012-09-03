@@ -16,19 +16,7 @@ div.row
       div.span4
         img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
       div.span4
-        h1 = membership.person.full_name
-
-        - if membership.person.chinese_name
-          h1 = membership.person.chinese_name
-
-        - if membership.person.pinyin_name
-          h2 = membership.person.pinyin_name
-
-        - if membership.person.preferred_name
-          h2
-            i #{membership.person.preferred_name}
-
-        p = membership.person.email
+        = render partial: 'shared/person', locals: {person: membership.person}
 
         - if membership.track
           = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
@@ -39,3 +27,4 @@ div.row
           = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
             = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
             = submit_tag 'add', class: 'btn'
+
