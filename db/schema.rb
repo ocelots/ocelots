@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902015738) do
+ActiveRecord::Schema.define(:version => 20120903004652) do
 
   create_table "facts", :force => true do |t|
     t.integer  "person_id"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20120902015738) do
     t.string   "persona_id"
     t.integer  "track"
     t.string   "secret"
+    t.string   "phone"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "weibo"
+    t.string   "appnet"
+    t.string   "github"
+    t.string   "url"
   end
 
   create_table "teams", :force => true do |t|
