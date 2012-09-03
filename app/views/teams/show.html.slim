@@ -23,8 +23,30 @@ div.row
         - elsif membership.person.track
           = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
 
+        - if membership.person.phone
+          p = membership.person.phone
+
         - if membership.person == @person
           = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
             = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
             = submit_tag 'add', class: 'btn'
 
+        div.social_media
+          - if membership.person.url
+            a href="http://#{membership.person.url}"
+              img src='/assets/url.png'
+          - if membership.person.twitter
+            a href="http://twitter.com/#{membership.person.twitter}"
+              img src='/assets/twitter.png'
+          - if membership.person.facebook
+            a href="http://www.facebook.com/#{membership.person.facebook}"
+              img src='/assets/facebook.png'
+          - if membership.person.weibo
+            a href="http://weibo.com/#{membership.person.weibo}"
+              img src='/assets/weibo.png'
+          - if membership.person.appnet
+            a href="http://alpha.app.net/#{membership.person.appnet}"
+              img src='/assets/appnet.png'
+          - if membership.person.github
+            a href="http://github.com/#{membership.person.github}"
+              img src='/assets/github.png'
