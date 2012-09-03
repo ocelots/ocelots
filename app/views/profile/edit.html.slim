@@ -21,6 +21,16 @@ a name='general'
         div.controls
           = form.text_field :preferred_name
       div.control-group
+        label.control-label for="person_phone" Phone
+        div.controls
+          = form.text_field :phone
+      div.control-group
+        div.controls
+          p http://twitter.com/#{form.text_field :twitter}
+      div.control-group
+        div.controls
+          p http://facebook.com/#{form.text_field :facebook}
+      div.control-group
         label.control-label for="person_sc_embed_code" Soundcloud embed code
         div.controls
           = text_field_tag :sc_embed_code, nil
