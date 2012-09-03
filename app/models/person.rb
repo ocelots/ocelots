@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
 
   attr_accessible :email, :full_name, :chinese_name, :pinyin_name, :preferred_name
   attr_accessible :photo, :persona_id
-  attr_accessible :phone, :twitter, :facebook
+  attr_accessible :phone, :twitter, :facebook, :weibo, :appnet, :github, :url
 
   has_many :facts
   has_many :memberships

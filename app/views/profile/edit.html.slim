@@ -21,16 +21,6 @@ a name='general'
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_phone" Phone
-        div.controls
-          = form.text_field :phone
-      div.control-group
-        div.controls
-          p http://twitter.com/#{form.text_field :twitter}
-      div.control-group
-        div.controls
-          p http://facebook.com/#{form.text_field :facebook}
-      div.control-group
         label.control-label for="person_sc_embed_code" Soundcloud embed code
         div.controls
           = text_field_tag :sc_embed_code, nil
@@ -42,6 +32,29 @@ a name='general'
           = form.file_field :photo
           - if @person.photo?
             img src="#{@person.photo :small}"
+      div.control-group
+        label.control-label for="person_phone" Phone
+        div.controls
+          = form.text_field :phone
+      div.control-group
+        label.control-label for="person_url" Personal site
+        div.controls
+          p http://#{form.text_field :url}
+      div.control-group
+        div.controls
+          p http://twitter.com/#{form.text_field :twitter}
+      div.control-group
+        div.controls
+          p http://facebook.com/#{form.text_field :facebook}
+      div.control-group
+        div.controls
+          p http://weibo.com/#{form.text_field :weibo}
+      div.control-group
+        div.controls
+          p http://alpha.appnet.com/#{form.text_field :appnet}
+      div.control-group
+        div.controls
+          p http://github.com/#{form.text_field :github}
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'
 
