@@ -1,13 +1,19 @@
 - content_for :menu_items do
   li
+    = link_to 'add member', '#add_new', class: 'fancybox'
+  li
     = link_to 'avatars', "/avatars/#{@team.slug}"
   li
     = link_to 'quiz', "/quiz/#{@team.slug}"
 
-div.row
-  div.offset3
-    = form_tag "/teams/#{@team.slug}/add", class: 'form-inline' do
-      = text_field_tag :email, nil, placeholder: 'email'
+div id="add_new" style="display:none;"
+  p.lead Add a new team member by specifying their email address.
+  = form_tag "/teams/#{@team.slug}/add", class: 'form-horizontal' do
+    div.control-group
+      label.control-label for="email" email
+      div.controls
+        = text_field_tag :email
+    div.form-actions
       = submit_tag 'add', class: 'btn'
 
 - @team.memberships.each do |membership|

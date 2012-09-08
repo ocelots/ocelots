@@ -14,3 +14,5 @@ $ ->
     else
       $(this).find('.highlight').removeClass('highlight').addClass('incorrect')
     false
+
+  $('.fancybox').fancybox()

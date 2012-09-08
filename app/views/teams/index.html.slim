@@ -1,8 +1,19 @@
-div.row
-  div.offset3
-    = form_for @team, html: {class: 'form-inline'} do |form|
-      = form.text_field :slug, placeholder: 'slug'
-      = form.text_field :name, placeholder: 'Team Name'
+- content_for :menu_items do
+  li
+    = link_to 'add team', '#add_new', class: 'fancybox'
+
+div id="add_new" style="display:none;"
+  p.lead Create a new team by specifying the team name and the unique URL.
+  = form_for @team, html: {class: 'form-horizontal'} do |form|
+    div.control-group
+      label.control-label for="team_name" Team Name
+      div.controls
+        = form.text_field :name
+    div.control-group
+      label.control-label for="team_slug" URL
+      div.controls
+        p http://ocelots.herokuapp.com/#{form.text_field :slug}
+    div.form-actions
       = form.submit 'Create', class: 'btn'
 
 - @teams.each do |team|
