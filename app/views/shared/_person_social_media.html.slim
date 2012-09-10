@@ -1,0 +1,19 @@
+div.social_media
+  - unless person.url.blank?
+    a href="http://#{person.url}"
+      img src='/assets/url.png'
+  - unless person.twitter.blank?
+    a href="http://twitter.com/#{person.twitter}"
+      img src='/assets/twitter.png'
+  - unless person.facebook.blank?
+    a href="http://www.facebook.com/#{person.facebook}"
+      img src='/assets/facebook.png'
+  - unless person.weibo.blank?
+    a href="http://weibo.com/#{person.weibo}"
+      img src='/assets/weibo.png'
+  - unless person.appnet.blank?
+    a href="http://alpha.app.net/#{person.appnet}"
+      img src='/assets/appnet.png'
+  - unless person.github.blank?
+    a href="http://github.com/#{person.github}"
+      img src='/assets/github.png'

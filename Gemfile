@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 gem 'slim'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'faker'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

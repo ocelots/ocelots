@@ -4,3 +4,8 @@ div.hero-unit
       img src="#{@person.photo? ? @person.photo.url : '/assets/silhouette.png'}" width=300
     div.span4
       = render partial: 'shared/person', locals: {person: @person}
+
+      - unless @person.phone.blank?
+          p = @person.phone
+
+      = render partial: 'shared/person_social_media', locals: {person: @person}
