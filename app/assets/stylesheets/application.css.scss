@@ -8,10 +8,12 @@ body {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
+  color: #333;
 }
 
 .highlight:hover {
   background: #ccc;
+  text-decoration: none;
 }
 
 .correct {
