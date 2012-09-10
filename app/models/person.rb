@@ -1,4 +1,5 @@
 require 'omnipotence'
+require 'uuidtools'
 
 class Person < ActiveRecord::Base
   include Omnipotence
@@ -21,6 +22,10 @@ class Person < ActiveRecord::Base
                                  :thumb => "40x60#",
                                  :small => "80x120#"
                               }}.merge( Rails.application.config.paperclip_storage_options )
+
+  def self.create_for_email email
+    Person.create email: email, account: UUIDTools::UUID.random_create.to_s
+  end
 
   def create_persona_id
     self.persona_id = Digest::MD5.hexdigest(email)
