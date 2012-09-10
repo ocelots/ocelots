@@ -6,6 +6,8 @@ Ocelots::Application.routes.draw do
   get 'profile' => 'profile#edit'
   put 'profile' => 'profile#update'
 
+  get 'profiles/:account' => 'profiles#show'
+
   post 'fact' => 'fact#create'
   delete 'fact/:id' => 'fact#destroy'
 
