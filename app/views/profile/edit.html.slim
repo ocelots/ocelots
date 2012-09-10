@@ -1,6 +1,6 @@
 h1 General
 
-= form_for @person, url: profile_url, html: {class: 'form-horizontal'} do |form|
+= form_for @current_person, url: profile_url, html: {class: 'form-horizontal'} do |form|
   fieldset
     div.span10
       div.control-group
@@ -27,14 +27,14 @@ h1 General
         label.control-label for="person_sc_embed_code" Soundcloud embed code
         div.controls
           = text_field_tag :sc_embed_code, nil
-          - if @person.track
-            = render partial: 'shared/soundcloud_iframe', locals: {object: @person}
+          - if @current_person.track
+            = render partial: 'shared/soundcloud_iframe', locals: {object: @current_person}
       div.control-group
         label.control-label for="photo" Photo
         div.controls
           = form.file_field :photo
-          - if @person.photo?
-            img src="#{@person.photo :small}"
+          - if @current_person.photo?
+            img src="#{@current_person.photo :small}"
       div.control-group
         label.control-label for="person_phone" Phone
         div.controls
@@ -66,7 +66,7 @@ a name='facts'
 
 div.span6
   table class='table-striped'
-    - @person.facts.each do |fact|
+    - @current_person.facts.each do |fact|
       tr
         td
           p = 'I ' + fact.content
