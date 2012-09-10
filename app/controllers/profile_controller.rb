@@ -5,8 +5,8 @@ class ProfileController < ApplicationController
   before_filter :current_person
 
   def update
-    process_sc_embed_code @person, @person
-    if @person.update_attributes params[:person]
+    process_sc_embed_code current_person, current_person
+    if current_person.update_attributes params[:person]
       redirect_to profile_url, notice: 'Profile successfully updated.'
     else
       render action: 'edit'
