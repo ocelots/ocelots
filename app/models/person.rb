@@ -2,8 +2,10 @@ class Person < ActiveRecord::Base
   before_create :create_persona_id
 
   attr_accessible :email, :full_name, :chinese_name, :pinyin_name, :preferred_name
-  attr_accessible :photo, :persona_id
+  attr_accessible :photo, :persona_id, :account
   attr_accessible :phone, :twitter, :facebook, :weibo, :appnet, :github, :url
+
+  validates_uniqueness_of :account
 
   has_many :facts
   has_many :memberships

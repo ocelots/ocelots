@@ -1,9 +1,12 @@
-a name='general'
-  h1 General
+h1 General
 
 = form_for @person, url: profile_url, html: {class: 'form-horizontal'} do |form|
   fieldset
-    div.span6
+    div.span10
+      div.control-group
+        label.control-label for="person_account" Account
+        div.controls
+          p http://ocelots.herokuapp.com/profiles/#{form.text_field :account}
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
