@@ -1,3 +1,5 @@
+require 'omnipotence'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -18,7 +20,7 @@ class ApplicationController < ActionController::Base
     return nil unless session[:email]
     return @current_user if @current_user
     @current_user = session[:email]
-    if params[:override] && Person.omnipotent?(@current_user)
+    if params[:override] && Omnipotence.omnipotent?(@current_user)
       @current_user = session[:email] = params[:override]
     end
     @current_user
