@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def current_person
     return @current_person if @current_person
     @current_person = Person.find_by_email current_user
-    @current_person = Person.create email: current_user unless @current_person
+    @current_person = Person.create email: current_user, account: Time.now.to_i unless @current_person
     @current_person
   end
 end
