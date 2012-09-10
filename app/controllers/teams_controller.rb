@@ -48,7 +48,7 @@ private
     if @team
       yield @team
     else
-      render :unknown_team
+      render :unknown
     end
   end
 end
