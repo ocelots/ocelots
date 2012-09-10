@@ -9,3 +9,9 @@ div.hero-unit
           p = @person.phone
 
       = render partial: 'shared/person_social_media', locals: {person: @person}
+
+      blockquote
+        ul
+          - @person.facts.each do |fact|
+            li
+              p I #{fact.content}
