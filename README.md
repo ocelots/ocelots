@@ -10,6 +10,7 @@ To setup your own instance on heroku:
 
     heroku apps:create
     heroku addons:add heroku-postgresql
+    heroku addons:add sendgrid:starter
     git push heroku master
 
 You should now generate a new rails secret for heroku
@@ -30,3 +31,9 @@ If you want some admin users to be able to assume the identity of others:
 If you want some email domains to be able to view teams they are not members of:
 
     heroku config:add BLESSED_DOMAINS=domain.com
+
+You can specify the email sender by setting another environment variable:
+
+    heroku config:add FROM_EMAIL=sender@domain.com
+
+For local development, you can copy the SENDGRID_USERNAME and SENDGRID_PASSWORD and use them as local environment variables.
