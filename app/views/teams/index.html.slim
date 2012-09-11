@@ -16,12 +16,20 @@ div id="add_new" style="display:none;"
     div.form-actions
       = form.submit 'Create', class: 'btn'
 
-- @teams.each do |team|
-  a href="/teams/#{team.slug}"
+- @memberships.each do |membership|
+  a href="/teams/#{membership.team.slug}"
     div.hero-unit.highlight
       div.row
         div.span4
           img src="/assets/team.png"
         div.span4
-          h1 = team.name
-          p = team.description
+          h1 = membership.team.name
+          p = membership.team.description
+        div.span1
+          - if membership.pending?
+            = form_tag "/membership/approve" do
+              input type="hidden" name="id" value="#{membership.id}"
+              = submit_tag 'Approve', class: 'btn btn-primary btn-block'
+            = form_tag "/membership/leave" do
+              input type="hidden" name="id" value="#{membership.id}"
+              = submit_tag 'Leave', class: 'btn btn-danger btn-block'

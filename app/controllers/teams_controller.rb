@@ -2,7 +2,7 @@ require 'uuidtools'
 
 class TeamsController < ApplicationController
   def index
-    @teams = current_person.teams
+    @memberships = current_person.memberships
     @team = Team.new
   end
 

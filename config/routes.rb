@@ -17,6 +17,8 @@ Ocelots::Application.routes.draw do
   post 'teams/:slug/add' => 'teams#add'
 
   post 'membership/:id/soundcloud' => 'membership#soundcloud'
+  post 'membership/leave' => 'membership#leave'
+  post 'membership/approve' => 'membership#approve'
 
   get 'invitation/:token' => 'membership#accept_invitation'
 

@@ -16,4 +16,8 @@ class Membership < ActiveRecord::Base
   def pending?
     pending_approval_token
   end
+
+  def approve
+    update_attributes pending_approval_token: nil
+  end
 end
