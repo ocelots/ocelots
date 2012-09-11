@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903004652) do
+ActiveRecord::Schema.define(:version => 20120911014844) do
 
   create_table "facts", :force => true do |t|
     t.integer  "person_id"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(:version => 20120903004652) do
     t.integer  "team_id"
     t.date     "started"
     t.date     "ended"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "track"
     t.string   "secret"
+    t.string   "pending_approval_token"
   end
 
   create_table "people", :force => true do |t|
