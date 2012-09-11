@@ -36,4 +36,8 @@ You can specify the email sender by setting another environment variable:
 
     heroku config:add FROM_EMAIL=sender@domain.com
 
+You will also need to specify the preferred base url:
+
+    heroku config:add BASE_URL=http://localhost:3000
+
 For local development, you can copy the SENDGRID_USERNAME and SENDGRID_PASSWORD and use them as local environment variables.

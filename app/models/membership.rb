@@ -1,6 +1,15 @@
 class Membership < ActiveRecord::Base
-  attr_accessible :ended, :person_id, :started, :team_id, :person, :team
+  attr_accessible :person, :team, :pending_approval_token, :started, :ended
 
   belongs_to :person
   belongs_to :team
+
+  scope :approved, where('pending_approval_token is null')
+
+  def self.create_pending_membership inviter, team, person
+    membership = Membership.create team: team,
+      person: person,
+      pending_approval_token: UUIDTools::UUID.random_create.to_s
+    PersonMailer.invite(inviter, membership).deliver
+  end
 end

@@ -18,6 +18,8 @@ Ocelots::Application.routes.draw do
 
   post 'membership/:id/soundcloud' => 'membership#soundcloud'
 
+  get 'invitation/:token' => 'membership#accept_invitation'
+
   get 'avatars/:slug' => 'teams#avatars'
 
   get 'quiz/:slug' => 'teams#quiz'

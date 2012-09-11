@@ -4,6 +4,6 @@ You have been invited by <%= @inviter.email %> to join the group <%= @membership
 
 To accept this invitation, please click the following link:
 
-http://ocelots.herokuapp.com/invitation/#{@membership.pending_approval_token}
+<%= ENV['BASE_URL'] %>/invitation/<%= @membership.pending_approval_token %>
 
 Please make sure you enter using the email address <%= @membership.user.email %>.

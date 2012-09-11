@@ -6,7 +6,7 @@ h1 General
       div.control-group
         label.control-label for="person_account" Account
         div.controls
-          p http://ocelots.herokuapp.com/profiles/#{form.text_field :account}
+          p #{ENV['BASE_URL']}/profiles/#{form.text_field :account}
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls

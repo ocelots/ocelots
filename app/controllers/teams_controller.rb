@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 class TeamsController < ApplicationController
   def index
     @teams = current_person.teams
@@ -18,10 +20,7 @@ class TeamsController < ApplicationController
     with_team do |team|
       person = Person.find_by_email params[:email]
       person = Person.create_for_email params[:email] unless person
-      unless person.teams.include? team
-        membership = Membership.create team: team, person: person
-        PersonMailer.invite(current_person, membership).deliver
-      end
+      Membership.create_pending_membership current_person, team, person unless person.teams.include? team
       redirect_to "/teams/#{team.slug}"
     end
   end
