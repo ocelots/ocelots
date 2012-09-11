@@ -17,8 +17,11 @@ class TeamsController < ApplicationController
   def add
     with_team do |team|
       person = Person.find_by_email params[:email]
-      person = Person.create email: params[:email] unless person
-      Membership.create team: team, person: person
+      person = Person.create_for_email params[:email] unless person
+      unless person.teams.include? team
+        membership = Membership.create team: team, person: person
+        PersonMailer.invite(current_person, membership).deliver
+      end
       redirect_to "/teams/#{team.slug}"
     end
   end
