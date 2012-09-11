@@ -7,7 +7,8 @@
     = link_to 'quiz', "/quiz/#{@team.slug}"
 
 div id="add_new" style="display:none;"
-  p.lead Add a new team member by specifying their email address.
+  p.lead Add a new team member by specifying their email address
+  p This will send an email inviting them to approve their membership before their full details will appear on this page
   = form_tag "/teams/#{@team.slug}/add", class: 'form-horizontal' do
     div.control-group
       label.control-label for="email" email
