@@ -12,4 +12,8 @@ class Membership < ActiveRecord::Base
       pending_approval_token: UUIDTools::UUID.random_create.to_s
     PersonMailer.invite(inviter, membership).deliver
   end
+
+  def pending?
+    pending_approval_token
+  end
 end

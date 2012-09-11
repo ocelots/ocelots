@@ -20,7 +20,13 @@ class TeamsController < ApplicationController
     with_team do |team|
       person = Person.find_by_email params[:email]
       person = Person.create_for_email params[:email] unless person
-      Membership.create_pending_membership current_person, team, person unless person.teams.include? team
+      unless person.teams.include? team
+        if person == current_person
+          Membership.create team: team, person: person
+        else
+          Membership.create_pending_membership current_person, team, person
+        end
+      end
       redirect_to "/teams/#{team.slug}"
     end
   end
