@@ -5,11 +5,10 @@ class Person < ActiveRecord::Base
   include Omnipotence
   extend UuidGenerator
 
-  before_create :create_persona_id
-
-  attr_accessible :email, :full_name, :chinese_name, :pinyin_name, :preferred_name
-  attr_accessible :photo, :persona_id, :account, :auth_token
-  attr_accessible :phone, :twitter, :facebook, :weibo, :appnet, :github, :url
+  attr_accessible :email, :persona_id, :account, :auth_token
+  attr_accessible :full_name, :chinese_name, :pinyin_name, :preferred_name
+  attr_accessible :photo, :phone
+  attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
 
   validates_uniqueness_of :account
 
@@ -25,10 +24,9 @@ class Person < ActiveRecord::Base
                               }}.merge( Rails.application.config.paperclip_storage_options )
 
   def self.create_for_email email
-    Person.create email: email, account: uuid, auth_token: uuid
-  end
-
-  def create_persona_id
-    self.persona_id = Digest::MD5.hexdigest(email)
+    Person.create email: email,
+      persona_id: Digest::MD5.hexdigest(email),
+      account: uuid,
+      auth_token: uuid
   end
 end
