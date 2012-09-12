@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911014844) do
+ActiveRecord::Schema.define(:version => 20120912075329) do
 
   create_table "facts", :force => true do |t|
     t.integer  "person_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120911014844) do
     t.string   "appnet"
     t.string   "github"
     t.string   "url"
+    t.string   "auth_token"
   end
 
   create_table "teams", :force => true do |t|
