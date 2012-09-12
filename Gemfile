@@ -18,6 +18,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'machinist'
 end
 
 group :production do
