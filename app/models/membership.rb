@@ -1,3 +1,5 @@
+require 'uuid_generator'
+
 class Membership < ActiveRecord::Base
   include UuidGenerator
 
