@@ -1,4 +1,6 @@
 class Membership < ActiveRecord::Base
+  include UuidGenerator
+
   attr_accessible :person, :team, :pending_approval_token, :started, :ended
 
   belongs_to :person
@@ -9,7 +11,7 @@ class Membership < ActiveRecord::Base
   def self.create_pending_membership inviter, team, person
     membership = Membership.create team: team,
       person: person,
-      pending_approval_token: UUIDTools::UUID.random_create.to_s
+      pending_approval_token: uuid
     PersonMailer.invite(inviter, membership).deliver
   end
 

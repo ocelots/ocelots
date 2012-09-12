@@ -1,5 +1,3 @@
-require 'uuidtools'
-
 class TeamsController < ApplicationController
   def index
     @memberships = current_person.memberships

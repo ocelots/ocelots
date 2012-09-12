@@ -1,8 +1,9 @@
 require 'omnipotence'
-require 'uuidtools'
+require 'uuid_generator'
 
 class Person < ActiveRecord::Base
   include Omnipotence
+  include UuidGenerator
 
   before_create :create_persona_id
 
@@ -24,7 +25,7 @@ class Person < ActiveRecord::Base
                               }}.merge( Rails.application.config.paperclip_storage_options )
 
   def self.create_for_email email
-    Person.create email: email, account: UUIDTools::UUID.random_create.to_s
+    Person.create email: email, account: uuid
   end
 
   def create_persona_id
