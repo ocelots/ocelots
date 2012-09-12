@@ -12,4 +12,23 @@ describe ApplicationController do
       controller.should be_logged_in
     end
   end
+
+  describe 'require login' do
+    let(:session) { stub 'session' }
+    let(:request) { stub 'request', url: :the_url }
+
+    before do
+      controller.stub!(:session).and_return session
+      controller.stub!(:request).and_return request
+      controller.stub!(:root_url).and_return :root_url
+    end
+
+    after { controller.require_login }
+
+    it 'should store the initial url in session when not logged in' do
+      controller.stub!(:logged_in?).and_return false
+      session.should_receive(:[]=).with :initial_url, :the_url
+      controller.should_receive(:redirect_to).with :root_url
+    end
+  end
 end
