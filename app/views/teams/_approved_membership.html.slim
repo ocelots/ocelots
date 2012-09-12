@@ -15,8 +15,11 @@ a href="/profiles/#{membership.person.account}"
           p = membership.person.phone
 
         - if membership.person == current_person
-          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
-            = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
-            = submit_tag 'add', class: 'btn'
+          = link_to 'link to soundcloud track', '#add_sc', class: 'fancybox btn btn-primary'
+          div id="add_sc" style="display:none;"
+            p Record a soundcloud track, click 'Share', copy the contents of the 'Embed Code' content and paste into the link below
+            = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
+              = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
+              = submit_tag 'add', class: 'btn'
 
         = render partial: 'shared/person_social_media', locals: {person: membership.person}
