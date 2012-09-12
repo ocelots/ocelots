@@ -11,6 +11,7 @@ class Person < ActiveRecord::Base
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
 
   validates_uniqueness_of :account
+  validates_uniqueness_of :auth_token
 
   has_many :facts
   has_many :memberships

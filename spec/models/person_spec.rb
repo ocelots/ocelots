@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe Person do
-  it 'should not generate valid user with non unique account' do
-    person1 = Person.make! account: 'the_one'
-    person2 = Person.make account: 'the_one'
-    person2.should_not be_valid
+  it 'should ensure users have a unique auth_token' do
+    Person.make! auth_token: 'the_one'
+    Person.make(auth_token: 'the_one').should_not be_valid
+  end
+
+  it 'should ensure users have a unique account' do
+    Person.make! account: 'the_one'
+    Person.make(account: 'the_one').should_not be_valid
   end
 
   describe '#create_for_email' do
