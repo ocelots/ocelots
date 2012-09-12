@@ -30,5 +30,11 @@ describe ApplicationController do
       session.should_receive(:[]=).with :initial_url, :the_url
       controller.should_receive(:redirect_to).with :root_url
     end
+
+    it 'should skip redirection when logged in' do
+      controller.stub!(:logged_in?).and_return true
+      session.should_not_receive :[]=
+      controller.should_not_receive :redirect_to
+    end
   end
 end
