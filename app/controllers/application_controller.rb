@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
       email = session[:email] = params[:override]
     end
 
-    @current_person = Person.find_by_email email
-    @current_person = Person.create_for_email email unless @current_person
+    @current_person = Person.find_by_email session[:email]
+    @current_person = Person.create_for_email session[:email] unless @current_person
     @current_person
   end
 end

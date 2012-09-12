@@ -57,12 +57,35 @@ describe ApplicationController do
       controller.current_person.should be_nil
     end
 
-    it 'should lookup user from email' do
-      session[:email] = :session_email
-      Person.stub!(:find_by_email).and_return :person
-      controller.current_person.should == :person
-    end
+    describe 'with session email' do
+      before { session[:email] = :session_email }
 
-    it 'should replace email with override if email is omnipotent an override is given'
+      it 'should lookup user from session email' do
+        Person.should_receive(:find_by_email).with(:session_email).and_return :person
+        controller.current_person.should == :person
+      end
+
+      it 'should create a new user if one cannot be found from email' do
+        Person.should_receive(:find_by_email).with(:session_email).and_return nil
+        Person.should_receive(:create_for_email).with(:session_email).and_return :person
+        controller.current_person.should == :person
+      end
+
+      it 'should replace email with override if email is omnipotent an override is given' do
+        params[:override] = :override_email
+        Person.should_receive(:find_by_email).with(:override_email).and_return :person
+        Omnipotence.should_receive(:omnipotent?).with(:session_email).and_return true
+        controller.current_person.should == :person
+        session[:email].should == :override_email
+      end
+
+      it 'should ignore override if email is not omnipotent' do
+        params[:override] = :override_email
+        Omnipotence.should_receive(:omnipotent?).with(:session_email).and_return false
+        Person.should_receive(:find_by_email).with(:session_email).and_return :person
+        controller.current_person.should == :person
+        session[:email].should == :session_email
+      end
+    end
   end
 end
