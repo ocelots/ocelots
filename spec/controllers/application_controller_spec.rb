@@ -37,4 +37,11 @@ describe ApplicationController do
       controller.should_not_receive :redirect_to
     end
   end
+
+  describe 'current_person' do
+    it 'should immediately return when @current_person has been determined' do
+      controller.instance_variable_set '@current_person', :current_person
+      controller.current_person.should == :current_person
+    end
+  end
 end
