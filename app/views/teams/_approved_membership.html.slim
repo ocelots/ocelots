@@ -1,21 +1,22 @@
-div.hero-unit
-  div.row.person
-    div.span4
-      img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
-    div.span4
-      = render partial: 'shared/person', locals: {person: membership.person}
+a href="/profiles/#{membership.person.account}"
+  div.hero-unit.highlight
+    div.row.person
+      div.span4
+        img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
+      div.span4
+        = render partial: 'shared/person', locals: {person: membership.person}
 
-      - if membership.track
-        = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
-      - elsif membership.person.track
-        = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
+        - if membership.track
+          = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
+        - elsif membership.person.track
+          = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
 
-      - unless membership.person.phone.blank?
-        p = membership.person.phone
+        - unless membership.person.phone.blank?
+          p = membership.person.phone
 
-      - if membership.person == current_person
-        = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
-          = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
-          = submit_tag 'add', class: 'btn'
+        - if membership.person == current_person
+          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
+            = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
+            = submit_tag 'add', class: 'btn'
 
-      = render partial: 'shared/person_social_media', locals: {person: membership.person}
+        = render partial: 'shared/person_social_media', locals: {person: membership.person}
