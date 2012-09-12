@@ -13,10 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !!current_user
+    !!current_person
   end
 
-  def current_user
+  def current_person
+    return @current_person if @current_person
     return nil unless session[:email]
     return @current_user if @current_user
     @current_user = session[:email]
@@ -24,10 +25,7 @@ class ApplicationController < ActionController::Base
       @current_user = session[:email] = params[:override]
     end
     @current_user
-  end
-
-  def current_person
-    return @current_person if @current_person
+    
     @current_person = Person.find_by_email current_user
     @current_person = Person.create_for_email current_user unless @current_person
     @current_person
