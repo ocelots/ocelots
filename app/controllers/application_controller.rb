@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     return unless session[:email]
 
     if params[:override] && Omnipotence.omnipotent?(session[:email])
-      email = session[:email] = params[:override]
+      session[:email] = params[:override]
     end
 
     @current_person = Person.find_by_email session[:email]
