@@ -60,6 +60,10 @@ h1 General
           p http://github.com/#{form.text_field :github}
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'
+      div.control-group
+        label.control-label for="person_auth_token" Auth Token
+        div.controls
+          p = @current_person.auth_token
 
 a name='facts'
   h1 Facts
