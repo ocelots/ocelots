@@ -21,7 +21,7 @@ html
               = yield :menu_items
           ul.nav.pull-right
             li
-              = link_to "logout #{@current_user}", logout_url
+              = link_to "logout #{@current_person.email}", logout_url
 
     div.container
       = yield
