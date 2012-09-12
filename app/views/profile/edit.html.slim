@@ -4,9 +4,9 @@ h1 General
   fieldset
     div.span10
       div.control-group
-        label.control-label for="person_account" Account
+        label.control-label for="person_account" Profile
         div.controls
-          p #{ENV['BASE_URL']}/profiles/#{form.text_field :account}
+          p #{ENV['BASE_URL']}/profiles/#{form.text_field :account} <a href="#{ENV['BASE_URL']}/profiles/#{@current_person.account}"><i class="icon-zoom-in"></i></a>
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
