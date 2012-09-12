@@ -18,16 +18,20 @@ class ApplicationController < ActionController::Base
 
   def current_person
     return @current_person if @current_person
-    return nil unless session[:email]
-    return @current_user if @current_user
-    @current_user = session[:email]
-    if params[:override] && Omnipotence.omnipotent?(@current_user)
-      @current_user = session[:email] = params[:override]
+
+    if params[:auth_token]
+      @current_person = Person.find_by_auth_token params[:auth_token]
+      return @current_person if @current_person
     end
-    @current_user
-    
-    @current_person = Person.find_by_email current_user
-    @current_person = Person.create_for_email current_user unless @current_person
+
+    return unless session[:email]
+
+    if params[:override] && Omnipotence.omnipotent?(session[:email])
+      email = session[:email] = params[:override]
+    end
+
+    @current_person = Person.find_by_email email
+    @current_person = Person.create_for_email email unless @current_person
     @current_person
   end
 end
