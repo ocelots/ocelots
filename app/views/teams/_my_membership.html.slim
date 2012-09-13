@@ -1,7 +1,8 @@
 div.hero-unit.highlight
   div.row
     div.span4
-      img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
+      a href="/profiles/#{membership.person.account}"
+        img src="#{membership.person.photo? ? membership.person.photo.url : '/assets/silhouette.png'}" width=300
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
       - if membership.track
