@@ -1,7 +1,7 @@
 require 'uuid_generator'
 
 class Membership < ActiveRecord::Base
-  include UuidGenerator
+  extend UuidGenerator
 
   attr_accessible :person, :team, :pending_approval_token, :started, :ended
 
