@@ -35,6 +35,7 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     builder (3.0.0)
+    chronic (0.7.0)
     cocaine (0.3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -144,6 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  chronic
   coffee-rails (~> 3.2.1)
   faker
   jquery-rails
