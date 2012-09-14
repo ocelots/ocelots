@@ -8,7 +8,7 @@ Ocelots::Application.routes.draw do
 
   get 'profiles/:account' => 'profiles#show'
 
-  get 'api/profiles/:account' => 'api#profile'
+  get 'api/profiles/:persona_id' => 'api#profile'
 
   post 'fact' => 'fact#create'
   delete 'fact/:id' => 'fact#destroy'
