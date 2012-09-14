@@ -30,4 +30,8 @@ class Person < ActiveRecord::Base
       account: uuid,
       auth_token: uuid
   end
+
+  def api_attributes
+    attributes.except(*%w{id auth_token photo_file_name photo_content_type photo_file_size})
+  end
 end
