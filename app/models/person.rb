@@ -32,6 +32,8 @@ class Person < ActiveRecord::Base
   end
 
   def api_attributes
-    attributes.except(*%w{id auth_token photo_file_name photo_content_type photo_file_size})
+    att = attributes.except(*%w{id auth_token photo_file_name photo_content_type photo_file_size})
+    att[:photo_url] = photo.url if photo.exists?
+    att
   end
 end
