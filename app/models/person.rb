@@ -36,4 +36,8 @@ class Person < ActiveRecord::Base
     att[:photo_url] = photo.url if photo.exists?
     att
   end
+
+  def approved_teams
+    memberships.approved.includes('team').map &:team
+  end
 end
