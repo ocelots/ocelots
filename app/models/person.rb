@@ -17,12 +17,12 @@ class Person < ActiveRecord::Base
   has_many :memberships
   has_many :teams, through: :memberships
 
-  has_attached_file :photo,
-                     { :styles =>
-                              {
-                                 :thumb => "40x60#",
-                                 :small => "80x120#"
-                              }}.merge( Rails.application.config.paperclip_storage_options )
+  has_attached_file :photo, {
+    styles: {
+         thumb: "40x60#",
+         small: "80x120#"
+      }
+    }.merge(Rails.application.config.paperclip_storage_options)
 
   def self.create_for_email email
     Person.create email: email,
@@ -39,5 +39,11 @@ class Person < ActiveRecord::Base
 
   def approved_teams
     memberships.approved.includes('team').map &:team
+  end
+
+  def allowed_to_view? person
+    return false unless person
+    return true if blessed? or person == self
+    !(teams & person.approved_teams).empty?
   end
 end
