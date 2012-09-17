@@ -24,4 +24,12 @@ class Membership < ActiveRecord::Base
   def approve
     update_attributes pending_approval_token: nil
   end
+
+  def self.api_attributes_for user
+    user.memberships.map do |m|
+      attr = m.attributes.except(*%w{id person_id team_id pending_approval_token})
+      attr[:team] = m.team.attributes.except(*%w{id creator_id})
+      attr
+    end
+  end
 end

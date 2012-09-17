@@ -10,4 +10,8 @@ class ApiController < ApplicationController
       render json: {}, status: :unprocessable_entity
     end
   end
+
+  def teams
+    render json: Membership.api_attributes_for(current_person)
+  end
 end
