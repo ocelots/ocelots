@@ -11,7 +11,7 @@ class ApiController < ApplicationController
     end
   end
 
-  def teams
+  def memberships
     render json: Membership.api_attributes_for(current_person)
   end
 end
