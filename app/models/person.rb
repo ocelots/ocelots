@@ -43,7 +43,11 @@ class Person < ActiveRecord::Base
 
   def allowed_to_view? person
     return false unless person
-    return true if blessed? or person == self
-    !(teams & person.approved_teams).empty?
+    blessed? or person == self or !(teams & person.approved_teams).empty?
+  end
+
+  def allowed_to_view_team? team
+    return false unless team
+    blessed? or team.creator == self or teams.include?(team)
   end
 end
