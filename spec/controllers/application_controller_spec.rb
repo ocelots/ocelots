@@ -4,6 +4,7 @@ describe ApplicationController do
   let(:session) { {} }
   let(:params) { {} }
   let(:request) { stub 'request' }
+  let(:person) { stub 'person' }
 
   before do
     controller.stub!(:session).and_return session
@@ -49,8 +50,10 @@ describe ApplicationController do
 
     it 'should attempt to lookup user from auth_token if there is one in the request' do
       params[:auth_token] = :token
-      Person.stub!(:find_by_auth_token).with(:token).and_return :person
-      controller.current_person.should == :person
+      Person.stub!(:find_by_auth_token).with(:token).and_return person
+      person.should_receive(:email).and_return :email
+      controller.current_person.should == person
+      session[:email].should == :email
     end
 
     it 'should return nil if there is no auth_token or email' do
