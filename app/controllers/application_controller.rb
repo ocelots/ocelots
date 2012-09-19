@@ -21,7 +21,10 @@ class ApplicationController < ActionController::Base
 
     if params[:auth_token]
       @current_person = Person.find_by_auth_token params[:auth_token]
-      return @current_person if @current_person
+      if @current_person
+        session[:email] = @current_person.email
+        return @current_person
+      end
     end
 
     return unless session[:email]
