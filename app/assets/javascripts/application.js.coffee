@@ -17,9 +17,7 @@ $ ->
 
   $('.fancybox').fancybox()
 
-  map_canvas = document.getElementById("map_canvas")
-
-  if map_canvas
+  $("#map_canvas").each ->
     lat = parseFloat($('#person_lat').val()) || -34.397
     lng = parseFloat($('#person_lng').val()) || 150.644
 
@@ -29,7 +27,7 @@ $ ->
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    map = new google.maps.Map(map_canvas, map_options)
+    map = new google.maps.Map(this, map_options)
 
     marker_options = {
       draggable: true,
