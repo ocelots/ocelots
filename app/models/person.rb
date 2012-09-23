@@ -18,11 +18,8 @@ class Person < ActiveRecord::Base
   has_many :teams, through: :memberships
 
   has_attached_file :photo, {
-    styles: {
-         thumb: "40x60#",
-         small: "80x120#"
-      }
-    }.merge(Rails.application.config.paperclip_storage_options)
+    styles: { square: "300x300#" }
+  }.merge(Rails.application.config.paperclip_storage_options)
 
   def self.create_for_email email
     Person.create email: email,

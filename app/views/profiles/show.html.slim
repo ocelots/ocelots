@@ -1,7 +1,7 @@
 div.hero-unit
   div.row.person
     div.span4
-      img src="#{@person.photo? ? @person.photo.url : '/assets/silhouette.png'}" width=300
+      = image_for @person
     div.span4
       = render partial: 'shared/person', locals: {person: @person}
 
