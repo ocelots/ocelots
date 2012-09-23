@@ -20,8 +20,11 @@ $ ->
   map_canvas = document.getElementById("map_canvas")
 
   if map_canvas
+    lat = parseFloat($('#person_lat').val()) || -34.397
+    lng = parseFloat($('#person_lng').val()) || 150.644
+
     map_options = {
-      center: new google.maps.LatLng(-34.397, 150.644),
+      center: new google.maps.LatLng(lat, lng),
       zoom: 8,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -30,7 +33,12 @@ $ ->
 
     marker_options = {
       draggable: true,
-      position: new google.maps.LatLng(-34.397, 150.644),
+      position: new google.maps.LatLng(lat, lng),
       map: map
     }
     marker = new google.maps.Marker(marker_options)
+
+    google.maps.event.addListener marker, 'dragend', (event) ->
+      point = marker.getPosition()
+      $('#person_lat').val point.lat()
+      $('#person_lng').val point.lng()

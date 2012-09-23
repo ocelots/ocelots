@@ -1,6 +1,6 @@
 class AddLatLngToPerson < ActiveRecord::Migration
   def change
-    add_column :people, :lat, :integer
-    add_column :people, :lng, :integer
+    add_column :people, :lat, :float
+    add_column :people, :lng, :float
   end
 end

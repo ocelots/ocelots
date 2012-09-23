@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20120923063400) do
     t.string   "github"
     t.string   "url"
     t.string   "auth_token"
-    t.integer  "lat"
-    t.integer  "lng"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "teams", :force => true do |t|

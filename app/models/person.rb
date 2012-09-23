@@ -9,6 +9,7 @@ class Person < ActiveRecord::Base
   attr_accessible :full_name, :chinese_name, :pinyin_name, :preferred_name
   attr_accessible :photo, :phone
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
+  attr_accessible :lat, :lng
 
   validates_uniqueness_of :account
   validates_uniqueness_of :auth_token
