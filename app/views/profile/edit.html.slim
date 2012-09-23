@@ -1,7 +1,7 @@
 h1 Your profile
 
-div.hero-unit
-  div.row.person
+div.hero-unit.highlight
+  div.row
     div.span4
       a href="/profiles/#{@current_person.account}"
         img src="#{@current_person.photo? ? @current_person.photo.url : '/assets/silhouette.png'}" width=300
@@ -16,7 +16,7 @@ h1 Edit
 
 = form_for @current_person, url: profile_url, html: {class: 'form-horizontal'} do |form|
   fieldset
-    div.span10
+    div.span8
       div.control-group
         label.control-label for="person_account" Profile
         div.controls
