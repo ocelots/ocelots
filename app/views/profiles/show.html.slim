@@ -15,3 +15,9 @@ div.hero-unit
           - @person.facts.each do |fact|
             li
               p I #{fact.content}
+
+- if @person.lat and @person.lng
+  div.row
+    div.offset1.span10
+      h2 I am from
+      div id="view_map" data-lat="#{@person.lat}" data-lng="#{@person.lng}" style="width: 100%; height: 500px;"
