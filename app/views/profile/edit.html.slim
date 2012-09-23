@@ -69,12 +69,19 @@ h1 Edit
       div.control-group
         div.controls
           p http://github.com/#{form.text_field :github}
+      div.control-group
+        div.controls
+          p #{form.text_field :github}
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'
       div.control-group
         label.control-label for="person_auth_token" Auth Token
         div.controls
           p = @current_person.auth_token
+
+div.row
+  div.span10
+    div id="map_canvas" style="width: 500px; height: 200px;"
 
 a name='facts'
   h1 Facts
