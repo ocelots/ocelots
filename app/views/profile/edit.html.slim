@@ -9,7 +9,8 @@ div.hero-unit.highlight
       = render partial: 'shared/person', locals: {person: @current_person}
       - unless @current_person.phone.blank?
           p = @current_person.phone
-      = render partial: 'shared/soundcloud_iframe', locals: {object: @current_person}
+      - if @current_person.track
+        = render partial: 'shared/soundcloud_iframe', locals: {object: @current_person}
       = render partial: 'shared/person_social_media', locals: {person: @current_person}
 
 h1 Edit
