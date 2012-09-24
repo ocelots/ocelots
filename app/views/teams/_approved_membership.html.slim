@@ -9,13 +9,6 @@ div.hero-unit.highlight
         = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
       - elsif membership.person.track
         = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
-      - unless membership.person.phone.blank?
-        p = membership.person.phone
-      - if membership.person == current_person
-        = link_to 'link to soundcloud track', '#add_sc', class: 'fancybox btn btn-primary'
-        div id="add_sc" style="display:none;"
-          p Record a soundcloud track, click 'Share', copy the contents of the 'Embed Code' content and paste into the link below
-          = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
-            = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
-            = submit_tag 'add', class: 'btn'
+      p
+        = phone_link_to membership.person.phone
       = render partial: 'shared/person_social_media', locals: {person: membership.person}

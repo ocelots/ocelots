@@ -5,8 +5,8 @@ div.hero-unit
     div.span4
       = render partial: 'shared/person', locals: {person: @person}
 
-      - unless @person.phone.blank?
-          p = @person.phone
+      p
+        = phone_link_to @person.phone
 
       = render partial: 'shared/person_social_media', locals: {person: @person}
 
