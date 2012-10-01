@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :require_login
+  helper_method :current_person
 
   def require_login
     unless logged_in?
