@@ -28,6 +28,10 @@ div.hero-unit.highlight
               label.control-label for="ended" Date Ended
               div.controls
                 = form.text_field :ended
+            div.control-group
+              label.control-label for="hidden" Hidden
+              div.controls
+                = form.check_box :hidden
             div.form-actions
               div.controls
                 = form.submit 'Update', class: 'btn btn-primary'
