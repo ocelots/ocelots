@@ -5,6 +5,8 @@ div.hero-unit.highlight
         = image_for membership.person
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
+      - if membership.role
+        p = membership.role
       - if membership.track
         = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
       - elsif membership.person.track

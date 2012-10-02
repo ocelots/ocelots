@@ -4,7 +4,7 @@ class Membership < ActiveRecord::Base
   extend UuidGenerator
 
   attr_accessible :person, :team, :pending_approval_token
-  attr_accessible :started, :ended, :hidden
+  attr_accessible :started, :ended, :hidden, :role
 
   belongs_to :person
   belongs_to :team

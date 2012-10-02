@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001221628) do
+ActiveRecord::Schema.define(:version => 20121002100106) do
 
   create_table "facts", :force => true do |t|
     t.integer  "person_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20121001221628) do
     t.string   "secret"
     t.string   "pending_approval_token"
     t.boolean  "hidden"
+    t.string   "role"
   end
 
 # Could not dump table "people" because of following StandardError

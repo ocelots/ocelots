@@ -5,6 +5,8 @@ div.hero-unit.highlight
         = image_for membership.person
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
+      - if membership.role
+        p = membership.role
       - if membership.track
         = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
       - elsif membership.person.track
@@ -21,6 +23,10 @@ div.hero-unit.highlight
               div.controls
                 = text_field_tag :sc_embed_code
                 span.help-block (record a soundcloud track, click 'Share' and copy the contents of the 'Embed Code' content here)
+            div.control-group
+              label.control-label for="role" Role
+              div.controls
+                = form.text_field :role
             div.control-group
               label.control-label for="started" Date Started
               div.controls
