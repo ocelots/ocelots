@@ -13,8 +13,8 @@ div.hero-unit.highlight
         = phone_link_to membership.person.phone
       = link_to 'link to soundcloud track', '#add_sc', class: 'fancybox btn btn-primary'
       div id="add_sc" style="display:none;"
-        p Record a soundcloud track, click 'Share', copy the contents of the 'Embed Code' content and paste into the link below
-        = form_tag "/membership/#{membership.id}/soundcloud", class: 'form-inline' do
+        = form_for membership, html: {class: 'form-horizontal'} do |form|
+          p Record a soundcloud track, click 'Share', copy the contents of the 'Embed Code' content and paste into the link below
           = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
-          = submit_tag 'add', class: 'btn'
+          = form.submit 'Update Profile', class: 'btn btn-primary'
       = render partial: 'shared/person_social_media', locals: {person: membership.person}

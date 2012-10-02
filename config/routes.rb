@@ -20,7 +20,7 @@ Ocelots::Application.routes.draw do
   get 'teams/:slug' => 'teams#show'
   post 'teams/:slug/add' => 'teams#add'
 
-  post 'membership/:id/soundcloud' => 'membership#soundcloud'
+  put 'membership/:id' => 'membership#update', as: 'membership'
   post 'membership/leave' => 'membership#leave'
   post 'membership/approve' => 'membership#approve'
 
