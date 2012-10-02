@@ -11,10 +11,24 @@ div.hero-unit.highlight
         = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
       p
         = phone_link_to membership.person.phone
-      = link_to 'link to soundcloud track', '#add_sc', class: 'fancybox btn btn-primary'
+      = link_to 'edit membership', '#add_sc', class: 'fancybox btn btn-primary'
       div id="add_sc" style="display:none;"
         = form_for membership, html: {class: 'form-horizontal'} do |form|
-          p Record a soundcloud track, click 'Share', copy the contents of the 'Embed Code' content and paste into the link below
-          = text_field_tag :sc_embed_code, nil, placeholder: 'soundcloud embed code'
-          = form.submit 'Update Profile', class: 'btn btn-primary'
+          fieldset
+            div.control-group
+              label.control-label for="sc_embed_code" Soundcloud Link
+              div.controls
+                = text_field_tag :sc_embed_code
+                span.help-block (record a soundcloud track, click 'Share' and copy the contents of the 'Embed Code' content here)
+            div.control-group
+              label.control-label for="started" Date Started
+              div.controls
+                = form.text_field :started
+            div.control-group
+              label.control-label for="ended" Date Ended
+              div.controls
+                = form.text_field :ended
+            div.form-actions
+              div.controls
+                = form.submit 'Update', class: 'btn btn-primary'
       = render partial: 'shared/person_social_media', locals: {person: membership.person}

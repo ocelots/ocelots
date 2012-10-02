@@ -13,6 +13,7 @@ class MembershipController < ApplicationController
 
   def update
     with_membership do |membership|
+      membership.update_attributes params[:membership]
       process_sc_embed_code membership, membership.person
       redirect_to "/teams/#{membership.team.slug}"
     end
