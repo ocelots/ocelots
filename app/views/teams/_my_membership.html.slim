@@ -13,6 +13,7 @@ div.hero-unit.highlight
         = phone_link_to membership.person.phone
       = link_to 'edit membership', '#add_sc', class: 'fancybox btn btn-primary'
       div id="add_sc" style="display:none;"
+        h2 Edit Membership
         = form_for membership, html: {class: 'form-horizontal'} do |form|
           fieldset
             div.control-group
