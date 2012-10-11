@@ -18,6 +18,13 @@ class Membership < ActiveRecord::Base
     PersonMailer.invite(inviter, membership).deliver
   end
 
+  def status
+    return 'future hidden' if started and started > Date.today
+    return 'past hidden' if ended and Date.today > ended
+    return 'silent hidden' if hidden
+    'current'
+  end
+
   def pending?
     pending_approval_token
   end
