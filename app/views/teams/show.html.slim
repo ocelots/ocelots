@@ -6,6 +6,9 @@
   li
     = link_to 'quiz', "/quiz/#{@team.slug}"
 
+- content_for :javascript_includes do
+  = javascript_include_tag 'teams_show'
+
 h1 = @team.name
 
 form.form-inline
