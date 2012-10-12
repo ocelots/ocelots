@@ -61,10 +61,11 @@ $ ->
 
   toggle_hidden = (show, selector) ->
     if show
-      $(selector).show()
+      $(selector).removeClass("hidden")
     else
-      $(selector).hide()
+      $(selector).addClass("hidden")
 
   $('#show-past').change -> toggle_hidden(this.checked, '.past')
   $('#show-current').change -> toggle_hidden(this.checked, '.current')
   $('#show-future').change -> toggle_hidden(this.checked, '.future')
+  $('#show-pending').change -> toggle_hidden(this.checked, '.pending')
