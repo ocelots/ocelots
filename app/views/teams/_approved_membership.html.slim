@@ -5,12 +5,4 @@ div.hero-unit.highlight class="#{membership.status}"
         = image_for membership.person
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
-      - if membership.role
-        p = membership.role
-      - if membership.track
-        = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
-      - elsif membership.person.track
-        = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
-      p
-        = phone_link_to membership.person.phone
-      = render partial: 'shared/person_social_media', locals: {person: membership.person}
+      = render partial: 'shared/membership', locals: {membership: membership}
