@@ -6,6 +6,17 @@
   li
     = link_to 'quiz', "/quiz/#{@team.slug}"
 
+h1 = @team.name
+
+form.form-inline
+  label.span1.checkbox
+    input type="checkbox" id="show-past" past
+  label.span1.checkbox
+    input type="checkbox" id="show-current" checked="true" current
+  label.span1.checkbox
+    input type="checkbox" future
+  input.span2.search-query id="show-future" type="text" placeholder="search"
+
 div id="add_new" style="display:none;"
   p.lead Add a new team member by specifying their email address
   p This will send an email inviting them to approve their membership before their full details will appear on this page

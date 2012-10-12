@@ -58,3 +58,13 @@ $ ->
       point = marker.getPosition()
       $('#person_lat').val point.lat()
       $('#person_lng').val point.lng()
+
+  toggle_hidden = (show, selector) ->
+    if show
+      $(selector).show()
+    else
+      $(selector).hide()
+
+  $('#show-past').change -> toggle_hidden(this.checked, '.past')
+  $('#show-current').change -> toggle_hidden(this.checked, '.current')
+  $('#show-future').change -> toggle_hidden(this.checked, '.future')
