@@ -1,9 +1,9 @@
 - if membership.role
   p = membership.role
 - if membership.started
-  p = (Date.today > membership.started ? 'started ' : 'starting ') + l(membership.started)
+  p = (Date.today > membership.started ? 'joined ' : 'joining ') + l(membership.started)
 - if membership.ended
-  p = (Date.today > membership.ended ? 'ending ' : 'ended ') + l(membership.ended)
+  p = (Date.today > membership.ended ? 'left ' : 'leaving ') + l(membership.ended)
 - if membership.track
   = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
 - elsif membership.person.track
