@@ -5,8 +5,14 @@ class AntechamberController < ApplicationController
 
   def index
     with_team do |team|
-      @message = Message.new
-      @messages = team.messages
+      @messages = team.messages.order 'created_at desc'
+    end
+  end
+
+  def create
+    with_team do |team|
+      Message.create team: team, person: current_person, content: params[:content]
+      redirect_to "/antechamber/#{team.slug}"
     end
   end
 end

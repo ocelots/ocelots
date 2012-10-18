@@ -1,6 +1,14 @@
+= render partial: 'shared/team_menu_items'
+
 h1 = @team.name
+
+= form_tag "/antechamber/#{@team.slug}", class: 'form-inline' do
+  td
+    p #{text_field_tag :content, nil, placeholder: 'Enter Message'}
 
 - @messages.each do |message|
   blockquote
     p = message.content
-    small Someone famous <cite title="Source Title">#{message.person.full_name}</cite>
+    small
+      = link_to message.person.full_name, "/profiles/#{message.person.account}"
+      = " #{distance_of_time_in_words Time.now, message.created_at} ago"
