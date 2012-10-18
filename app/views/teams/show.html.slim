@@ -5,6 +5,8 @@
     = link_to 'avatars', "/avatars/#{@team.slug}"
   li
     = link_to 'quiz', "/quiz/#{@team.slug}"
+  li
+    = link_to 'antechamber', "/antechamber/#{@team.slug}"
 
 - content_for :javascript_includes do
   = javascript_include_tag 'teams_show'

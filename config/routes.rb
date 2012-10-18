@@ -30,5 +30,7 @@ Ocelots::Application.routes.draw do
 
   get 'quiz/:slug' => 'teams#quiz'
 
+  get 'antechamber/:slug' => 'antechamber#index'
+
   root to: 'home#index'
 end

@@ -7,6 +7,7 @@ class Team < ActiveRecord::Base
 
   has_many :memberships
   has_many :people, through: :memberships
+  has_many :messages
   belongs_to :creator, class_name: 'Person'
 
   def api_attributes params={}
