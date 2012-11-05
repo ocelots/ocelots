@@ -42,8 +42,32 @@ ActiveRecord::Schema.define(:version => 20121018121645) do
     t.datetime "updated_at", :null => false
   end
 
-# Could not dump table "people" because of following StandardError
-#   Unknown type 'real' for column 'lat'
+  create_table "people", :force => true do |t|
+    t.string   "account"
+    t.string   "full_name"
+    t.string   "chinese_name"
+    t.string   "preferred_name"
+    t.string   "email"
+    t.string   "pinyin_name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.string   "persona_id"
+    t.integer  "track"
+    t.string   "secret"
+    t.string   "phone"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "weibo"
+    t.string   "appnet"
+    t.string   "github"
+    t.string   "url"
+    t.string   "auth_token"
+    t.float    "lat"
+    t.float    "lng"
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "name"

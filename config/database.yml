@@ -1,11 +1,27 @@
+# This is how you install postgres:
+    
+# brew install postgres
+# initdb /usr/local/var/postgres -E utf8
+# pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
+# This is how you create databases:
+
+# createuser -s ocelots
+# createdb ocelots_dev
+# createdb ocelots_test
+
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: ocelots_dev
+  user: ocelots
+  host: localhost
   pool: 5
   timeout: 5000
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: ocelots_test
+  user: ocelots
+  host: localhost
   pool: 5
   timeout: 5000

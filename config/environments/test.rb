@@ -35,14 +35,18 @@ Ocelots::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.paperclip_storage_options = {
-    storage: :s3,
-    bucket: ENV['S3_BUCKET'],
-    s3_credentials: {
-      access_key_id: ENV['S3_ACCESS_KEY_ID'],
-      secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
-    },
-    url: ENV['S3_URL'],
-    path: "/test/:persona_id/photos/:style/:basename.:extension"
-  }
+  if(ENV['S3_BUCKET'].nil?)
+    config.paperclip_storage_options = {}
+  else
+    config.paperclip_storage_options = {
+      storage: :s3,
+      bucket: ENV['S3_BUCKET'],
+      s3_credentials: {
+        access_key_id: ENV['S3_ACCESS_KEY_ID'],
+        secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
+      },
+      url: ENV['S3_URL'],
+      path: "/development/:persona_id/photos/:style/:basename.:extension"
+    }
+  end
 end
