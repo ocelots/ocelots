@@ -15,3 +15,5 @@
 /tmp
 /.idea
 public/system
+
+analyzer/*
