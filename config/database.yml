@@ -1,11 +1,15 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: ocelots_dev
+  user: ocelots
+  host: localhost
   pool: 5
   timeout: 5000
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: ocelots_test
+  user: ocelots
+  host: localhost
   pool: 5
   timeout: 5000

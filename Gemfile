@@ -7,6 +7,8 @@ gem 'aws-sdk'
 gem 'faker'
 gem 'uuidtools'
 gem 'chronic'
+gem 'pg'
+gem 'jquery-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -14,14 +16,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'machinist'
-end
-
-group :production do
-  gem 'pg'
 end
