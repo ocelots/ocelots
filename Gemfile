@@ -17,6 +17,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'tddium'
   gem "rails_best_practices", "~> 1.11.1"
   gem "flay"
   gem 'rspec-rails'
