@@ -16,4 +16,4 @@
 /.idea
 public/system
 
-analyzer/*
+analyzer
