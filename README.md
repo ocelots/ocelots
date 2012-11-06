@@ -74,3 +74,10 @@ To request details of a person's profile (using gravatar style hash of email add
 
     export EMAIL_HASH=`md5 -qs "email@domain.com"`
     curl "$OCELOTS_URL/api/profiles/$EMAIL_HASH?auth_token=$OCELOTS_AUTH_TOKEN"
+
+### Antechamber messages
+
+To request the message contents of the antechamber for a team (with an optional id to request recent messages)
+
+    export TEAM_SLUG=ateam
+    curl "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"

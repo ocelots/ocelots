@@ -12,6 +12,11 @@ Ocelots::Application.routes.draw do
   get 'api/teams/:slug' => 'api#team'
   get 'api/profiles/:persona_id' => 'api#profile'
 
+  namespace :api do
+    get  'antechamber/:slug' => 'antechamber#index'
+    post 'antechamber/:slug' => 'antechamber#create'
+  end
+
   post 'fact' => 'fact#create'
   delete 'fact/:id' => 'fact#destroy'
 
