@@ -50,10 +50,10 @@ To use google maps, you will need to provide a google api key
 
 You can experiment with the API from the command line
 
+First, set a couple of environment variables:
+
     export OCELOTS_URL=http://localhost:3000
     export OCELOTS_AUTH_TOKEN=f1ac4214-5426-4597-9b74-ea63167f4750
-
-    curl -H 'Content-Type: application/json' -X GET http://localhost:3000/moment
 
 ### Membership Details
 
@@ -70,7 +70,7 @@ To request details of a team you are a member of:
 
 ### Profile Details
 
-To request details of a person's profile (using gravatar style hash of email address):
+To request details of a person's profile who you are in a team with (using gravatar style hash of email address):
 
     export EMAIL_HASH=`md5 -qs "email@domain.com"`
     curl "$OCELOTS_URL/api/profiles/$EMAIL_HASH?auth_token=$OCELOTS_AUTH_TOKEN"
