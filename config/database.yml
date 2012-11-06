@@ -1,3 +1,15 @@
+# This is how you install postgres:
+    
+# brew install postgres
+# initdb /usr/local/var/postgres -E utf8
+# pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
+# This is how you create databases:
+
+# createuser -s ocelots
+# createdb ocelots_dev
+# createdb ocelots_test
+
 development:
   adapter: postgresql
   database: ocelots_dev
