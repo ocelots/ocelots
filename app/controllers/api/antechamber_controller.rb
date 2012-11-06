@@ -5,10 +5,11 @@ module Api
     include TeamFilter
 
     def index
+      messages = []
       with_team do |team|
-        @messages = team.messages.order 'created_at desc'
+        messages = team.messages.order 'created_at desc'
       end
-      render json: []
+      render json: messages.map(&:api_attributes)
     end
   end
 end

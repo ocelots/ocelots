@@ -35,6 +35,10 @@ class Person < ActiveRecord::Base
     att
   end
 
+  def minimal_api_attributes
+    attributes.slice *%w{email full_name}
+  end
+
   def approved_teams
     memberships.approved.includes('team').map &:team
   end
