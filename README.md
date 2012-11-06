@@ -86,4 +86,4 @@ To request the message contents of the antechamber for a team (with an optional 
 To add a new message:
 
     export TEAM_SLUG=ateam
-    curl -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
+    curl -H 'Content-Type: application/json' -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
