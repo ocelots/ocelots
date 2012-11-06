@@ -45,3 +45,32 @@ For local development, you can copy the SENDGRID_USERNAME and SENDGRID_PASSWORD 
 To use google maps, you will need to provide a google api key
 
     heroku config:add GOOGLE_API=your_api_key
+
+## API
+
+You can experiment with the API from the command line
+
+    export OCELOTS_URL=http://localhost:3000
+    export OCELOTS_AUTH_TOKEN=f1ac4214-5426-4597-9b74-ea63167f4750
+
+    curl -H 'Content-Type: application/json' -X GET http://localhost:3000/moment
+
+### Membership Details
+
+To request information on all the teams you are a member of:
+
+    curl "$OCELOTS_URL/api/memberships?auth_token=$OCELOTS_AUTH_TOKEN"
+
+### Team Details
+
+To request details of a team you are a member of:
+
+    export TEAM_SLUG=ateam
+    curl "$OCELOTS_URL/api/teams/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
+
+### Profile Details
+
+To request details of a person's profile (using gravatar style hash of email address):
+
+    export EMAIL_HASH=`md5 -qs "email@domain.com"`
+    curl "$OCELOTS_URL/api/profiles/$EMAIL_HASH?auth_token=$OCELOTS_AUTH_TOKEN"
