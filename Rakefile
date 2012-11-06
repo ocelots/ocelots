@@ -6,6 +6,4 @@ require File.expand_path('../config/application', __FILE__)
 
 Ocelots::Application.load_tasks
 
-Rake::Task[:default].prerequisites.clear
-# task :default => %w(db:drop db:migrate analyzer:flay analyzer:rails_best_practices spec stats)
-task :default => %w(db:migrate db:test:prepare analyzer:flay analyzer:rails_best_practices spec stats)
+task :ci => %w(db:migrate db:test:prepare analyzer:flay analyzer:rails_best_practices spec stats)
