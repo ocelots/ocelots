@@ -9,6 +9,8 @@ gem 'uuidtools'
 gem 'chronic'
 gem 'pg'
 gem 'jquery-rails'
+gem 'execjs'
+gem 'therubyracer'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -17,6 +19,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'github'
   gem 'tddium'
   gem "rails_best_practices", "~> 1.11.1"
   gem "flay"
