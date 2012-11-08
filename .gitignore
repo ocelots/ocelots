@@ -15,5 +15,6 @@
 /tmp
 /.idea
 public/system
+public/assets
 
 analyzer
