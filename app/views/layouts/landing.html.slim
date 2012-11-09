@@ -2,10 +2,13 @@ doctype html
 html
   head
     title Ocelots
-    = stylesheet_link_tag 'application', media: 'all'
+
     = stylesheet_link_tag '/bootstrap/css/bootstrap.min.css'
-    = stylesheet_link_tag '/bootstrap/css/boo\tstrap-responsive.min.css'
-    =stylesheet_link_tag 'login', media: 'all'
+
+    =stylesheet_link_tag 'style', media: 'all'
+    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Patrick+Hand'
+    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Unica+One'
+    =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Titillium+Web:400,700'
     = csrf_meta_tags
     = javascript_include_tag '/ga.js'
 
@@ -14,6 +17,7 @@ html
     div.container
       = yield
 
+    = javascript_include_tag 'http://code.jquery.com/jquery-latest.js'
     = javascript_include_tag 'application'
     = javascript_include_tag 'https://login.persona.org/include.js'
     = javascript_include_tag '/bootstrap/js/bootstrap.min.js'
