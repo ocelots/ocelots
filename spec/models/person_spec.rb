@@ -11,12 +11,25 @@ describe Person do
     Person.make(account: 'the_one').should_not be_valid
   end
 
+  it 'ensures user has a full name' do
+    Person.make(full_name: nil).should_not be_valid
+    Person.make(full_name: "").should_not be_valid
+  end
+
+  it "ensures user's photo format should be valid image format"
+
+  it "ensures the profile id a valid string" do
+    Person.make(account: nil).should_not be_valid
+    Person.make(account: '').should_not be_valid
+  end
+
   describe '#create_for_email' do
     let(:email) { 'user@email.com' }
     let(:created_person) { Person.create_for_email(email) }
 
-    it 'should generate a valid person' do
+    it 'should generate a valid person with full name' do
       created_person.should be_valid
+      created_person.full_name.should == 'user'
     end
 
     it 'should calculate persona_id from email' do
