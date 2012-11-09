@@ -13,10 +13,10 @@ div.hero-unit.highlight
         = render partial: 'shared/soundcloud_iframe', locals: {object: @current_person}
       = render partial: 'shared/person_social_media', locals: {person: @current_person}
 
+- if flash[:notice]
+    div.alert.alert-success =flash[:notice]
 - messages = @current_person.errors.full_messages
-- if messages.empty?
-   div.alert.alert-success Update Success
-- else
+- unless messages.empty?
   - messages.each do |msg|
     div.alert.alert-error #{msg}
 h1 Edit
