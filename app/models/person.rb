@@ -14,19 +14,26 @@ class Person < ActiveRecord::Base
   validates_uniqueness_of :account
   validates_uniqueness_of :auth_token
 
+  validates_presence_of :full_name ,:message => 'cannot be blank.'
+  validates_presence_of :account, :message => 'cannot be blank'
+
+  validates_format_of :photo,
+  :with => %r{\.(png|jpg|jpeg)$}i, :message => 'file format must be images'
+
   has_many :facts
   has_many :memberships
   has_many :teams, through: :memberships
 
   has_attached_file :photo, {
-    styles: { square: "300x300#" }
+  styles: { square: "300x300#" }
   }.merge(Rails.application.config.paperclip_storage_options)
 
   def self.create_for_email email
     Person.create email: email,
-      persona_id: Digest::MD5.hexdigest(email),
-      account: uuid,
-      auth_token: uuid
+    persona_id: Digest::MD5.hexdigest(email),
+    full_name: email.split("@")[0],
+    account: uuid,
+    auth_token: uuid
   end
 
   def api_attributes
@@ -52,4 +59,5 @@ class Person < ActiveRecord::Base
     return false unless team
     blessed? or team.creator == self or teams.include?(team)
   end
+
 end

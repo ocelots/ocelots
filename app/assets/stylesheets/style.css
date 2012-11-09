@@ -1,0 +1,161 @@
+/* COMMON */
+body {
+	background: url(paper.jpg);
+	font-family: "Titillium Web", sans-serif;
+	color: #412C16;
+}
+
+/* PANEL */
+div.panel {
+	overflow: hidden;
+	width: 940px;
+	margin: 10px auto 0;
+}
+/* MASCOT */
+div.panel:before {
+	content: "";
+	clear: both;
+	float: right; display: block;	
+	width: 240px; height: 147px;
+	margin-right: 35px;
+	background: no-repeat url(ollo.png);
+	background-size: cover;
+}
+div.panel div.contents {
+	overflow: hidden;
+	clear: both;
+	width: 95%;
+	margin: 0 auto 15px;
+	background: #D8CFC5;
+	/*box-shadow: 0px 0px 0px 5px #412C16;*/
+	border: 5px solid #412C16;; border-radius: 15px; border-left: 0; border-right: 0;
+	font-family: sans-serif;
+}
+/* LOGIN */
+div.login h1 {
+	margin-top: 25px;
+	font-family: "Unica One", sans-serif;
+	font-size: 55px; font-weight: normal;
+	color: #9B7E55;
+	letter-spacing: 3px;
+	text-shadow: 2px 2px 0 #333;
+}
+div.login p.slogan {
+	padding-left: 5px;
+	font-family: "Titillium Web", sans-serif;
+	font-size: 15px;
+}
+div.login h2 {
+	margin-top: 40px;
+	font-family: "Titillium Web", sans-serif; font-size: 15px;
+	color: #412C16;
+}
+div.login div.showcase {
+}
+div.login div.showcase ul {
+	overflow: hidden;
+	width: 440px;
+	padding: 50px; margin: 0;
+	list-style: none;
+}
+div.login div.showcase ul li {
+	float: left;
+	display: block;
+	padding: 10px 10px 5px;
+	background: #FFF;
+	border-radius: 2px;
+	box-shadow: 0px 2px 10px #000;
+	transform: rotate(15deg);
+	-moz-transform: rotate(15deg);
+	-webkit-transform: rotate(15deg);
+}
+div.login div.showcase ul li.second {
+	transform: rotate(-20deg);
+	-moz-transform: rotate(-20deg);
+	-webkit-transform: rotate(-20deg);
+}
+div.login div.showcase ul li.third {
+	transform: rotate(-10deg);
+	-moz-transform: rotate(-10deg);
+	-webkit-transform: rotate(-10deg);
+}
+div.login div.showcase ul li.forth {
+	transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-webkit-transform: rotate(3deg);
+}
+div.login div.showcase ul li div {
+	border-radius: 2px;
+	box-shadow: inset 0 0 5px #000;
+}
+div.login div.showcase ul li img {
+	position: relative;
+	z-index: -2;
+	display: block;
+	width: 130px; height: 130px;
+	box-shadow: inset 3px 4px 20px #000;
+}
+div.login div.showcase ul li p {
+	margin-top: 15px;
+	font-family: "Patrick Hand", cursive;
+	font-size: 15px;
+	color: #444;
+	text-align: center;
+}
+div.login a.btn {
+	float: left;
+	display: block;
+	padding-top: 5px; padding-right: 40px;
+	margin-top: 10px; margin-left: 15px;
+	background: #C74626 no-repeat url(weibo.png) 75px 8px;
+	background-size: 25px 20px;
+	border-radius: 15px;
+	text-align: left;
+	line-height: 28px;
+}
+div.login a.btn.persona {
+	background-image: url(persona.jpg);
+	background-position: 120px 9px;
+	background-size: 19px 20px;
+}
+div.login h2 {
+	padding-left: 6px;
+}
+div.login span.separator {
+	float: left;
+	display: block;
+	padding-top: 5px; margin-top: 10px; margin-left: 15px;
+	font-weight: bold;
+	line-height: 28px;
+}
+
+/* FOOTER */
+footer {
+	overflow: hidden;
+	margin-bottom: 40px;
+	font-size: 15px;
+	line-height: 25px;
+}
+footer ul {
+	overflow: hidden;
+	float: left;
+	list-style: none;
+}
+footer ul li {
+	display: inline;
+}
+footer ul li a {
+	display: inline-block;
+	padding: 0 10px;
+	border-right: 2px solid #A07D50;
+	text-align: center;
+	color: #60401F;
+}
+footer ul li:last-child a {
+	border: 0;
+}
+footer p.copyright {
+	float: right;
+	display: block;
+	margin-right: 40px;
+}
