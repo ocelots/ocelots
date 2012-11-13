@@ -1,4 +1,6 @@
 Ocelots::Application.routes.draw do
+  get 'organizations' =>'organizations#index'
+
   get 'logout' => 'home#logout', as: 'logout'
 
   post 'home/verify' => 'home#verify'
