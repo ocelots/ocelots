@@ -107,12 +107,13 @@ div.login a.btn {
 	display: block;
 	padding-top: 5px; padding-right: 40px;
 	margin-top: 10px; margin-left: 15px;
-	background: #C74626 no-repeat url(weibo.png) 75px 8px;
-	background-size: 25px 20px;
-	border-radius: 15px;
+	background: #C74626 no-repeat url(google-large.jpg) 68px 8px;
+	background-size: 20px 20px;
+    border-radius: 15px;
 	text-align: left;
 	line-height: 28px;
 }
+
 div.login a.btn.persona {
 	background-image: url(persona.jpg);
 	background-position: 120px 9px;
