@@ -13,12 +13,15 @@ div id="add_new" style="display:none;"
       label.control-label for="team_slug" URL
       div.controls
         p http://iocelots.com/#{form.text_field :slug}
-      div.controls id="organizations"
-        ul
-         - @organisations.each do |org|
-              li
-               = check_box_tag "org_ids[]", org.id,  id="org_ids_#{org.id}"
-               = org.name
+    div.controls-group
+        div.controls id="organizations"
+        label.control-label for="organisations" Organisations:
+        div.controls
+          ul.unstyled
+           - @organisations.each do |org|
+                li
+                 = check_box_tag  "org_ids[]", org.id, false, :id => "org_ids_#{org.id}"
+                 = org.name
 
 
     div.form-actions
