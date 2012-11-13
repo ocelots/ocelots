@@ -3,6 +3,6 @@ class PersonMailer < ActionMailer::Base
 
   def invite inviter, membership
     @inviter, @membership = inviter, membership
-    mail to: @membership.person.email, subject: "You have been invited to join a #{membership.team.name}"
+    mail to: @membership.email, subject: "You have been invited to join a #{membership.team_name}"
   end
 end

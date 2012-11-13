@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe TeamsController do
+  render_views
+  
   before(:each) do
-    session[:email] = 'do.not.make.me.test@gmail.com'
+    @person = sign_in
     @organisation = Organisation.create(name: 'ThoughtWorks', domains: 'ThoughtWorks.com')
   end
 
@@ -12,6 +14,15 @@ describe TeamsController do
       all_organisations = assigns[:organisations]
       all_organisations.should_not be_nil
       all_organisations.should_not be_empty
+    end
+  end
+
+  describe :show do
+    it 'shows selected team' do
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
+      get :show, :slug => team.slug
+      response.should be_success
+      assigns[:team].should == team
     end
   end
 
