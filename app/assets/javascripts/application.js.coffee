@@ -15,6 +15,7 @@ $ ->
       $(this).find('.highlight').removeClass('highlight').addClass('incorrect')
     false
 
+  $('.fancybox').fancybox()
 
   $('#view_map').each ->
     lat = $(this).data('lat')
