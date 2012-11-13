@@ -8,6 +8,8 @@ class Team < ActiveRecord::Base
   has_many :memberships
   has_many :people, through: :memberships
   has_many :messages
+  has_many :engagements
+  has_many :organisations, through: :engagements
   belongs_to :creator, class_name: 'Person'
 
   def api_attributes params={}

@@ -12,7 +12,15 @@ div id="add_new" style="display:none;"
     div.control-group
       label.control-label for="team_slug" URL
       div.controls
-        p http://ocelots.herokuapp.com/#{form.text_field :slug}
+        p http://iocelots.com/#{form.text_field :slug}
+      div.controls id="organizations"
+        ul
+         - @organisations.each do |org|
+              li
+               = check_box_tag "org_ids[]", org.id,  id="org_ids_#{org.id}"
+               = org.name
+
+
     div.form-actions
       = form.submit 'Create', class: 'btn'
 
