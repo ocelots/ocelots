@@ -2,6 +2,8 @@ Ocelots::Application.routes.draw do
   get 'logout' => 'home#logout', as: 'logout'
 
   post 'home/verify' => 'home#verify'
+  get 'home/verify_g' => 'home#verify_g'
+  get 'home/verify_g_callback' => 'home#verify_g_callback'
 
   get 'profile' => 'profile#edit'
   put 'profile' => 'profile#update'
