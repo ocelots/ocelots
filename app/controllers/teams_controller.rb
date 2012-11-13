@@ -6,12 +6,16 @@ class TeamsController < ApplicationController
   def index
     @memberships = current_person.memberships
     @team = Team.new
+    @organisations = Organisation.find(:all)
   end
 
   def create
+    organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
+
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
+      organisations.each{|org|}
       redirect_to "/teams/#{@team.slug}"
     else
       render :index
