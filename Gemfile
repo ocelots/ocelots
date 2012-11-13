@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.8'
 gem 'slim'
@@ -11,6 +11,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
+gem 'google-api-client'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
