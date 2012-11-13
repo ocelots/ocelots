@@ -36,3 +36,10 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+def sign_in
+  email = 'do.not.make.me.test@gmail.com'
+  person = Person.create!(email: email, full_name: 'Test Person', account: 'test_account')
+  session[:email] = email
+  person
+end
