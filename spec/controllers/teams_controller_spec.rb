@@ -22,7 +22,7 @@ describe TeamsController do
       end.should change(Team, :count).by(1)
       new_team = Team.find(:last)
       new_team.name.should == 'LSP'
-      new_team.organisations.should be_include(@organisation)
+      new_team.organisations.first.should == @organisation
     end
   end
 end

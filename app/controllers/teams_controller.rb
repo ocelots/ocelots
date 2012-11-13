@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
-      organisations.each{|org|}
+      organisations.each{|org| org.teams << @team}
       redirect_to "/teams/#{@team.slug}"
     else
       render :index
