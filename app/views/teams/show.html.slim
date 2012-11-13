@@ -36,4 +36,4 @@ div id="add_new" style="display:none;"
       = submit_tag 'add', class: 'btn'
 
 - @team.memberships.each do |membership|
-  = render  membership_partial(membership), locals: {membership: membership, current_person: @current_person}
+  = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}

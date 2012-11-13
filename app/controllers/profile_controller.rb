@@ -9,7 +9,7 @@ class ProfileController < ApplicationController
     if current_person.update_attributes params[:person]
       redirect_to profile_url, notice: 'Profile successfully updated.'
     else
-      render  'edit'
+      render :edit
     end
   end
 end
