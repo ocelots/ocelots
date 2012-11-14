@@ -29,6 +29,7 @@ Ocelots::Application.routes.draw do
   get 'teams/:slug' => 'teams#show'
   post 'teams/:slug/add' => 'teams#add'
   post 'teams/:slug/join' => 'teams#join'
+  post 'teams/:slug/quit' => 'teams#quit'
 
   put 'membership/:id' => 'membership#update', as: 'membership'
   post 'membership/leave' => 'membership#leave'

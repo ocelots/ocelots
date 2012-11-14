@@ -43,7 +43,6 @@ class TeamsController < ApplicationController
 
   def join
     with_team do |team|
-      organisation = Organisation.find(team.organisations)
       Membership.create team: team, person: current_person
       redirect_to "/teams/#{team.slug}"
     end
@@ -64,5 +63,11 @@ class TeamsController < ApplicationController
       @facts = @person.facts.sample 3
       render :quiz
     end
+  end
+  def quit
+    with_team do |team|
+      current_person.teams.delete(team)
+    end
+    redirect_to "/teams"
   end
 end

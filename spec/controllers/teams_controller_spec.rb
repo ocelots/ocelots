@@ -30,15 +30,15 @@ describe TeamsController do
       team = Team.create(name: 'LSP', slug: 'lsp')
       get :show, :slug => team.slug
       response.should be_success
-      assert_select '#join-team',{:value=> 'Join'}
+      assert_select '#join-team',{:value=> 'Join Team'}
     end
-    it 'ensure a button display with joined if we already joined this team' do
+    it 'ensure a button display with quit team if we already joined this team' do
 
        team = @person.teams.create(name: 'LSP', slug: 'lsp')
        get :show ,:slug => team.slug
        response.should be_success
 
-       assert_select '#join-team',{:value=> 'Quit'}
+       assert_select '#join-team',{:value=> 'Quit Team'}
     end
   end
 
@@ -59,6 +59,15 @@ describe TeamsController do
       lambda do
         post :join, :slug => team.slug
       end.should change(Membership, :count).by(1)
+    end
+  end
+  describe :quit do
+    it 'ensure when people quit a team then destroy a membership' do
+      team = Team.create(name: 'LSP', slug: 'lsp')
+      lambda do
+        post :join, :slug => team.slug
+        post :quit, :slug => team.slug
+      end.should change(Membership,:count).by(0)
     end
   end
 end

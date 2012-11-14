@@ -11,17 +11,18 @@
 - content_for :javascript_includes do
   = javascript_include_tag 'teams_show'
 
-h1 = @team.name
+h1  = @team.name
 
 - if current_person.approved_teams.include? @team
-       =form_tag "/teams/#{@team.slug}/quit"
-       =submit_tag 'Quit',id:"join-team",class:"btn btn-danger "
+    =form_tag "/teams/#{@team.slug}/quit"
+    =submit_tag 'Quit Team',id:"join-team",class:"btn btn-danger "
 -else
-      =form_tag "/teams/#{@team.slug}/join"
-      =submit_tag 'Join',id:"join-team",class:"btn btn-primary "
+    =form_tag "/teams/#{@team.slug}/join"
+    =submit_tag 'Join Team',id:"join-team",class:"btn btn-primary "
 
-br
-form.form-inline
+p
+
+form_tag.form-inline
   label.span1.checkbox
     input type="checkbox" id="show-past" past
   label.span1.checkbox
