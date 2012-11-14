@@ -52,12 +52,24 @@ class Person < ActiveRecord::Base
 
   def allowed_to_view? person
     return false unless person
-    blessed? or person == self or !(teams & person.approved_teams).empty?
+    omnipotent? or person == self or !(teams & person.approved_teams).empty?
   end
 
   def allowed_to_view_team? team
     return false unless team
-    blessed? or team.creator == self or teams.include?(team)
+    team.public? or blessed?(team) or team.creator == self or teams.include?(team)
   end
 
+  def viewable_teams
+    Team.find(:all).select{|team| allowed_to_view_team?(team)}
+  end
+
+  def blessed?(team)
+    return true if omnipotent?
+    team.blessed?(email_domain)
+  end
+
+  def email_domain
+    email.split('@').last
+  end
 end
