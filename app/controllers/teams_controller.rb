@@ -10,12 +10,16 @@ class TeamsController < ApplicationController
   end
 
   def create
-    organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
 
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
-      organisations.each{|org| org.teams << @team}
+      unless params[:org_ids]==nil
+        organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
+        organisations.each{|org| org.teams << @team}
+      end
+      Membership.create team: @team, person: current_person
+
       redirect_to "/teams/#{@team.slug}"
     else
       render :index
@@ -33,6 +37,14 @@ class TeamsController < ApplicationController
           Membership.create_pending_membership current_person, team, person
         end
       end
+      redirect_to "/teams/#{team.slug}"
+    end
+  end
+
+  def join
+    with_team do |team|
+      organisation = Organisation.find(team.organisations)
+      Membership.create team: team, person: current_person
       redirect_to "/teams/#{team.slug}"
     end
   end

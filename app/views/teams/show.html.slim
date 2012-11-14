@@ -13,6 +13,14 @@
 
 h1 = @team.name
 
+- if current_person.approved_teams.include? @team
+       =form_tag "/teams/#{@team.slug}/quit"
+       =submit_tag 'Quit',id:"join-team",class:"btn btn-danger "
+-else
+      =form_tag "/teams/#{@team.slug}/join"
+      =submit_tag 'Join',id:"join-team",class:"btn btn-primary "
+
+br
 form.form-inline
   label.span1.checkbox
     input type="checkbox" id="show-past" past
