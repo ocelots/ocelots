@@ -59,6 +59,16 @@ describe TeamsController do
       lambda do
         post :join, :slug => team.slug
       end.should change(Membership, :count).by(1)
+      new_membership = Membership.find(:last)
+      new_membership.person.allowed_to_view_team?(new_membership.team).should == true
+    end
+
+    it 'ensure person can not join a team that he is not belong to the organisation of that team' do
+      team = Team.create(name: 'LSP', slug: 'lsp')
+      Organisation.find(:last).teams << team
+      lambda do
+        post :join, :slug => team.slug
+      end.should change(Membership, :count).by(0)
     end
   end
 end
