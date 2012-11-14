@@ -10,12 +10,16 @@ class TeamsController < ApplicationController
   end
 
   def create
-    organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
 
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
-      organisations.each{|org| org.teams << @team}
+      unless params[:org_ids]==nil
+        organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
+        organisations.each{|org| org.teams << @team}
+      end
+      current_person.teams << @team
+
       redirect_to "/teams/#{@team.slug}"
     else
       render :index
@@ -27,12 +31,17 @@ class TeamsController < ApplicationController
       person = Person.find_by_email params[:email]
       person = Person.create_for_email params[:email] unless person
       unless person.teams.include? team
-        if person == current_person
-          Membership.create team: team, person: person
-        else
+        unless person == current_person
           Membership.create_pending_membership current_person, team, person
         end
       end
+      redirect_to "/teams/#{team.slug}"
+    end
+  end
+
+  def join
+    with_team do |team|
+      current_person.teams << team
       redirect_to "/teams/#{team.slug}"
     end
   end
@@ -52,5 +61,11 @@ class TeamsController < ApplicationController
       @facts = @person.facts.sample 3
       render :quiz
     end
+  end
+  def quit
+    with_team do |team|
+      current_person.teams.delete(team)
+    end
+    redirect_to "/teams"
   end
 end

@@ -53,17 +53,18 @@ describe Person do
     let(:non_blessed_organisation) { Organisation.create(name: 'Microsoft', domains: 'microsoft.com') }
     let(:non_viewable_team){ non_blessed_organisation.teams.create(name: 'MS Project', slug: 'ms_project') }
     let(:public_team){Team.create(name: 'Public Test Team', slug: 'public.com')}
-
+    let(:joined_team){person.teams.create(name: 'Joined Team', slug: 'joined.com')}
     before(:each) do
       viewable_team.reload
       public_team.reload
       non_viewable_team.reload
     end
 
-    it 'lists viewable teams but not non-viewable teams' do
+    it 'lists viewable teams but not non-viewable teams & joined teams' do
       person.viewable_teams.should be_include(viewable_team)
       person.viewable_teams.should_not be_include(non_viewable_team)
       person.viewable_teams.should be_include(public_team)
+      person.viewable_teams.should_not be_include(joined_team)
     end
   end
 end
