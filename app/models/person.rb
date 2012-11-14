@@ -57,11 +57,12 @@ class Person < ActiveRecord::Base
 
   def allowed_to_view_team? team
     return false unless team
+
     team.public? or blessed?(team) or team.creator == self or teams.include?(team)
   end
 
   def viewable_teams
-    Team.find(:all).select{|team| allowed_to_view_team?(team)}
+    Team.find(:all).select{|team| allowed_to_view_team?(team)} - approved_teams
   end
 
   def blessed?(team)

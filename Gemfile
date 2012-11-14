@@ -25,5 +25,6 @@ group :development, :test do
   gem "rails_best_practices", "~> 1.11.1"
   gem "flay"
   gem 'rspec-rails'
+  gem 'simplecov'
   gem 'machinist'
 end
