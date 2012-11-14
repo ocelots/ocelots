@@ -17,4 +17,11 @@ class Team < ActiveRecord::Base
     att[:members] = memberships.includes(:person).approved.map(&:person).map(&:api_attributes) if params[:include] and params[:include].include? :members
     att
   end
+
+  def blessed?(domain)
+    organisations.map{|org| org.domains.split(',')}.flatten.include?(domain)
+  end
+  def public?
+    organisations.empty?
+  end
 end

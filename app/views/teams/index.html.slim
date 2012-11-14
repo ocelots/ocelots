@@ -44,3 +44,15 @@ div id="add_new" style="display:none;"
             = form_tag "/membership/leave" do
               input type="hidden" name="id" value="#{membership.id}"
               = submit_tag 'Leave', class: 'btn btn-danger btn-block'
+div.clearfix
+- current_person.viewable_teams.each do |team|
+   a href="/teams/#{team.slug}"
+      span.badge.badge-info Viewable
+      div.hero-unit.highlight
+            div.row
+              div.span4
+                img src="/assets/team.png"
+              div.span4
+                h1 = team.name
+                p = team.description
+
