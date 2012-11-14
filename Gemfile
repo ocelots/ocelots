@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
 gem 'google-api-client'
+gem 'gravtastic'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

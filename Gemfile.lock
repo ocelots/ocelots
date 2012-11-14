@@ -76,6 +76,7 @@ GEM
       multi_json (>= 1.0.0)
       signet (>= 0.4.1)
       uuidtools (>= 2.1.0)
+    gravtastic (3.2.6)
     highline (1.6.15)
     hike (1.2.1)
     httparty (0.8.3)
@@ -216,6 +217,7 @@ DEPENDENCIES
   flay
   github
   google-api-client
+  gravtastic
   jquery-rails
   machinist
   paperclip
