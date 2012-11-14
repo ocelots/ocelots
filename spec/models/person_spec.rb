@@ -44,4 +44,26 @@ describe Person do
       created_person.account.should =~ /\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/
     end
   end
+
+  describe :viewable_teams do
+    let(:email) { 'fake_user@thoughtworks.com' }
+    let(:person) { Person.create_for_email(email) }
+    let(:blessed_organisation) { Organisation.create(name: 'ThoughtWorks', domains: 'thoughtworks.com') }
+    let(:viewable_team) { blessed_organisation.teams.create(name: 'TW Project', slug: 'tw_project') }
+    let(:non_blessed_organisation) { Organisation.create(name: 'Microsoft', domains: 'microsoft.com') }
+    let(:non_viewable_team){ non_blessed_organisation.teams.create(name: 'MS Project', slug: 'ms_project') }
+    let(:public_team){Team.create(name: 'Public Test Team', slug: 'public.com')}
+
+    before(:each) do
+      viewable_team.reload
+      public_team.reload
+      non_viewable_team.reload
+    end
+
+    it 'lists viewable teams but not non-viewable teams' do
+      person.viewable_teams.should be_include(viewable_team)
+      person.viewable_teams.should_not be_include(non_viewable_team)
+      person.viewable_teams.should be_include(public_team)
+    end
+  end
 end

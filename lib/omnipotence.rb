@@ -6,9 +6,4 @@ module Omnipotence
   def omnipotent?
     Omnipotence.omnipotent? email
   end
-
-  def blessed?
-    return true if omnipotent?
-    (ENV['BLESSED_DOMAINS'] || '').split(',').include? email.split('@').last
-  end
 end
