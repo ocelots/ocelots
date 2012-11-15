@@ -19,7 +19,7 @@ Google::APIClient.class_eval do
             origin: 'iocelots.com',
             client_id: '1030433741080.apps.googleusercontent.com',
             client_secret: 'RAQdt17GKweBtQzOCq6Dp965',
-            redirect_uri: 'http://www.iocelots.com/home/verify_g_callback'
+            redirect_uri: 'http://iocelots.com/home/verify_g_callback'
         }
     ]
     client_configuration = configurations.find{|conf| origin.include?(conf[:origin])}
