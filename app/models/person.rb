@@ -4,6 +4,9 @@ require 'uuid_generator'
 class Person < ActiveRecord::Base
   include Omnipotence
   extend UuidGenerator
+  include Gravtastic
+  gravtastic  :secure => false,
+              :size => 300
 
   attr_accessible :email, :persona_id, :account, :auth_token
   attr_accessible :full_name, :chinese_name, :pinyin_name, :preferred_name

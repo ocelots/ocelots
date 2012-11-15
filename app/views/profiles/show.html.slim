@@ -1,7 +1,10 @@
 div.hero-unit
   div.row.person
     div.span4
-      = image_for @person
+      -if @person.photo.exists?
+        =image_for @person
+      -else
+        =image_tag @person.gravatar_url
     div.span4
       = render partial: 'shared/person', locals: {person: @person}
 
