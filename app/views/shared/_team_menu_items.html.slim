@@ -1,7 +1,8 @@
 - content_for :menu_items do
+-team = @team
   li
-    = link_to 'avatars', "/avatars/#{@team.slug}"
+    = link_to 'avatars', "/avatars/#{team.slug}"
   li
-    = link_to 'quiz', "/quiz/#{@team.slug}"
+    = link_to 'quiz', "/quiz/#{team.slug}"
   li
-    = link_to 'antechamber', "/antechamber/#{@team.slug}"
+    = link_to 'antechamber', "/antechamber/#{team.slug}"
