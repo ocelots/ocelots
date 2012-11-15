@@ -1,5 +1,5 @@
-source 'http://ruby.taobao.org'
-
+#source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'slim'
 gem 'paperclip'
