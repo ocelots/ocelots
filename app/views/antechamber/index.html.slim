@@ -10,5 +10,5 @@ h1 = @team.name
   blockquote
     p = message.content
     small
-      = link_to message.person.full_name, "/profiles/#{message.person.account}"
+      = link_to message.full_name, "/profiles/#{message.account}"
       = " #{distance_of_time_in_words Time.now, message.created_at} ago"
