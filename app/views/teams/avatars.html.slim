@@ -1,6 +1,9 @@
 - @team.people.each do |person|
   div.avatar
-    = image_for person
+    -if person.photo.exists?
+      =image_for person
+    -else
+      =image_tag person.gravatar_url
     h2 #{person.full_name}
     - if person.preferred_name
       p #{person.preferred_name}

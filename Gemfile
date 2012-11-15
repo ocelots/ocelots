@@ -1,3 +1,4 @@
+#source 'http://ruby.taobao.org'
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
@@ -12,6 +13,7 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'therubyracer'
 gem 'google-api-client'
+gem 'gravtastic'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -27,4 +29,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'machinist'
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
