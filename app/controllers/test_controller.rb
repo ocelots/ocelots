@@ -3,8 +3,12 @@ class TestController < ApplicationController
 
   def test_login
     if Rails.env.test?
-      session[:email] = "test@gmail.com"
+      @current_person = test_sign_in
       redirect_to "/teams"
     end
+  end
+
+  def test_sign_in
+    Person.create!(email: "test@gmail.com", full_name: 'Test Person', account: 'test_account')
   end
 end
