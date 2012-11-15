@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.8'
 gem 'slim'
@@ -28,4 +28,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'machinist'
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
