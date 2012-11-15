@@ -6,4 +6,5 @@ Feature: Main process of Ocelots
 Scenario: Go to home page
   Given I am not signed in
   When I go to home page
-  Then I should see sign in buttons
+  Then I should click login link
+  Then I see list of team

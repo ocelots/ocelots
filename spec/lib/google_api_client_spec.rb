@@ -14,7 +14,7 @@ describe Google::APIClient do
 
     it 'builds google api client for production' do
       client = Google::APIClient.build('iocelots.com')
-      client.authorization.redirect_uri.to_s.should == 'http://www.iocelots.com/home/verify_g_callback'
+      client.authorization.redirect_uri.to_s.should == 'http://iocelots.com/home/verify_g_callback'
     end
   end
 end
