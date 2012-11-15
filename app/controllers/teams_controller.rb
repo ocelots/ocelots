@@ -39,13 +39,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  def join
-    with_team do |team|
-      current_person.teams << team
-      redirect_to "/teams/#{team.slug}"
-    end
-  end
-
   def show
     with_team { render :show }
   end
@@ -62,9 +55,17 @@ class TeamsController < ApplicationController
       render :quiz
     end
   end
+
+  def join
+    with_team do |team|
+      current_person.join team
+      redirect_to "/teams/#{team.slug}"
+    end
+  end
+
   def quit
     with_team do |team|
-      current_person.teams.delete(team)
+      current_person.leave team
     end
     redirect_to "/teams"
   end

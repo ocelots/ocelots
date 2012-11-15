@@ -72,12 +72,15 @@ describe TeamsController do
     end
   end
   describe :quit do
-    it 'ensure when people quit a team then destroy a membership' do
+    it 'ensure when people quit a team then set the relationship ended,and the team should removed from approved team' do
       team = Team.create(name: 'LSP', slug: 'lsp')
+      post :join, :slug => team.slug
       lambda do
-        post :join, :slug => team.slug
         post :quit, :slug => team.slug
       end.should change(Membership,:count).by(0)
+        membership = Membership.find(:last)
+        membership.status.should == 'past hidden'
+         @person.approved_teams.include?(team).should_not == true
     end
   end
 end
