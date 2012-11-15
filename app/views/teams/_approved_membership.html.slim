@@ -2,7 +2,10 @@ div.hero-unit.highlight class="#{membership.status}"
   div.row
     div.span4
       a href="/profiles/#{membership.person.account}"
-        = image_for membership.person
+         -if membership.person.photo.exists?
+           =image_for membership.person
+         -else
+           =image_tag membership.person.gravatar_url
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
       = render partial: 'shared/membership', locals: {membership: membership}
