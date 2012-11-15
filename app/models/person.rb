@@ -76,4 +76,13 @@ class Person < ActiveRecord::Base
   def email_domain
     email.split('@').last
   end
+
+  def leave (team)
+    Membership.where(team_id: team.id,person_id: id).first.leave
+  end
+
+  def join(team)
+    teams << team
+  end
+
 end
