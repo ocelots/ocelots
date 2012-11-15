@@ -7,7 +7,7 @@ class MembershipController < ApplicationController
     membership = Membership.find_by_pending_approval_token params[:token]
     if membership and membership.person == current_person
       membership.approve
-      redirect_to "/teams/#{membership.team.slug}"
+      redirect_to "/teams/#{membership.team_slug}"
     end
   end
 
@@ -15,14 +15,14 @@ class MembershipController < ApplicationController
     with_membership do |membership|
       membership.update_attributes params[:membership]
       process_sc_embed_code membership, membership.person
-      redirect_to "/teams/#{membership.team.slug}"
+      redirect_to "/teams/#{membership.team_slug}"
     end
   end
 
   def approve
     with_membership do |membership|
       membership.approve if membership.person == current_person
-      redirect_to "/teams/#{membership.team.slug}"
+      redirect_to "/teams/#{membership.team_slug}"
     end
   end
 

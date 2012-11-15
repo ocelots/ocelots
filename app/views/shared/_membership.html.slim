@@ -6,8 +6,8 @@
   p = (Date.today > membership.ended ? 'left ' : 'leaving ') + l(membership.ended)
 - if membership.track
   = render partial: 'shared/soundcloud_iframe', locals: {object: membership}
-- elsif membership.person.track
+- elsif membership.person_track
   = render partial: 'shared/soundcloud_iframe', locals: {object: membership.person}
 p
-  = phone_link_to membership.person.phone
+  = phone_link_to membership.phone
 = render partial: 'shared/person_social_media', locals: {person: membership.person}

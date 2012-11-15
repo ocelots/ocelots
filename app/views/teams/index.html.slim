@@ -28,14 +28,14 @@ div id="add_new" style="display:none;"
       = form.submit 'Create', class: 'btn'
 
 - @memberships.each do |membership|
-  a href="/teams/#{membership.team.slug}"
+  a href="/teams/#{membership.team_slug}"
     div.hero-unit.highlight
       div.row
         div.span4
           img src="/assets/team.png"
         div.span4
-          h1 = membership.team.name
-          p = membership.team.description
+          h1 = membership.team_name
+          p = membership.team_description
         div.span1
           - if membership.pending?
             = form_tag "/membership/approve" do

@@ -4,8 +4,8 @@ html
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
   body
     p Hi there,
-    p You have been invited by #{@inviter.email} to join the team "#{@membership.team.name}"
+    p You have been invited by #{@inviter.email} to join the team "#{@membership.team_name}"
     p To accept this invitation, please click the following link:
     a href="#{ENV['BASE_URL']}/invitation/#{@membership.pending_approval_token}"
       p accept invitation
-    p Please make sure you enter using the email address #{@membership.person.email}
+    p Please make sure you enter using the email address #{@membership.email}
