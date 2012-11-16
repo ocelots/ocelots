@@ -2,22 +2,17 @@
   .contents
     .showcase.span6
       ul
-        li.first
-          div
-            img src="assets/1.jpg"
-          p Drive trucks
-        li.second
-          div
-            img src="assets/2.jpg"
-          p Good guy
-        li.third
-          div
-            img src="assets/3.jpg"
-          p Won lottery
-        li.forth
-          div
-            img src="assets/5.jpg"
-          p Make Pancakes
+       -flag=0
+       -@people.each do |person|
+          -flag= flag+1
+          li class='head#{flag}'
+             div
+                =image_for person
+             -if person.facts.empty?
+                 p =person.full_name
+             -else
+                 p =person.facts.sample.content
+
     .action.span6
       h1
         span style="color: #BC332C;" O
