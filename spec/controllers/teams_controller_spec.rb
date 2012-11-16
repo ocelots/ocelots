@@ -54,6 +54,7 @@ describe TeamsController do
   end
 
   describe :join do
+
     it 'ensure person joins a team and create a membership between person and team' do
       team = Team.create(name: 'LSP', slug: 'lsp')
       lambda do
@@ -61,6 +62,15 @@ describe TeamsController do
       end.should change(Membership, :count).by(1)
       new_membership = Membership.find(:last)
       new_membership.person.allowed_to_view_team?(new_membership.team).should == true
+
+    end
+
+    it 'ensure when person quit from a team then join it again,and it will not disappear in past situation' do
+       team = Team.create(name: 'LSP', slug: 'lsp')
+       post :join ,:slug =>team.slug
+       post :quit, :slug => team.slug
+       post :join ,:slug =>team.slug
+       membership = Membership.find(:last).ended.should == nil
     end
 
     it 'ensure person can not join a team that he is not belong to the organisation of that team' do
@@ -72,12 +82,15 @@ describe TeamsController do
     end
   end
   describe :quit do
-    it 'ensure when people quit a team then destroy a membership' do
+    it 'ensure when people quit a team then set the relationship ended,and the team should removed from approved team' do
       team = Team.create(name: 'LSP', slug: 'lsp')
+      post :join, :slug => team.slug
       lambda do
-        post :join, :slug => team.slug
         post :quit, :slug => team.slug
       end.should change(Membership,:count).by(0)
+        membership = Membership.find(:last)
+        membership.status.should == 'past hidden'
+         @person.approved_teams.include?(team).should_not == true
     end
   end
 end

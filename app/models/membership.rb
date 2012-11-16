@@ -12,7 +12,7 @@ class Membership < ActiveRecord::Base
   delegate :track, :photo, :gravatar_url, to: :person, prefix: true
   delegate :name, :slug, :description, to: :team, prefix: true
 
-  scope :approved, where('pending_approval_token is null')
+  scope :approved, where('pending_approval_token is null and ended is null')
 
   def self.create_pending_membership inviter, team, person
     membership = Membership.create team: team,
@@ -23,7 +23,7 @@ class Membership < ActiveRecord::Base
 
   def status
     return 'future hidden' if started and started > Date.today
-    return 'past hidden' if ended and Date.today > ended
+    return 'past hidden' if ended and Date.today >= ended
     return 'silent hidden' if hidden
     'current'
   end
@@ -34,6 +34,13 @@ class Membership < ActiveRecord::Base
 
   def approve
     update_attributes pending_approval_token: nil
+    if ended
+      update_attributes ended: nil
+    end
+  end
+
+  def leave
+    update_attributes ended: Date.today
   end
 
   def self.api_attributes_for user
