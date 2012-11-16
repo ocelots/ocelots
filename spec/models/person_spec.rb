@@ -67,4 +67,18 @@ describe Person do
       person.viewable_teams.should_not be_include(joined_team)
     end
   end
+
+  describe 'person team membership' do
+
+    it 'leave team correctly' do
+      team = Team.create(name: 'LSP', slug: 'lsp')
+      person = Person.create_for_email("user@email.com")
+      person.teams << team
+
+      person.leave(team)
+      membership = Membership.find(:last)
+      membership.status.should == 'past hidden'
+    end
+
+  end
 end
