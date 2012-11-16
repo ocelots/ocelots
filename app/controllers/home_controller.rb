@@ -13,6 +13,7 @@ class HomeController < ApplicationController
       session[:initial_url] = nil
       redirect_to redirect_url
     else
+      @people = Person.find(:all,:order => "RANDOM()", :limit => 4)
       render layout: 'landing'
     end
   end
@@ -50,4 +51,5 @@ class HomeController < ApplicationController
     session[:email] = response['email']
     redirect_to '/'
   end
+
 end
