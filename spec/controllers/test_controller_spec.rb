@@ -6,7 +6,7 @@ describe TestController do
     it 'ensure person login with test email if Rails environment is test' do
       get :test_login
       session[:email] == 'test@gmail.com'
-      assert_redirected_to '/teams'
+      assert_redirected_to '/'
     end
   end
 end

@@ -8,3 +8,5 @@ Scenario: Go to home page
   When I go to home page
   Then I should click login link
   Then I see list of team
+  Then I should add a team
+  Then I should quit that team
