@@ -10,7 +10,7 @@ class Membership < ActiveRecord::Base
   belongs_to :team
   delegate :email, :phone, :account, to: :person
   delegate :track, :photo, :gravatar_url, to: :person, prefix: true
-  delegate :name, :slug, :description, to: :team, prefix: true
+  delegate :name, :slug, :description, :people, to: :team, prefix: true
 
   scope :approved, where('pending_approval_token is null and ended is null')
 

@@ -29,7 +29,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'machinist'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails' , :require => false
   gem 'capybara'
   gem 'database_cleaner'
   gem 'selenium-webdriver'

@@ -1,5 +1,5 @@
 body {
-  background:url('/assets/paper.jpg');
+  //background:url('/assets/paper.jpg');
   padding-top: 60px;
   padding-bottom: 40px;
 }
@@ -56,4 +56,21 @@ body {
 }
 .clear{
   clear: both;
+}
+.viewable-team{
+  background-color:#eee;
+  border-color:#2D6987;
+  border-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7AB5D3;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7AB5D3;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7AB5D3;
+  transition:all 1s;
+  -moz-transition:all 1s;
+  -webkit-transition:all 1s;
+  -o-transition:all 1s;
+}
+.viewable-team:hover{
+  background-color:#e3e3e3;
+  border-shadow:inset 0 2px 2px rgba(0, 0, 0, 0.095), 0 0 10px #7AB5D3;
+  -webkit-box-shadow:inset 0 2px 2px rgba(0, 0, 0,0.095), 0 0 10px #7AB5D3;
+  -moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.095), 0 0 10px #7AB5D3;
 }
