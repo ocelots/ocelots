@@ -18,8 +18,9 @@ Then /^I should add a team$/ do
   click_link('add team')
   fill_in 'Team Name', :with => 'Test_team'
   fill_in 'URL', :with => 'Test_URL'
+  click_button 'Create'
 end
 
 Then /^I should quit that team$/ do
-  pending # express the regexp above with the code you wish you had
+  click_button 'Quit Team'
 end
