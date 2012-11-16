@@ -54,6 +54,7 @@ describe TeamsController do
   end
 
   describe :join do
+
     it 'ensure person joins a team and create a membership between person and team' do
       team = Team.create(name: 'LSP', slug: 'lsp')
       lambda do
@@ -61,6 +62,15 @@ describe TeamsController do
       end.should change(Membership, :count).by(1)
       new_membership = Membership.find(:last)
       new_membership.person.allowed_to_view_team?(new_membership.team).should == true
+
+    end
+
+    it 'ensure when person quit from a team then join it again,and it will not disappear in past situation' do
+       team = Team.create(name: 'LSP', slug: 'lsp')
+       post :join ,:slug =>team.slug
+       post :quit, :slug => team.slug
+       post :join ,:slug =>team.slug
+       membership = Membership.find(:last).ended.should == nil
     end
 
     it 'ensure person can not join a team that he is not belong to the organisation of that team' do

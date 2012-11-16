@@ -82,7 +82,12 @@ class Person < ActiveRecord::Base
   end
 
   def join(team)
-    teams << team
+    if  Membership.where(team_id: team.id,person_id: id).empty?
+      teams << team
+    else
+      Membership.where(team_id: team.id,person_id: id).first.approve
+    end
+
   end
 
 end

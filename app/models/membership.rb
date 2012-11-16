@@ -34,6 +34,9 @@ class Membership < ActiveRecord::Base
 
   def approve
     update_attributes pending_approval_token: nil
+    if ended
+      update_attributes ended: nil
+    end
   end
 
   def leave

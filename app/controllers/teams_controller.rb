@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   include TeamFilter
 
   def index
-    @approved_teams = current_person.approved_teams
+    @memberships = current_person.memberships
     @team = Team.new
     @organisations = Organisation.find(:all)
   end
