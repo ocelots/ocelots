@@ -30,7 +30,7 @@ class HomeController < ApplicationController
   end
 
   def verify_g
-    @client = Google::APIClient.build(request.host_with_port)
+    @client = Google::APIClient.build
     url = @client.authorization.authorization_uri.to_s
     session[:google_auth] = @client.to_yaml
 
