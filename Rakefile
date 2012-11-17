@@ -6,4 +6,4 @@ require File.expand_path('../config/application', __FILE__)
 
 Ocelots::Application.load_tasks
 
-task :ci => %w(db:migrate db:test:prepare analyzer:flay analyzer:rails_best_practices simplecov cucumber stats)
+task :ci => %w(db:migrate db:test:prepare analyzer:flay analyzer:rails_best_practices simplecov stats)
