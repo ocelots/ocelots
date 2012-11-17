@@ -13,6 +13,7 @@ class HomeController < ApplicationController
       session[:initial_url] = nil
       redirect_to redirect_url
     else
+      @people = Person.find(:all,:order => "RANDOM()", :limit => 4)
       render layout: 'landing'
     end
   end
@@ -29,7 +30,7 @@ class HomeController < ApplicationController
   end
 
   def verify_g
-    @client = Google::APIClient.build(request.host_with_port)
+    @client = Google::APIClient.build
     url = @client.authorization.authorization_uri.to_s
     session[:google_auth] = @client.to_yaml
 
@@ -50,4 +51,5 @@ class HomeController < ApplicationController
     session[:email] = response['email']
     redirect_to '/'
   end
+
 end
