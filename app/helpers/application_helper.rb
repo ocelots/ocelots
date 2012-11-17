@@ -6,4 +6,8 @@ module ApplicationHelper
   def phone_link_to phone
     phone.blank? ? '' : link_to(phone,"tel://#{phone.gsub(/\D/,'')}")
   end
+
+  def markdown string
+    RDiscount.new(string||'', :smart, :filter_html, :safelink).to_html.html_safe
+  end
 end

@@ -5,7 +5,7 @@ class AntechamberController < ApplicationController
 
   def index
     with_team do |team|
-      @messages = team.messages.order 'created_at desc'
+      @messages = team.messages.order('created_at desc').limit(50)
     end
   end
 

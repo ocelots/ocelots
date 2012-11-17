@@ -7,7 +7,7 @@ module Api
     def index
       messages = []
       with_team do |team|
-        messages = team.messages.order 'created_at desc'
+        messages = team.messages.order('created_at').limit 50
         messages = messages.where 'id > ?', params[:from] if params[:from]
       end
       render json: messages.map(&:api_attributes)
