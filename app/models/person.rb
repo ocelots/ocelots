@@ -14,6 +14,7 @@ class Person < ActiveRecord::Base
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
   attr_accessible :lat, :lng
 
+
   validates_uniqueness_of :account
   validates_uniqueness_of :auth_token
 

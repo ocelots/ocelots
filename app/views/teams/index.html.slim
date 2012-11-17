@@ -44,15 +44,23 @@ div id="add_new" style="display:none;"
             = form_tag "/membership/leave" do
               input type="hidden" name="id" value="#{membership.id}"
               = submit_tag 'Leave', class: 'btn btn-danger btn-block'
+        div.span1 style="margin:60px 0 0 65px"
+           img style="float:left" src="assets/head.png"
+             h3 style="margin:-7px 0 0 50px;color:#333" = membership.team_people.count
 div.clearfix
+div style="margin-top:-30px"
+  h3 style="text-align:center" Viewable Teams
+hr style="margin-top:-30px"
 - current_person.viewable_teams.each do |team|
    a href="/teams/#{team.slug}"
-      span.label.label-info style="float:left" Viewable
-      div.hero-unit.highlight
+      div.hero-unit.highlight.viewable-team
             div.row
               div.span4
                 img src="/assets/team.png"
               div.span4
                 h1 = team.name
                 p = team.description
-
+              div.span1
+              div.span1 style="margin:60px 0 0 65px"
+                         img style="float:left" src="assets/head.png"
+                           h3 style="margin:-7px 0 0 50px;color:#333" = team.people.count

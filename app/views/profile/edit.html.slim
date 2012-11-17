@@ -4,10 +4,7 @@ div.hero-unit.highlight
   div.row
     div.span4
       a href="/profiles/#{@current_person.account}"
-        -if @current_person.photo.exists?
           =image_for @current_person
-        -else
-          =image_tag @current_person.gravatar_url
     div.span6
       = render partial: 'shared/person', locals: {person: @current_person}
       p
