@@ -1,6 +1,9 @@
 require 'spec_helper'
+require 'paperclip/matchers'
 
 describe Person do
+  include Paperclip::Shoulda::Matchers
+
   it 'should ensure users have a unique auth_token' do
     Person.make! auth_token: 'the_one'
     Person.make(auth_token: 'the_one').should_not be_valid
@@ -16,11 +19,15 @@ describe Person do
     Person.make(full_name: "").should_not be_valid
   end
 
-  it "ensures user's photo format should be valid image format"
-
   it "ensures the profile id a valid string" do
     Person.make(account: nil).should_not be_valid
     Person.make(account: '').should_not be_valid
+  end
+
+  it 'ensures the photo attachment has correct mime type' do
+    should validate_attachment_content_type(:photo).
+      allowing('image/jpeg', 'image/png', 'image/gif').
+      rejecting('text/plain', 'text/xml')
   end
 
   describe '#create_for_email' do

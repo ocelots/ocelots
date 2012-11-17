@@ -21,12 +21,11 @@ class Person < ActiveRecord::Base
   validates_presence_of :full_name ,:message => 'cannot be blank.'
   validates_presence_of :account, :message => 'cannot be blank'
 
-  validates_format_of :photo,
-  :with => %r{\.(png|jpg|jpeg)$}i, :message => 'file format must be images'
-
   has_many :facts
   has_many :memberships
   has_many :teams, through: :memberships
+
+  validates_attachment_content_type :photo, :content_type=>['image/jpeg', 'image/png', 'image/gif']
 
   has_attached_file :photo, {
   styles: { square: "300x300#" }
