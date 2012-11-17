@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
-#source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'slim'
 gem 'paperclip'
 gem 'aws-sdk'
