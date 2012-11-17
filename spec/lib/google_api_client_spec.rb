@@ -2,19 +2,22 @@ require 'spec_helper'
 
 describe Google::APIClient do
   describe :build do
-    it 'builds google api client for localhost' do
-      client = Google::APIClient.build
-      client.authorization.redirect_uri.to_s.should == 'http://localhost:3000/home/verify_g_callback'
-    end
+    let(:authorization) { stub 'authorization' }
+    let(:client) { stub 'client', authorization: authorization }
+    before { Google::APIClient.should_receive(:new).and_return client }
 
-    #it 'builds google api client for staging' do
-    #  client = Google::APIClient.build
-    #  client.authorization.redirect_uri.to_s.should == 'http://ocelots-staging.herokuapp.com/home/verify_g_callback'
-    #end
-    #
-    #it 'builds google api client for production' do
-    #  client = Google::APIClient.build
-    #  client.authorization.redirect_uri.to_s.should == 'http://iocelots.com/home/verify_g_callback'
-    #end
+    it "builds google api client using environment variables" do
+      [
+        ['client_id',     'GOOGLE_OAUTH_CLIENT_ID',     'client_id'],
+        ['client_secret', 'GOOGLE_OAUTH_CLIENT_SECRET', 'client_secret'],
+        ['redirect_uri',  'GOOGLE_OAUTH_REDIRECT',      'http://domain/redirect']
+      ].each do |values|
+        m, variable, value = *values
+        ENV.should_receive(:[]).with(variable).and_return value
+        authorization.should_receive("#{m}=").with value
+      end
+      authorization.should_receive("scope=").with 'https://www.googleapis.com/auth/userinfo.email'
+      Google::APIClient.build
+    end
   end
 end
