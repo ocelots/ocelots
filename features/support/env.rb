@@ -57,5 +57,4 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-Capybara.app_host = 'http://localhost:3000'
 Capybara.default_driver = :selenium

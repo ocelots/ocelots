@@ -1,2 +1,2 @@
-default: -t ~@wip -strict features
+default: -t ~@wip --strict features
 wip: -t @wip --wip features
