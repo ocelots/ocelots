@@ -1,3 +1,4 @@
+@wip
 Feature: Main process of Ocelots
   AS A normal user
   I WANT TO use main functionality of Ocelots
