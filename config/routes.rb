@@ -44,7 +44,5 @@ Ocelots::Application.routes.draw do
   get 'antechamber/:slug' => 'antechamber#index'
   post 'antechamber/:slug' => 'antechamber#create'
 
-  get 'test_login' => 'test#test_login'
-
   root to: 'home#index'
 end
