@@ -7,5 +7,5 @@ When /^I login$/ do
 end
 
 Then /^I see list of teams$/ do
-  page.should have_content('team')
+  should be_on TeamPage
 end
