@@ -3,7 +3,7 @@ Given /^I am an existing user$/ do
 end
 
 When /^I login$/ do
-  visit "/teams?auth_token=#{@person.auth_token}"
+  on(HomePage).login_as @person
 end
 
 Then /^I see list of teams$/ do
