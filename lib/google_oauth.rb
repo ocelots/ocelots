@@ -1,3 +1,4 @@
+require 'net/http'
 require 'google/api_client'
 
 module GoogleOauth

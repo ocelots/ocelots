@@ -1,7 +1,5 @@
 require 'persona'
 require 'google_oauth'
-require 'net/http'
-require 'google_api_ext'
 
 class HomeController < ApplicationController
   include Persona
