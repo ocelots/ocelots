@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
   attr_accessible :photo, :phone
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
   attr_accessible :lat, :lng
+  attr_accessible :show_avatar
 
 
   validates_uniqueness_of :account
@@ -89,5 +90,6 @@ class Person < ActiveRecord::Base
     end
 
   end
+
 
 end

@@ -89,4 +89,12 @@ describe Person do
 
   end
 
+  describe "person's avatar to show in homepage" do
+    it 'ensure the default value of show_avatar is true when create a person' do
+      person = Person.create_for_email("user@email.com")
+      person.show_avatar.should == true
+    end
+
+  end
+
 end

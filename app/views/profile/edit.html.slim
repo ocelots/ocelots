@@ -25,6 +25,10 @@ h1 Edit
   fieldset
     div.span8
       div.control-group
+        label.control-label for="show_avatar" Allow to show avatar
+        div.controls
+          =form.check_box :show_avatar
+      div.control-group
         label.control-label for="person_account" Profile
         div.controls
           p #{ENV['BASE_URL']}/profiles/#{form.text_field :account}

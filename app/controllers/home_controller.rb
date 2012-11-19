@@ -13,7 +13,7 @@ class HomeController < ApplicationController
       session[:initial_url] = nil
       redirect_to redirect_url
     else
-      @people = Person.find(:all,:order => "RANDOM()", :limit => 4)
+      @people = Person.find(:all,:conditions =>["show_avatar=true"],:order => "RANDOM()", :limit => 4)
       render layout: 'landing'
     end
   end
