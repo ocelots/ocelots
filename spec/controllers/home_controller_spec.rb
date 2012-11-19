@@ -3,6 +3,10 @@ require 'spec_helper'
 describe HomeController do
   render_views
 
+  before do
+    controller.stub!(:google_oauth_url).and_return 'http://google.com/oauth'
+  end
+
   describe :index do
     it 'renders landing page if user has not signed in' do
       get :index
