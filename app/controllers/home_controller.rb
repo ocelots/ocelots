@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   include Persona
   include GoogleOauth
 
-  skip_filter :require_login, only: [:index, :verify, :verify_g, :verify_g_callback]
+  skip_filter :require_login
 
   def index
     if logged_in?
@@ -16,6 +16,7 @@ class HomeController < ApplicationController
       redirect_to redirect_url
     else
       @people = Person.find(:all,:order => "RANDOM()", :limit => 4)
+      @google_login = google_oauth_url
       render layout: 'landing'
     end
   end
@@ -31,11 +32,7 @@ class HomeController < ApplicationController
     render json: response
   end
 
-  def verify_g
-    redirect_to google_oauth_url
-  end
-
-  def verify_g_callback
+  def google_oauth_callback
     verify_google_oauth { |email| session[:email] = email }
     redirect_to '/'
   end
