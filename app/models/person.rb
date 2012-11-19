@@ -62,7 +62,7 @@ class Person < ActiveRecord::Base
   def allowed_to_view_team? team
     return false unless team
 
-    team.public? or blessed?(team) or team.creator == self or teams.include?(team)
+    blessed?(team) or team.creator == self or teams.include?(team)
   end
 
   def viewable_teams
@@ -89,6 +89,10 @@ class Person < ActiveRecord::Base
       Membership.where(team_id: team.id,person_id: id).first.approve
     end
 
+  end
+
+  def get_organisation_by_email
+    Organisation.where('domains like ?',email_domain).first
   end
 
 

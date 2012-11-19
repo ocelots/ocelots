@@ -22,7 +22,4 @@ class Team < ActiveRecord::Base
   def blessed?(domain)
     organisations.map{|org| org.domains.split(',')}.flatten.include?(domain)
   end
-  def public?
-    organisations.empty?
-  end
 end

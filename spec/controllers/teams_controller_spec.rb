@@ -5,7 +5,7 @@ describe TeamsController do
   
   before(:each) do
     @person = sign_in
-    @organisation = Organisation.create(name: 'ThoughtWorks', domains: 'ThoughtWorks.com')
+    @organisation = Organisation.create(name: 'ThoughtWorks', domains: 'thoughtworks.com')
   end
 
   describe :index do
@@ -27,7 +27,7 @@ describe TeamsController do
     end
 
     it 'ensure a join button in some team we want to join' do
-      team = Team.create(name: 'LSP', slug: 'lsp')
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
       get :show, :slug => team.slug
       response.should be_success
       assert_select '#join-team',{:value=> 'Join Team'}
@@ -43,7 +43,7 @@ describe TeamsController do
   end
 
   describe :create do
-    it 'creates team with organisations' do
+    it "creates team with organisations,cause the person email=xx@gmail.com,so the team's organisation will be empty" do
       lambda do
         post :create, team: {name: 'LSP', slug: 'lsp'}, org_ids: [@organisation.id.to_s]
       end.should change(Team, :count).by(1)
@@ -56,8 +56,8 @@ describe TeamsController do
   describe :join do
 
     it 'ensure person joins a team and create a membership between person and team' do
-      team = Team.create(name: 'LSP', slug: 'lsp')
       lambda do
+        team = @person.teams.create(name: 'LSP', slug: 'lsp')
         post :join, :slug => team.slug
       end.should change(Membership, :count).by(1)
       new_membership = Membership.find(:last)
@@ -66,7 +66,7 @@ describe TeamsController do
     end
 
     it 'ensure when person quit from a team then join it again,and it will not disappear in past situation' do
-       team = Team.create(name: 'LSP', slug: 'lsp')
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
        post :join ,:slug =>team.slug
        post :quit, :slug => team.slug
        post :join ,:slug =>team.slug
@@ -75,7 +75,6 @@ describe TeamsController do
 
     it 'ensure person can not join a team that he is not belong to the organisation of that team' do
       team = Team.create(name: 'LSP', slug: 'lsp')
-      Organisation.find(:last).teams << team
       lambda do
         post :join, :slug => team.slug
       end.should change(Membership, :count).by(0)
@@ -83,7 +82,7 @@ describe TeamsController do
   end
   describe :quit do
     it 'ensure when people quit a team then set the relationship ended,and the team should removed from approved team' do
-      team = Team.create(name: 'LSP', slug: 'lsp')
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
       post :join, :slug => team.slug
       lambda do
         post :quit, :slug => team.slug

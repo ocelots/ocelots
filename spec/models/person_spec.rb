@@ -70,7 +70,6 @@ describe Person do
     it 'lists viewable teams but not non-viewable teams & joined teams' do
       person.viewable_teams.should be_include(viewable_team)
       person.viewable_teams.should_not be_include(non_viewable_team)
-      person.viewable_teams.should be_include(public_team)
       person.viewable_teams.should_not be_include(joined_team)
     end
   end
@@ -94,6 +93,21 @@ describe Person do
       person = Person.create_for_email("user@email.com")
       person.show_avatar.should == true
     end
+
+  end
+
+  describe :get_organisation_by_email do
+    it 'ensure return the accurate organisation by email' do
+      tw = Organisation.create(name: 'Sun Corp',domains:'suncorp.com')
+      person = Person.create_for_email('test@suncorp.com')
+      person.get_organisation_by_email.name.should == tw.name
+    end
+
+    #it 'ensure return the accurate orgisation by email when some orgisation has several domains' do
+    #  tw = Organisation.create(name: 'ThoughtWorks',domains:'thoughtworks.com,tw.com')
+    #  person = Person.create_for_email('test@thoughtworks.com')
+    #  person.get_organisation_by_email.name.should == tw.name
+    #end
 
   end
 

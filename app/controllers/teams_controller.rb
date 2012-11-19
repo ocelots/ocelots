@@ -14,10 +14,10 @@ class TeamsController < ApplicationController
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
-      unless params[:org_ids]==nil
-        organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
-        organisations.each{|org| org.teams << @team}
+      if org = current_person.get_organisation_by_email
+        org.teams << @team
       end
+
       current_person.teams << @team
 
       redirect_to "/teams/#{@team.slug}"
