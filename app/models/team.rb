@@ -23,7 +23,7 @@ class Team < ActiveRecord::Base
     organisations.map{|org| org.domains.split(',')}.flatten.include?(domain)
   end
 
-  def add_to_organisation (organisation)
+  def add_to (organisation)
     organisations << organisation
   end
 end

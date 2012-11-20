@@ -91,7 +91,7 @@ class Person < ActiveRecord::Base
 
   end
 
-  def get_organisation_by_email
+  def organisation
     Organisation.where('domains like ?',email_domain).first
   end
 

@@ -100,7 +100,7 @@ describe Person do
     it 'ensure return the accurate organisation by email' do
       tw = Organisation.create(name: 'Sun Corp',domains:'suncorp.com')
       person = Person.create_for_email('test@suncorp.com')
-      person.get_organisation_by_email.name.should == tw.name
+      person.organisation.name.should == tw.name
     end
 
     #it 'ensure return the accurate orgisation by email when some orgisation has several domains' do
