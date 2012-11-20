@@ -4,7 +4,7 @@ require 'uuid_generator'
 class Person < ActiveRecord::Base
   include Omnipotence
   extend UuidGenerator
-  include Gravtastic
+  include Gravtastic ,UuidGenerator
   gravtastic  :secure => false,
               :size => 300
 
@@ -95,5 +95,8 @@ class Person < ActiveRecord::Base
     Organisation.where('domains like ?',email_domain).first
   end
 
-
+  def refresh_auth_token
+    update_attributes auth_token: uuid
+    auth_token
+  end
 end

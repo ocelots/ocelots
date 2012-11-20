@@ -96,7 +96,7 @@ describe Person do
 
   end
 
-  describe :get_organisation_by_email do
+  describe :organisation do
     it 'ensure return the accurate organisation by email' do
       tw = Organisation.create(name: 'Sun Corp',domains:'suncorp.com')
       person = Person.create_for_email('test@suncorp.com')
@@ -109,6 +109,14 @@ describe Person do
     #  person.get_organisation_by_email.name.should == tw.name
     #end
 
+  end
+
+  describe :refresh_auth_token do
+    it 'ensure a different auto_token when click the refresh button' do
+        person = Person.create_for_email("user@email.com")
+        person.auth_token.should_not == person.refresh_auth_token
+
+    end
   end
 
 end

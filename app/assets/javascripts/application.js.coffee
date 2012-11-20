@@ -15,6 +15,7 @@ $ ->
       $(this).find('.highlight').removeClass('highlight').addClass('incorrect')
     false
 
+
   $('.fancybox').fancybox()
 
   $('#view_map').each ->
@@ -58,3 +59,5 @@ $ ->
       point = marker.getPosition()
       $('#person_lat').val point.lat()
       $('#person_lng').val point.lng()
+
+

@@ -12,4 +12,9 @@ class ProfileController < ApplicationController
       render :edit
     end
   end
+
+  def renew_auth
+    json = current_person.refresh_auth_token
+    redirect_to '/profile'
+  end
 end

@@ -8,6 +8,7 @@ Ocelots::Application.routes.draw do
 
   get 'profile' => 'profile#edit'
   put 'profile' => 'profile#update'
+  get 'profile/renew_auth' => 'profile#renew_auth'
 
   get 'profiles/:account' => 'profiles#show'
 
