@@ -7,7 +7,7 @@ module GoogleOauth
   end
 
   def verify_google_oauth
-    client = Google::APIClient.build
+    client = google_client
     client.authorization.code = params[:code] if params[:code]
     client.authorization.fetch_access_token!
 
