@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TeamsController do
   render_views
-  
+
   before(:each) do
     @person = sign_in
     @organisation = Organisation.create(name: 'ThoughtWorks', domains: 'thoughtworks.com')
@@ -30,15 +30,15 @@ describe TeamsController do
       team = @person.teams.create(name: 'LSP', slug: 'lsp')
       get :show, :slug => team.slug
       response.should be_success
-      assert_select '#join-team',{:value=> 'Join Team'}
+      assert_select '#join-team', {:value => 'Join Team'}
     end
     it 'ensure a button display with quit team if we already joined this team' do
 
-       team = @person.teams.create(name: 'LSP', slug: 'lsp')
-       get :show ,:slug => team.slug
-       response.should be_success
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
+      get :show, :slug => team.slug
+      response.should be_success
 
-       assert_select '#join-team',{:value=> 'Quit Team'}
+      assert_select '#join-team', {:value => 'Quit Team'}
     end
   end
 
@@ -67,10 +67,10 @@ describe TeamsController do
 
     it 'ensure when person quit from a team then join it again,and it will not disappear in past situation' do
       team = @person.teams.create(name: 'LSP', slug: 'lsp')
-       post :join ,:slug =>team.slug
-       post :quit, :slug => team.slug
-       post :join ,:slug =>team.slug
-       membership = Membership.find(:last).ended.should == nil
+      post :join, :slug => team.slug
+      post :quit, :slug => team.slug
+      post :join, :slug => team.slug
+      membership = Membership.find(:last).ended.should == nil
     end
 
     it 'ensure person can not join a team that he is not belong to the organisation of that team' do
@@ -86,10 +86,25 @@ describe TeamsController do
       post :join, :slug => team.slug
       lambda do
         post :quit, :slug => team.slug
-      end.should change(Membership,:count).by(0)
-        membership = Membership.find(:last)
-        membership.status.should == 'past hidden'
-         @person.approved_teams.include?(team).should_not == true
+      end.should change(Membership, :count).by(0)
+      membership = Membership.find(:last)
+      membership.status.should == 'past hidden'
+      @person.approved_teams.include?(team).should_not == true
     end
   end
+
+  describe :add do
+    it "ensure add some who are not in the organisation ,it should add the new person's organisation to the team" do
+      mail = Object.new
+      PersonMailer.should_receive(:invite).and_return(mail)
+      mail.should_receive(:deliver)
+
+      team = @person.teams.create(name: 'LSP', slug: 'lsp')
+      @organisation = Organisation.create(name: 'Google', domains: 'google.com')
+      post :add, :slug => team.slug, :email => 'test@google.com'
+      team.organisations.include?(@organisation).should == true
+    end
+
+  end
+
 end

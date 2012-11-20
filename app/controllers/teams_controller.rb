@@ -33,6 +33,8 @@ class TeamsController < ApplicationController
       unless person.teams.include? team
         unless person == current_person
           Membership.create_pending_membership current_person, team, person
+          organisation = person.organisation
+          team.add_to organisation
         end
       end
       redirect_to "/teams/#{team.slug}"
