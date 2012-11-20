@@ -1,3 +1,4 @@
+
 h1 Your   profile
 
 div.hero-unit.highlight
@@ -24,6 +25,10 @@ h1 Edit
 = form_for @current_person, url: profile_url, html: {class: 'form-horizontal'} do |form|
   fieldset
     div.span8
+      div.control-group
+        label.control-label for="show_avatar" Allow to show avatar
+        div.controls
+          =form.check_box :show_avatar
       div.control-group
         label.control-label for="person_account" Profile
         div.controls
@@ -86,7 +91,9 @@ h1 Edit
       div.control-group
         label.control-label for="person_auth_token" Auth Token
         div.controls
-          p = @current_person.auth_token
+          span = @current_person.auth_token
+          a href="/profile/renew_auth" style="margin-left:20px"
+            img src="assets/refresh.png"
 
 a name='facts'
   h1 Facts

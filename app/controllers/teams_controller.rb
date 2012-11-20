@@ -14,10 +14,10 @@ class TeamsController < ApplicationController
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
-      unless params[:org_ids]==nil
-        organisations = params[:org_ids].map { |org_id| Organisation.find(org_id) }
-        organisations.each{|org| org.teams << @team}
+      if org = current_person.organisation
+        org.teams << @team
       end
+
       current_person.teams << @team
 
       redirect_to "/teams/#{@team.slug}"
@@ -33,6 +33,8 @@ class TeamsController < ApplicationController
       unless person.teams.include? team
         unless person == current_person
           Membership.create_pending_membership current_person, team, person
+          organisation = person.organisation
+          team.add_to organisation
         end
       end
       redirect_to "/teams/#{team.slug}"

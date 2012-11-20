@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113054723) do
+ActiveRecord::Schema.define(:version => 20121119030544) do
 
   create_table "engagements", :force => true do |t|
     t.integer "organisation_id"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(:version => 20121113054723) do
     t.string   "preferred_name"
     t.string   "email"
     t.string   "pinyin_name"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20121113054723) do
     t.string   "auth_token"
     t.float    "lat"
     t.float    "lng"
+    t.boolean  "show_avatar",        :default => true
   end
 
   create_table "teams", :force => true do |t|

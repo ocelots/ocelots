@@ -11,10 +11,7 @@ a href="https://github.com/ocelots/ocelots"
           li class='head#{flag}'
              div
                 =image_for person
-             -if person.facts.empty?
-                 p =person.full_name
-             -else
-                 p =person.facts.sample.content
+             p  =person.full_name
 
     .action.span6
       h1

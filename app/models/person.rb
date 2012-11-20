@@ -4,7 +4,7 @@ require 'uuid_generator'
 class Person < ActiveRecord::Base
   include Omnipotence
   extend UuidGenerator
-  include Gravtastic
+  include Gravtastic ,UuidGenerator
   gravtastic  :secure => false,
               :size => 300
 
@@ -13,6 +13,7 @@ class Person < ActiveRecord::Base
   attr_accessible :photo, :phone
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
   attr_accessible :lat, :lng
+  attr_accessible :show_avatar
 
 
   validates_uniqueness_of :account
@@ -61,7 +62,7 @@ class Person < ActiveRecord::Base
   def allowed_to_view_team? team
     return false unless team
 
-    team.public? or blessed?(team) or team.creator == self or teams.include?(team)
+    blessed?(team) or team.creator == self or teams.include?(team)
   end
 
   def viewable_teams
@@ -90,4 +91,12 @@ class Person < ActiveRecord::Base
 
   end
 
+  def organisation
+    Organisation.where('domains like ?',email_domain).first
+  end
+
+  def refresh_auth_token
+    update_attributes auth_token: uuid
+    auth_token
+  end
 end
