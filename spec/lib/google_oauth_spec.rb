@@ -1,7 +1,9 @@
-require 'spec_helper'
+require 'google_oauth'
 
-describe Google::APIClient do
-  describe :build do
+describe GoogleOauth do
+  include GoogleOauth
+
+  describe '#google_client' do
     let(:authorization) { stub 'authorization' }
     let(:client) { stub 'client', authorization: authorization }
     before { Google::APIClient.should_receive(:new).and_return client }
@@ -17,7 +19,7 @@ describe Google::APIClient do
         authorization.should_receive("#{m}=").with value
       end
       authorization.should_receive("scope=").with 'https://www.googleapis.com/auth/userinfo.email'
-      Google::APIClient.build
+      google_client
     end
   end
 end

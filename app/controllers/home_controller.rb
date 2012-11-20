@@ -1,11 +1,11 @@
 require 'persona'
-require 'net/http'
-require 'google_api_ext'
+require 'google_oauth'
 
 class HomeController < ApplicationController
   include Persona
+  include GoogleOauth
 
-  skip_filter :require_login, only: [:index, :verify, :verify_g, :verify_g_callback]
+  skip_filter :require_login
 
   def index
     if logged_in?
@@ -13,7 +13,8 @@ class HomeController < ApplicationController
       session[:initial_url] = nil
       redirect_to redirect_url
     else
-      @people = Person.find(:all,:conditions =>["show_avatar=true"],:order => "RANDOM()", :limit => 4)
+      @people = Person.find(:all, :conditions => ["show_avatar=true"], :order => "RANDOM()", :limit => 4)
+      @google_login = google_oauth_url
       render layout: 'landing'
     end
   end
@@ -29,27 +30,8 @@ class HomeController < ApplicationController
     render json: response
   end
 
-  def verify_g
-    @client = Google::APIClient.build
-    url = @client.authorization.authorization_uri.to_s
-    session[:google_auth] = @client.to_yaml
-
-    redirect_to url
-  end
-
-  def verify_g_callback
-    google_auth = YAML.load(session[:google_auth])
-    google_auth.authorization.code = params[:code] if params[:code]
-
-    google_auth.authorization.fetch_access_token!
-
-    http = Net::HTTP.new 'www.googleapis.com', 443
-    http.use_ssl = true
-    response = http.get "/oauth2/v1/userinfo?access_token=#{google_auth.authorization.access_token}"
-
-    response = JSON.parse response.body
-    session[:email] = response['email']
+  def google_oauth_callback
+    verify_google_oauth { |email| session[:email] = email }
     redirect_to '/'
   end
-
 end
