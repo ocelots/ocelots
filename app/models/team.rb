@@ -22,4 +22,8 @@ class Team < ActiveRecord::Base
   def blessed?(domain)
     organisations.map{|org| org.domains.split(',')}.flatten.include?(domain)
   end
+
+  def add_to_organisation (organisation)
+    organisations << organisation
+  end
 end
