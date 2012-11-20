@@ -42,7 +42,7 @@ RSpec.configure do |config|
 end
 
 def sign_in
-  email = 'do.not.make.me.test@gmail.com'
+  email = 'do.not.make.me.test@thoughtworks.com'
   person = Person.create!(email: email, full_name: 'Test Person', account: 'test_account')
   session[:email] = email
   person
