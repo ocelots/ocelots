@@ -11,7 +11,7 @@ class Person < ActiveRecord::Base
   attr_accessible :email, :persona_id, :account, :auth_token
   attr_accessible :full_name, :chinese_name, :pinyin_name, :preferred_name
   attr_accessible :photo, :phone
-  attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github
+  attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github ,:flickr
   attr_accessible :lat, :lng
   attr_accessible :show_avatar
 

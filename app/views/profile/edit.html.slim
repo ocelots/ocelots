@@ -81,6 +81,9 @@ h1 Edit
         div.controls
           p http://github.com/#{form.text_field :github}
       div.control-group
+              div.controls
+                p http://github.com/photos/#{form.text_field :flickr}
+      div.control-group
         label.control-label for="lat" Birthplace
         div.controls
           div.label.label-info Please move the pin to choose your location.
@@ -93,10 +96,9 @@ h1 Edit
         div.controls
           span = @current_person.auth_token
           a href="/profile/renew_auth" style="margin-left:20px"
-            img src="assets/refresh.png"
+            img src="assets/refresh.png"  title="refresh auth token"
 
-a name='facts'
-  h1 Facts
+h1 Facts
 
 div.span6
   table class='table-striped'

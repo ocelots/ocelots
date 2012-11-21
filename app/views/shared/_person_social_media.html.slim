@@ -17,3 +17,6 @@ div.social_media
   - unless person.github.blank?
     a href="http://github.com/#{person.github}"
       img src='/assets/github.png'
+  - unless person.flickr.blank?
+      a href="http://flickr.com/photos/#{person.flickr}"
+        img src='/assets/flickr.png'

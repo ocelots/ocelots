@@ -11,7 +11,7 @@ div.hero-unit
       = render partial: 'shared/person_social_media', locals: {person: @person}
 
       blockquote
-        ul
+        ul.unstyled
           - @person.facts.each do |fact|
             li
               p I #{fact.content}
