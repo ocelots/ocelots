@@ -1,6 +1,7 @@
 - content_for :menu_items do
   li
-    = link_to 'add member', '#add_new', class: 'fancybox'
+    -if @current_person.approved_teams.include?(@team)
+      = link_to 'add member', '#add_new', class: 'fancybox'
   li
     = link_to 'avatars', "/avatars/#{@team.slug}"
   li

@@ -1,6 +1,3 @@
-
-h1 Your   profile
-
 div.hero-unit.highlight
   div.row
     div.span4
@@ -18,8 +15,9 @@ div.hero-unit.highlight
     div.alert.alert-success =flash[:notice]
 - messages = @current_person.errors.full_messages
 - unless messages.empty?
-  - messages.each do |msg|
-    div.alert.alert-error #{msg}
+    ul.alert.alert-error
+      - messages.each do |msg|
+        li style='margin-left:8px;' = msg
 h1 Edit
 
 = form_for @current_person, url: profile_url, html: {class: 'form-horizontal'} do |form|
@@ -30,9 +28,17 @@ h1 Edit
         div.controls
           =form.check_box :show_avatar
       div.control-group
+        label.control-label for="photo" Photo
+        div.controls
+          = form.file_field :photo
+      div.control-group
         label.control-label for="person_account" Profile
         div.controls
-          p #{ENV['BASE_URL']}/profiles/#{form.text_field :account}
+          p #{form.text_field :account , class:'profile-url'}
+        label.control-label  Preview Profile URL:
+        div.controls.url-font
+          span.profile-url-base #{ENV['BASE_URL']}/profiles/
+          span.profile-url-dis #{@current_person.account}
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
@@ -54,32 +60,37 @@ h1 Edit
         div.controls
           = text_field_tag :sc_embed_code, nil
       div.control-group
-        label.control-label for="photo" Photo
-        div.controls
-          = form.file_field :photo
-      div.control-group
         label.control-label for="person_phone" Phone
         div.controls
           = form.text_field :phone
       div.control-group
         label.control-label for="person_url" Personal site
         div.controls
-          p http://#{form.text_field :url}
+          p #{form.text_field :url,placeholder:'Need http://'}
       div.control-group
+        label.control-label for="person_twitter" Twitter
         div.controls
           p http://twitter.com/#{form.text_field :twitter}
       div.control-group
+        label.control-label for="person_facebook" Facebook
         div.controls
           p http://facebook.com/#{form.text_field :facebook}
       div.control-group
+        label.control-label for="person_weibo" Weibo
         div.controls
           p http://weibo.com/#{form.text_field :weibo}
       div.control-group
+        label.control-label for="person_appnet" Appnet
         div.controls
           p http://alpha.appnet.com/#{form.text_field :appnet}
       div.control-group
+        label.control-label for="person_github" Github
         div.controls
           p http://github.com/#{form.text_field :github}
+      div.control-group
+        label.control-label for="person_flickr" Flickr
+        div.controls
+          p http://flickr.com/photos/#{form.text_field :flickr}
       div.control-group
         label.control-label for="lat" Birthplace
         div.controls
@@ -93,10 +104,9 @@ h1 Edit
         div.controls
           span = @current_person.auth_token
           a href="/profile/renew_auth" style="margin-left:20px"
-            img src="assets/refresh.png"
+            img src="assets/refresh.png"  title="refresh auth token"
 
-a name='facts'
-  h1 Facts
+h1 Facts
 
 div.span6
   table class='table-striped'

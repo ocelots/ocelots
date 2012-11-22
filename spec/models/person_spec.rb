@@ -26,8 +26,8 @@ describe Person do
 
   it 'ensures the photo attachment has correct mime type' do
     should validate_attachment_content_type(:photo).
-      allowing('image/jpeg', 'image/png', 'image/gif').
-      rejecting('text/plain', 'text/xml')
+               allowing('image/jpeg', 'image/png', 'image/gif').
+               rejecting('text/plain', 'text/xml')
   end
 
   describe '#create_for_email' do
@@ -58,9 +58,9 @@ describe Person do
     let(:blessed_organisation) { Organisation.create(name: 'ThoughtWorks', domains: 'thoughtworks.com') }
     let(:viewable_team) { blessed_organisation.teams.create(name: 'TW Project', slug: 'tw_project') }
     let(:non_blessed_organisation) { Organisation.create(name: 'Microsoft', domains: 'microsoft.com') }
-    let(:non_viewable_team){ non_blessed_organisation.teams.create(name: 'MS Project', slug: 'ms_project') }
-    let(:public_team){Team.create(name: 'Public Test Team', slug: 'public.com')}
-    let(:joined_team){person.teams.create(name: 'Joined Team', slug: 'joined.com')}
+    let(:non_viewable_team) { non_blessed_organisation.teams.create(name: 'MS Project', slug: 'ms_project') }
+    let(:public_team) { Team.create(name: 'Public Test Team', slug: 'public.com') }
+    let(:joined_team) { person.teams.create(name: 'Joined Team', slug: 'joined.com') }
     before(:each) do
       viewable_team.reload
       public_team.reload
@@ -98,7 +98,7 @@ describe Person do
 
   describe :organisation do
     it 'ensure return the accurate organisation by email' do
-      tw = Organisation.create(name: 'Sun Corp',domains:'suncorp.com')
+      tw = Organisation.create(name: 'Sun Corp', domains: 'suncorp.com')
       person = Person.create_for_email('test@suncorp.com')
       person.organisation.name.should == tw.name
     end
@@ -113,9 +113,22 @@ describe Person do
 
   describe :refresh_auth_token do
     it 'ensure a different auto_token when click the refresh button' do
-        person = Person.create_for_email("user@email.com")
-        person.auth_token.should_not == person.refresh_auth_token
+      person = Person.create_for_email("user@email.com")
+      person.auth_token.should_not == person.refresh_auth_token
 
+    end
+  end
+
+  describe :display_name do
+    it 'can never be nil' do
+      person = Person.create_for_email("user@email.com")
+
+
+      person.full_name = nil
+      person.display_name.should == '^@^'
+
+      person.full_name = 'Andy Bryant'
+      person.display_name.should == 'Andy Bryant'
     end
   end
 

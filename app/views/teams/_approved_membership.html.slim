@@ -6,3 +6,33 @@ div.hero-unit.highlight class="#{membership.status}"
     div.span4
       = render partial: 'shared/person', locals: {person: membership.person}
       = render partial: 'shared/membership', locals: {membership: membership}
+      -if membership.person == @current_person
+      = link_to 'edit membership', '#add_sc', class: 'fancybox btn btn-primary'
+          div id="add_sc" style="display:none;"
+            h2 Edit Membership
+            = form_for membership, html: {class: 'form-horizontal'} do |form|
+              fieldset
+                div.control-group
+                  label.control-label for="sc_embed_code" Soundcloud Link
+                  div.controls
+                    = text_field_tag :sc_embed_code
+                    span.help-block (record a soundcloud track, click 'Share' and copy the contents of the 'Embed Code' content here)
+                div.control-group
+                  label.control-label for="role" Role
+                  div.controls
+                    = form.text_field :role
+                div.control-group
+                  label.control-label for="started" Date Started
+                  div.controls
+                    = form.text_field :started
+                div.control-group
+                  label.control-label for="ended" Date Ended
+                  div.controls
+                    = form.text_field :ended
+                div.control-group
+                  label.control-label for="hidden" Hidden
+                  div.controls
+                    = form.check_box :hidden
+                div.form-actions
+                  div.controls
+                    = form.submit 'Update', class: 'btn btn-primary'
