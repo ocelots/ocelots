@@ -43,6 +43,7 @@ Ocelots::Application.routes.draw do
 
   get 'antechamber/:slug' => 'antechamber#index'
   post 'antechamber/:slug' => 'antechamber#create'
+  delete 'antechamber/:id' => 'antechamber#destroy'
 
   root to: 'home#index'
 end

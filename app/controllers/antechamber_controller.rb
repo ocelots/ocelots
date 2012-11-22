@@ -15,4 +15,14 @@ class AntechamberController < ApplicationController
       redirect_to "/antechamber/#{team.slug}"
     end
   end
+
+  def destroy
+    message = Message.find params[:id]
+    if message
+      message.destroy if message.person == current_person
+      redirect_to "/antechamber/#{message.team.slug}"
+    else
+      redirect_to '/teams'
+    end
+  end
 end
