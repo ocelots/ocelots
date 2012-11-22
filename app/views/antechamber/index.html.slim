@@ -3,8 +3,8 @@
 h1 = @team.name
 
 = form_tag "/antechamber/#{@team.slug}", class: 'form-inline' do
-  td
-    p #{text_field_tag :content, nil, placeholder: 'Enter Message'}
+  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4}
+  = submit_tag 'Send', class: 'btn'
 
 - @messages.each do |message|
   blockquote
@@ -14,4 +14,4 @@ h1 = @team.name
       = " #{distance_of_time_in_words Time.now, message.created_at} ago"
       - if message.person == current_person
         = link_to "/antechamber/#{message.id}", class: 'd', method: :delete do
-          i.icon-remove-circle
+          i.icon-trash
