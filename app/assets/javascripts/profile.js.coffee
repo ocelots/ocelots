@@ -1,7 +1,3 @@
-
-
-
-
 $ ->
   $('.profile-url').keyup ->
       myText =$('.profile-url').val();
