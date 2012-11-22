@@ -18,8 +18,9 @@ div.hero-unit.highlight
     div.alert.alert-success =flash[:notice]
 - messages = @current_person.errors.full_messages
 - unless messages.empty?
-  - messages.each do |msg|
-    div.alert.alert-error #{msg}
+    ul.alert.alert-error
+      - messages.each do |msg|
+        li style='margin-left:8px;' = msg
 h1 Edit
 
 = form_for @current_person, url: profile_url, html: {class: 'form-horizontal'} do |form|
