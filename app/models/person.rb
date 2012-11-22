@@ -99,4 +99,8 @@ class Person < ActiveRecord::Base
     update_attributes auth_token: uuid
     auth_token
   end
+
+  def display_name
+    full_name || '^@^'
+  end
 end
