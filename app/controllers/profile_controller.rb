@@ -15,6 +15,6 @@ class ProfileController < ApplicationController
 
   def renew_auth
     json = current_person.refresh_auth_token
-    redirect_to '/profile'
+    render text: json
   end
 end

@@ -1,17 +1,20 @@
+- content_for :javascript_includes do
+ = javascript_include_tag 'antechamber'
+ = javascript_include_tag '/jquery.form.js'
 = render partial: 'shared/team_menu_items'
 
 h1 = @team.name
+form.form-inline  action="/antechamber/#{@team.slug}"
+  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4,class:'message-body'}
+  a.btn.submit-mess  Send
 
-= form_tag "/antechamber/#{@team.slug}", class: 'form-inline' do
-  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4}
-  = submit_tag 'Send', class: 'btn'
-
-- @messages.each do |message|
-  blockquote
-    = markdown message.content
-    small
-      = link_to message.full_name, "/profiles/#{message.account}"
-      = " #{distance_of_time_in_words Time.now, message.created_at} ago"
-      - if message.person == current_person
-        = link_to "/antechamber/#{message.id}", class: 'd', method: :delete do
-          i.icon-trash
+div.message-list
+  - @messages.each do |message|
+    blockquote
+      = markdown message.content
+      small
+        = link_to message.full_name, "/profiles/#{message.account}"
+        = " #{distance_of_time_in_words Time.now, message.created_at} ago"
+        - if message.person == current_person
+          = link_to "/antechamber/#{message.id}", class: 'd', method: :delete do
+            i.icon-trash
