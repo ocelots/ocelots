@@ -27,3 +27,15 @@ $ ->
   $('.flickr-url').keyup ->
     myText =$('.flickr-url').val();
     $('.flickr-preview').text(myText)
+
+
+  $('.refresh-token').click ->
+    $.ajax({
+      url:'profile/renew_auth'
+      type:'POST'
+    }).done (responseText) ->
+      $('.auth-token-display').text(responseText)
+      $('.refresh-token').unbind('click');
+      $('.refresh-token').removeClass('icon-refresh').addClass(' icon-ok-sign')
+
+

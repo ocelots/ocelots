@@ -1,3 +1,6 @@
+- content_for :javascript_includes do
+  = javascript_include_tag 'profile'
+
 div.hero-unit.highlight
   div.row
     div.span4
@@ -132,9 +135,8 @@ h1 Edit
       div.control-group
         label.control-label for="person_auth_token" Auth Token
         div.controls
-          span = @current_person.auth_token
-          a href="/profile/renew_auth" style="margin-left:20px"
-            img src="assets/refresh.png"  title="refresh auth token"
+          span.auth-token-display = @current_person.auth_token
+          span.refresh-token.icon-refresh title="refresh auth token"  style="margin-left:20px"
 
 h1 Facts
 
@@ -151,6 +153,3 @@ div.span6
       = form_tag "/fact", class: 'form-inline' do
         td
           p I #{text_field_tag :content, nil, placeholder: 'drive a truck'}
-
-
-=javascript_include_tag 'profile'
