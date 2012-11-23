@@ -5,7 +5,7 @@
 
 h1 = @team.name
 form.form-inline  action="/antechamber/#{@team.slug}"
-  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4}
+  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4,class:'message-body'}
   a.btn.submit-mess  Send
 
 div.message-list
