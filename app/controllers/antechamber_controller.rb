@@ -11,8 +11,8 @@ class AntechamberController < ApplicationController
 
   def create
     with_team do |team|
-      Message.create team: team, person: current_person, content: params[:content]
-      redirect_to "/antechamber/#{team.slug}"
+      message = Message.create team: team, person: current_person, content: params[:content]
+      render partial: 'shared/one_message', locals: {message: message}
     end
   end
 

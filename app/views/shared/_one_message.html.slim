@@ -1,0 +1,8 @@
+blockquote
+    = markdown message.content
+    small
+      = link_to message.full_name, "/profiles/#{message.account}"
+      = " #{distance_of_time_in_words Time.now, message.created_at} ago"
+      - if message.person == current_person
+        = link_to "/antechamber/#{message.id}", class: 'd', method: :delete do
+          i.icon-trash
