@@ -9,6 +9,7 @@ html
     = stylesheet_link_tag '/fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css'
     = csrf_meta_tags
     = javascript_include_tag '/ga.js'
+    = javascript_include_tag '/jquery-1.8.2.min.js'
 
   body
 
@@ -34,4 +35,3 @@ html
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API']}&sensor=false"
     = yield :javascript_includes
     = javascript_include_tag '/uservoice.js'
-    =javascript_include_tag 'profile'
