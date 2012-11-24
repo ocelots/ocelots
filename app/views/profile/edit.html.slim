@@ -1,3 +1,6 @@
+- content_for :javascript_includes do
+  = javascript_include_tag 'profile'
+
 div.hero-unit.highlight
   div.row
     div.span4
@@ -70,27 +73,57 @@ h1 Edit
       div.control-group
         label.control-label for="person_twitter" Twitter
         div.controls
-          p http://twitter.com/#{form.text_field :twitter}
+          p #{form.text_field :twitter,class:'twitter-url'}
+      div.control-group
+        label.control-label for="person_twitter" Twitter Preview
+        div.controls.url-font
+          span http://twitter.com/
+          span.twitter-preview #{@current_person.twitter}
       div.control-group
         label.control-label for="person_facebook" Facebook
         div.controls
-          p http://facebook.com/#{form.text_field :facebook}
+          p #{form.text_field :facebook,class:'facebook-url'}
+      div.control-group
+        label.control-label for="person_facebook" Facebook Preview
+        div.controls.url-font
+          span http://facebook.com/
+          span.facebook-preview #{@current_person.facebook}
       div.control-group
         label.control-label for="person_weibo" Weibo
         div.controls
-          p http://weibo.com/#{form.text_field :weibo}
+          p #{form.text_field :weibo,class:'weibo-url'}
+      div.control-group
+        label.control-label for="person_weibo" Weibo Preview
+        div.controls.url-font
+          span http://weibo.com/
+          span.weibo-preview #{@current_person.weibo}
       div.control-group
         label.control-label for="person_appnet" Appnet
         div.controls
-          p http://alpha.appnet.com/#{form.text_field :appnet}
+          p #{form.text_field :appnet,class:'appnet-url'}
+      div.control-group
+        label.control-label for="person_appnet" Appnet Preview
+        div.controls.url-font
+          span http://alpha.appnet.com/
+          span.appnet-preview #{@current_person.appnet}
       div.control-group
         label.control-label for="person_github" Github
         div.controls
-          p http://github.com/#{form.text_field :github}
+          p #{form.text_field :github,class:'github-url'}
+      div.control-group
+        label.control-label for="person_github" Github Preview
+        div.controls.url-font
+          span http://github.com/
+          span.github-preview #{@current_person.github}
       div.control-group
         label.control-label for="person_flickr" Flickr
         div.controls
-          p http://flickr.com/photos/#{form.text_field :flickr}
+          p #{form.text_field :flickr,class:'flickr-url'}
+      div.control-group
+        label.control-label for="person_flickr" Flickr Preview
+        div.controls.url-font
+          span http://flickr.com/
+          span.flickr-preview #{@current_person.flickr}
       div.control-group
         label.control-label for="lat" Birthplace
         div.controls
@@ -102,9 +135,8 @@ h1 Edit
       div.control-group
         label.control-label for="person_auth_token" Auth Token
         div.controls
-          span = @current_person.auth_token
-          a href="/profile/renew_auth" style="margin-left:20px"
-            img src="assets/refresh.png"  title="refresh auth token"
+          span.auth-token-display = @current_person.auth_token
+          span.refresh-token.icon-refresh title="refresh auth token"  style="margin-left:20px"
 
 h1 Facts
 
