@@ -103,4 +103,10 @@ class Person < ActiveRecord::Base
   def display_name
     full_name || '^@^'
   end
+
+  def self.to_person(email)
+	  person = Person.find_by_email email
+	  person = Person.create_for_email email unless person
+	  person
+  end
 end

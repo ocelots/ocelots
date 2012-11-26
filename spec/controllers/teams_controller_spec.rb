@@ -55,7 +55,7 @@ describe TeamsController do
 
   describe :join do
 
-    it 'ensure person joins a team and create a membership between person and team' do
+    it 'ensure person joins a team and modify this membership between person and team' do
       lambda do
         team = @person.teams.create(name: 'LSP', slug: 'lsp')
         post :join, :slug => team.slug
@@ -94,17 +94,32 @@ describe TeamsController do
   end
 
   describe :add do
-    it "ensure add some who are not in the organisation ,it should add the new person's organisation to the team" do
+    it "ensure add someone who are not in the organisation ,it should add the new person's organisation to the team" do
       mail = Object.new
       PersonMailer.should_receive(:invite).and_return(mail)
       mail.should_receive(:deliver)
 
       team = @person.teams.create(name: 'LSP', slug: 'lsp')
       @organisation = Organisation.create(name: 'Google', domains: 'google.com')
-      post :add, :slug => team.slug, :email => 'test@google.com'
+      post :add, :slug => team.slug, :emails => '"test" <test@google.com>'
       team.organisations.include?(@organisation).should == true
     end
 
-  end
+	  it 'ensure invite some people to a team' do
+		  mail = Object.new
+		  PersonMailer.should_receive(:invite).and_return(mail)
+		  mail.should_receive(:deliver)
 
+		  mail_tw = Object.new
+		  PersonMailer.should_receive(:invite).and_return(mail_tw)
+		  mail_tw.should_receive(:deliver)
+
+		  team = @person.teams.create(name: 'LSP', slug: 'lsp')
+		  @organisation = Organisation.create(name: 'Google', domains: 'google.com')
+		  @organisation_tw = Organisation.create(name: 'IBM', domains: 'ibm.com')
+		  post :add, :slug => team.slug, :emails => 'test_name <test@google.com>,test_name2 <test2@ibm.com>'
+		  team.organisations.include?(@organisation).should == true
+		  team.organisations.include?(@organisation_tw).should == true
+	  end
+  end
 end

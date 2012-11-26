@@ -14,11 +14,13 @@ class Membership < ActiveRecord::Base
 
   scope :approved, where('pending_approval_token is null and ended is null')
 
-  def self.create_pending_membership inviter, team, person
-    membership = Membership.create team: team,
-      person: person,
-      pending_approval_token: uuid
-    PersonMailer.invite(inviter, membership).deliver
+  def self.create_pending_membership inviter, person, team
+	  unless person.teams.include? team && inviter == person
+		  membership = Membership.create team: team, person: person,pending_approval_token: uuid
+      PersonMailer.invite(inviter, membership).deliver
+		  organisation = person.organisation
+		  team.add_to organisation
+	  end
   end
 
   def status

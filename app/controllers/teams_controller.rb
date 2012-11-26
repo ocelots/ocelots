@@ -1,4 +1,5 @@
 require 'team_filter'
+require  'mail'
 
 class TeamsController < ApplicationController
   include TeamFilter
@@ -28,16 +29,25 @@ class TeamsController < ApplicationController
 
   def add
     with_team do |team|
-      person = Person.find_by_email params[:email]
-      person = Person.create_for_email params[:email] unless person
-      unless person.teams.include? team
-        unless person == current_person
-          Membership.create_pending_membership current_person, team, person
-          organisation = person.organisation
-          team.add_to organisation
-        end
-      end
-      redirect_to "/teams/#{team.slug}"
+	    begin
+	    mails = Mail::AddressList.new params[:emails].delete("\n")
+	    mails.addresses.each {|addr|
+		    unless addr.domain
+			    raise "You have illegal email addresses ,please correct it."
+		    end
+		    person = Person.to_person(addr.address.to_s)
+		    Membership.create_pending_membership(current_person, person, team)
+	    }
+	    rescue => error
+		    message = error.to_s
+				result_status = 'failed'
+	    else
+		    message = 'All people invited'
+			  result_status = 'success'
+		  end
+	    respond_to do |format|
+		    format.json  { render :json => {:message => message,:status=>result_status}}
+	    end
     end
   end
 
