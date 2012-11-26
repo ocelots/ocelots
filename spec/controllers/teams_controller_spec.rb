@@ -40,6 +40,13 @@ describe TeamsController do
 
       assert_select '#join-team', {:value => 'Quit Team'}
     end
+
+	  it 'do not show pending teams in viewable teams area' do
+		  team = @person.teams.create(name: 'LSP', slug: 'lsp')
+		  person = Person.create_for_email'test@google.com'
+		  post :add, :slug => team.slug, :emails => '"test" <test@google.com>'
+		  person.viewable_teams.include?(team).should ==false
+	  end
   end
 
   describe :create do

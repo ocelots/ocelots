@@ -13,6 +13,7 @@ class Membership < ActiveRecord::Base
   delegate :name, :slug, :description, :people, to: :team, prefix: true
 
   scope :approved, where('pending_approval_token is null and ended is null')
+  scope :pendings, where('pending_approval_token is not null')
 
   def self.create_pending_membership inviter, person, team
 	  unless person.teams.include? team && inviter == person

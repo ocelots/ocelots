@@ -24,6 +24,8 @@ class Team < ActiveRecord::Base
   end
 
   def add_to (organisation)
-    organisations << organisation
+	  if organisation
+		  organisations << organisation
+	  end
   end
 end

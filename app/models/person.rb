@@ -54,6 +54,10 @@ class Person < ActiveRecord::Base
     memberships.approved.includes('team').map &:team
   end
 
+  def pending_teams
+	  memberships.pendings.map &:team
+  end
+
   def allowed_to_view? person
     return false unless person
     omnipotent? or person == self or !(teams & person.approved_teams).empty?
@@ -66,7 +70,7 @@ class Person < ActiveRecord::Base
   end
 
   def viewable_teams
-    Team.find(:all).select{|team| allowed_to_view_team?(team)} - approved_teams
+    Team.find(:all).select{|team| allowed_to_view_team?(team)} - approved_teams - pending_teams
   end
 
   def blessed?(team)

@@ -28,7 +28,7 @@ $ ->
     type:'post'
     clearForm: true
     beforeSubmit: ->
-      if $('.members-content').val()==""  or  $('.members-content').val()==" "
+      if $('.members-content').val().replace(/\s+/, "") == ""
         false
     success: (data) ->
       node = $('<div></div>').addClass('alert').text data.message

@@ -3,7 +3,7 @@ $ ->
     type:'post'
     clearForm: true
     beforeSubmit: ->
-      if $('.message-body').val()==""  or  $('.message-body').val()==" "
+      if $('.message-body').val().replace(/\s+/, "") == ""
         false
     success: (data) ->
       $('.message-list').prepend(data)
