@@ -36,7 +36,9 @@ class TeamsController < ApplicationController
 			    raise "You have illegal email addresses ,please correct it."
 		    end
 		    person = Person.to_person(addr.address.to_s)
-		    Membership.create_pending_membership(current_person, person, team)
+		    unless person.teams.include? team
+			    Membership.create_pending_membership(current_person, person, team)
+		    end
 	    }
 	    rescue => error
 		    message = error.to_s

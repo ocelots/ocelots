@@ -128,5 +128,12 @@ describe TeamsController do
 		  team.organisations.include?(@organisation).should == true
 		  team.organisations.include?(@organisation_tw).should == true
 	  end
+
+	  it 'ensure do not invite someone already in the team' do
+		  team = @person.teams.create(name: 'LSP', slug: 'lsp')
+		  lambda do
+			  post :add, :slug => team.slug, :emails => @person.email
+		  end.should change(Membership, :count).by(0)
+	  end
   end
 end
