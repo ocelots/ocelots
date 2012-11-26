@@ -37,5 +37,9 @@ $ ->
       else
         node.addClass('alert-error')
       node.insertBefore('p.alert.alert-info')
+      setTimeout  ()->
+        node.hide('slow').remove()
+      ,4000
+
   $('.do-add').click ->
     $('.add-member-form').ajaxSubmit options
