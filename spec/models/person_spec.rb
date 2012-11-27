@@ -132,4 +132,15 @@ describe Person do
     end
   end
 
+  describe :to_person do
+	  it 'ensure find a person' do
+		  person = Person.create_for_email 'test@gmail.com'
+		  Person.to_person('test@gmail.com').class.should == Person
+	  end
+
+	  it 'ensure create a person' do
+		  Person.to_person('test@gmail.com').class.should == Person
+	  end
+  end
+
 end

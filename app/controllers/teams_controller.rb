@@ -1,10 +1,11 @@
 require 'team_filter'
+require 'mail'
 
 class TeamsController < ApplicationController
   include TeamFilter
 
   def index
-    @memberships = current_person.memberships.select{|membership| membership.ended==nil}
+    @memberships = current_person.memberships.select { |membership| membership.ended==nil }
     @team = Team.new
     @organisations = Organisation.find(:all)
   end
@@ -28,16 +29,18 @@ class TeamsController < ApplicationController
 
   def add
     with_team do |team|
-      person = Person.find_by_email params[:email]
-      person = Person.create_for_email params[:email] unless person
-      unless person.teams.include? team
-        unless person == current_person
-          Membership.create_pending_membership current_person, team, person
-          organisation = person.organisation
-          team.add_to organisation
-        end
+      begin
+        current_person.invite(params[:emails], team)
+        message = 'All people invited'
+        result_status = 'success'
+      rescue => error
+        message = error.to_s
+        result_status = 'failed'
       end
-      redirect_to "/teams/#{team.slug}"
+
+      respond_to do |format|
+        format.json { render :json => {:message => message, :status => result_status} }
+      end
     end
   end
 

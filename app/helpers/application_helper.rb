@@ -1,6 +1,6 @@
 module ApplicationHelper
   def image_for person
-    image_tag person.photo? ? person.photo.url(:square) : person.gravatar_url
+    image_tag person.photo? ? person.photo.url(:square) : person.gravatar_url ,class:'avatar-image'
   end
 
   def phone_link_to phone

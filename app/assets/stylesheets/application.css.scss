@@ -4,20 +4,6 @@ body {
   padding-bottom: 40px;
 }
 
-/*
-.highlight {
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  color: #333;
-}
-*/
-
-//.highlight:hover {
-//  background: #ccc;
-//  text-decoration: none;
-//}
-
 .correct {
   background: #090 !important;
 }
@@ -78,3 +64,19 @@ body {
   color:#777;
   font-weight: bold;
 }
+
+.avatar-image{
+  border-radius: 150px;
+  box-shadow: 0 0 15px #333;
+}
+
+.join-status-button{
+  float: left;
+  margin-left: 36px;
+  margin-top: 17px;
+}
+
+.team-fliter{
+  margin-left: -29px;
+}
+
