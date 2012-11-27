@@ -40,6 +40,11 @@ $ ->
       setTimeout  ()->
         node.hide('slow').remove()
       ,4000
-
+    error: ->
+      node = $('<div></div>').addClass('alert').addClass('alert-error').text 'Sorry,there are some errors occured.'
+      node.insertBefore('p.alert.alert-info')
+      setTimeout  ()->
+        node.hide('slow').remove()
+      ,4000
   $('.do-add').click ->
     $('.add-member-form').ajaxSubmit options
