@@ -54,6 +54,10 @@ class Person < ActiveRecord::Base
     memberships.approved.includes('team').map &:team
   end
 
+  def pending_teams
+	  memberships.pendings.map &:team
+  end
+
   def allowed_to_view? person
     return false unless person
     omnipotent? or person == self or !(teams & person.approved_teams).empty?
@@ -66,7 +70,7 @@ class Person < ActiveRecord::Base
   end
 
   def viewable_teams
-    Team.find(:all).select{|team| allowed_to_view_team?(team)} - approved_teams
+    Team.find(:all).select{|team| allowed_to_view_team?(team)} - approved_teams - pending_teams
   end
 
   def blessed?(team)
@@ -88,7 +92,17 @@ class Person < ActiveRecord::Base
     else
       Membership.where(team_id: team.id,person_id: id).first.approve
     end
+  end
 
+  def invite(emails, team)
+    mails = Mail::AddressList.new emails.delete("\n")
+    mails.addresses.each do |addr|
+      unless addr.domain
+        raise "You have illegal email addresses ,please correct it."
+      end
+      invitee = Person.to_person(addr.address.to_s)
+      Membership.create_pending_membership(self, invitee, team)
+    end
   end
 
   def organisation
@@ -102,5 +116,11 @@ class Person < ActiveRecord::Base
 
   def display_name
     full_name || '^@^'
+  end
+
+  def self.to_person(email)
+	  person = Person.find_by_email email
+	  person = Person.create_for_email email unless person
+	  person
   end
 end

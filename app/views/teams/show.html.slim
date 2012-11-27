@@ -1,7 +1,11 @@
+- content_for :javascript_includes do
+  = javascript_include_tag '/jquery.form.js'
+  = javascript_include_tag 'teams_show'
+
 - content_for :menu_items do
   li
     -if @current_person.approved_teams.include?(@team)
-      = link_to 'add member', '#add_new', class: 'fancybox'
+      =link_to 'add member', '#',id:'add_new'
   li
     = link_to 'avatars', "/avatars/#{@team.slug}"
   li
@@ -9,45 +13,47 @@
   li
     = link_to 'antechamber', "/antechamber/#{@team.slug}"
 
-- content_for :javascript_includes do
-  = javascript_include_tag 'teams_show'
+div.team-content
 
-h1  = @team.name
+  h1 style="float:left;" = @team.name
 
-- if current_person.approved_teams.include? @team
-    =form_tag "/teams/#{@team.slug}/quit" do
-    	=submit_tag 'Quit Team',id:"join-team",class:"btn btn-danger "
--else
-    =form_tag "/teams/#{@team.slug}/join" do
-    	=submit_tag 'Join Team',id:"join-team",class:"btn btn-primary "
+  div.join-status-button
+    - if current_person.approved_teams.include? @team
+        =form_tag "/teams/#{@team.slug}/quit" do
+            =submit_tag 'Quit Team',id:"join-team",class:"btn btn-danger "
+    -else
+        =form_tag "/teams/#{@team.slug}/join" do
+            =submit_tag 'Join Team',id:"join-team",class:"btn btn-primary "
+  p
+  div.clear
+  form.form-inline.team-fliter
+    label.span1.checkbox
+      input type="checkbox" id="show-past"
+      span past
+    label.span1.checkbox
+      input type="checkbox" id="show-current" checked="true"
+      span current
+    label.span1.checkbox
+      input type="checkbox" id="show-future"
+      span future
+    label.span1.checkbox
+      input type="checkbox" id="show-pending"
+      span pending
+    input.span2.search-query id="show-filter" type="text" placeholder="search" style="float:right;margin-bottom: 10px;margin-right: 10px;"
 
-p
+  div.clear
 
-form.form-inline
-  label.span1.checkbox
-    input type="checkbox" id="show-past"
-	span past
-  label.span1.checkbox
-    input type="checkbox" id="show-current" checked="true"
-	span current
-  label.span1.checkbox
-    input type="checkbox" id="show-future"
-	span future
-  label.span1.checkbox
-    input type="checkbox" id="show-pending"
-	span pending
-  input.span2.search-query id="show-filter" type="text" placeholder="search"
+  - @team.memberships.each do |membership|
+    = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}
 
-div id="add_new" style="display:none;"
-  p.lead Add a new team member by specifying their email address
-  p This will send an email inviting them to approve their membership before their full details will appear on this page
-  = form_tag "/teams/#{@team.slug}/add", class: 'form-horizontal' do
-    div.control-group
-      label.control-label for="email" email
-      div.controls
-        = text_field_tag :email
-    div.form-actions
-      = submit_tag 'add', class: 'btn'
+div#new-content style="display:none;"
+  p.lead Add new team members
+  p.alert.alert-info Please input Emails,Separate email addresses with commas.<br> This will send an email inviting them to approve their membership before their full details will appear on this page
+  = form_tag "/teams/#{@team.slug}/add", class: 'form-horizontal add-member-form' do
+    div
+      label for="email" emails:
+      = text_area_tag :emails ,:'',style:'width:99%;height:80px;',class:'members-content'
+    div.form-actions style="background-color:white"
+      a.cancel-add.btn.btn-danger style="margin-left:30%" cancel
+      a.btn.btn-primary.do-add style="margin-left:40px" add
 
-- @team.memberships.each do |membership|
-  = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}
