@@ -29,7 +29,7 @@ describe Membership do
 			end.should change(Membership, :count).by(1)
     end
 
-    it 'ensure do not invite someone who has a pending membership with a team' do
+    it 'ensure do not invite someone who joined that team' do
       @invitee.teams << @team
       lambda do
         Membership.create_pending_membership(@inviter, @invitee, @team)
@@ -39,6 +39,13 @@ describe Membership do
     it 'ensure do not invite self' do
       lambda do
         Membership.create_pending_membership(@inviter, @inviter, @team)
+      end.should_not change(Membership, :count)
+    end
+
+    it 'ensure do not invite someone more than once' do
+      Membership.create team: @team, person: @invitee,pending_approval_token: uuid
+      lambda do
+        Membership.create_pending_membership(@inviter, @invitee, @team)
       end.should_not change(Membership, :count)
     end
   end
