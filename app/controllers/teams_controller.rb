@@ -1,11 +1,11 @@
 require 'team_filter'
-require  'mail'
+require 'mail'
 
 class TeamsController < ApplicationController
   include TeamFilter
 
   def index
-    @memberships = current_person.memberships.select{|membership| membership.ended==nil}
+    @memberships = current_person.memberships.select { |membership| membership.ended==nil }
     @team = Team.new
     @organisations = Organisation.find(:all)
   end
@@ -29,27 +29,18 @@ class TeamsController < ApplicationController
 
   def add
     with_team do |team|
-	    begin
-	    mails = Mail::AddressList.new params[:emails].delete("\n")
-	    mails.addresses.each {|addr|
-		    unless addr.domain
-			    raise "You have illegal email addresses ,please correct it."
-		    end
-		    person = Person.to_person(addr.address.to_s)
-		    unless person.teams.include? team
-			    Membership.create_pending_membership(current_person, person, team)
-		    end
-	    }
-	    rescue => error
-		    message = error.to_s
-				result_status = 'failed'
-	    else
-		    message = 'All people invited'
-			  result_status = 'success'
-		  end
-	    respond_to do |format|
-		    format.json  { render :json => {:message => message,:status=>result_status}}
-	    end
+      begin
+        current_person.invite(params[:emails], team)
+        message = 'All people invited'
+        result_status = 'success'
+      rescue => error
+        message = error.to_s
+        result_status = 'failed'
+      end
+
+      respond_to do |format|
+        format.json { render :json => {:message => message, :status => result_status} }
+      end
     end
   end
 

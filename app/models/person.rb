@@ -92,7 +92,17 @@ class Person < ActiveRecord::Base
     else
       Membership.where(team_id: team.id,person_id: id).first.approve
     end
+  end
 
+  def invite(emails, team)
+    mails = Mail::AddressList.new emails.delete("\n")
+    mails.addresses.each do |addr|
+      unless addr.domain
+        raise "You have illegal email addresses ,please correct it."
+      end
+      invitee = Person.to_person(addr.address.to_s)
+      Membership.create_pending_membership(self, invitee, team)
+    end
   end
 
   def organisation
