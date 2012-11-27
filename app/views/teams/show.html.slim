@@ -15,16 +15,18 @@
 
 div.team-content
 
-  h1  = @team.name
+  h1 style="float:left;" = @team.name
 
-  - if current_person.approved_teams.include? @team
-      =form_tag "/teams/#{@team.slug}/quit" do
-          =submit_tag 'Quit Team',id:"join-team",class:"btn btn-danger "
-  -else
-      =form_tag "/teams/#{@team.slug}/join" do
-          =submit_tag 'Join Team',id:"join-team",class:"btn btn-primary "
+  div.join-status-button
+    - if current_person.approved_teams.include? @team
+        =form_tag "/teams/#{@team.slug}/quit" do
+            =submit_tag 'Quit Team',id:"join-team",class:"btn btn-danger "
+    -else
+        =form_tag "/teams/#{@team.slug}/join" do
+            =submit_tag 'Join Team',id:"join-team",class:"btn btn-primary "
   p
-  form.form-inline
+  div.clear
+  form.form-inline.team-fliter
     label.span1.checkbox
       input type="checkbox" id="show-past"
       span past
@@ -37,7 +39,10 @@ div.team-content
     label.span1.checkbox
       input type="checkbox" id="show-pending"
       span pending
-    input.span2.search-query id="show-filter" type="text" placeholder="search"
+    input.span2.search-query id="show-filter" type="text" placeholder="search" style="float:right;margin-bottom: 10px;margin-right: 10px;"
+
+div.clear
+
   - @team.memberships.each do |membership|
     = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}
 
