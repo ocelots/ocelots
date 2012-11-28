@@ -1,5 +1,6 @@
 - content_for :javascript_includes do
   = javascript_include_tag 'profile'
+  = javascript_include_tag 'http://connect.soundcloud.com/sdk.js'
 
 div.hero-unit.highlight
   div.row
@@ -59,9 +60,17 @@ h1 Edit
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_sc_embed_code" Soundcloud embed code
+        label.control-label for="person_sc_embed_code" Soundcloudvalidate embed code
         div.controls
-          = text_field_tag :sc_embed_code, nil
+          = form.text_field :track, id:'track', type:'hidden'
+          = form.text_field :secret, id:'secret', type:'hidden'
+          div id="recorderUI" class="reset"
+            a href="#" id="controlButton" class="record"
+              span id="timer" class="hidden" 0:00
+            div id="otherControls"
+              a href="#" id="reset" class="button" Reset
+              a href="#" id="upload" class="button" Upload
+            div id="uploadStatus"
       div.control-group
         label.control-label for="person_phone" Phone
         div.controls
