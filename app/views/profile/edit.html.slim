@@ -2,7 +2,7 @@
   = javascript_include_tag 'profile'
   = javascript_include_tag 'http://connect.soundcloud.com/sdk.js'
 
-div.hero-unit.highlight
+div.hero-unit.highlight.sexy-bg
   div.row
     div.span4
       a href="/profiles/#{@current_person.account}"
@@ -35,6 +35,9 @@ h1 Edit
         label.control-label for="photo" Photo
         div.controls
           = form.file_field :photo
+        div.controls style="margin-top:8px;"
+          span Or Set Your
+          a href="http://en.gravatar.com/" target="_blank" Gravatar
       div.control-group
         label.control-label for="person_account" Profile
         div.controls
@@ -113,7 +116,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_appnet" Appnet Preview
         div.controls.url-font
-          span http://alpha.appnet.com/
+          span http://alpha.app.net/
           span.appnet-preview #{@current_person.appnet}
       div.control-group
         label.control-label for="person_github" Github

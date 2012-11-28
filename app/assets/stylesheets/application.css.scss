@@ -2,6 +2,9 @@ body {
   background:url('/assets/paper.jpg');
   padding-top: 60px;
   padding-bottom: 40px;
+
+  text-shadow: white 0 1px 0;
+  font-weight: 100;
 }
 
 .correct {
@@ -86,5 +89,9 @@ body {
 .sexy-bg{
   background: rgba(255,255,255,0.13);
   -webkit-box-shadow: 0 0 15px rgba(8, 8, 8, 0.7);
-
+}
+.image-gray{
+    filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
 }
