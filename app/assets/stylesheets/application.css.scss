@@ -86,5 +86,11 @@ body {
 .sexy-bg{
   background: rgba(255,255,255,0.13);
   -webkit-box-shadow: 0 0 15px rgba(8, 8, 8, 0.7);
-
+}
+.image-gray{
+  img {
+    filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
+  }
 }
