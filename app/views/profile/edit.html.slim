@@ -1,6 +1,6 @@
 - content_for :javascript_includes do
   = javascript_include_tag 'profile'
-  = javascript_include_tag 'http://connect.soundcloud.com/sdk.js'
+  = javascript_include_tag 'https://connect.soundcloud.com/sdk.js'
 - content_for :style_includes do
   = stylesheet_link_tag 'soundcloud'
 
@@ -52,7 +52,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
-          = form.text_field :full_name
+          = form.text_field :full_name, id: "full_name"
       div.control-group
         label.control-label for="person_chinese_name" Chinese Name
         div.controls
