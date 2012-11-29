@@ -6,6 +6,8 @@ You log in using a mozilla persona id (linked to your email address) and then yo
 
 You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
 
+Everyone can try it [iocelots.com][1]
+
 To setup your own instance on heroku:
 
     heroku apps:create
@@ -56,7 +58,7 @@ First, set a couple of environment variables:
     export OCELOTS_AUTH_TOKEN=f1ac4214-5426-4597-9b74-ea63167f4750
 
 ### Google OAuth API Config
-You should apply for the API token from [Google API console][1],then set it.
+You should apply for the API token from [Google API console][2],then set it.
 
     heroku config:add GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
     heroku config:add GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
@@ -95,5 +97,5 @@ To add a new message:
     export TEAM_SLUG=ateam
     curl -H 'Content-Type: application/json' -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
 
-
-[1]: https://code.google.com/apis/console#access "Google API console"
+[1]: http://iocelot.com 'iocelots'
+[2]: https://code.google.com/apis/console#access "Google API console"
