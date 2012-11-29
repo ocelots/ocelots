@@ -1,7 +1,7 @@
-require 'soundcloud'
+require 'soundcloudvalidate'
 
 class MembershipController < ApplicationController
-  include Soundcloud
+  include Soundcloudvalidate
 
   def accept_invitation
     membership = Membership.find_by_pending_approval_token params[:token]

@@ -1,7 +1,7 @@
-require 'soundcloud'
+require 'soundcloudvalidate'
 
 class ProfileController < ApplicationController
-  include Soundcloud
+  include Soundcloudvalidate
   before_filter :current_person
 
   def update

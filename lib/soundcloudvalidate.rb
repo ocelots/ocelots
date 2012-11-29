@@ -1,4 +1,4 @@
-module Soundcloud
+module Soundcloudvalidate
   def process_sc_embed_code object, owner
     return unless object
     return unless owner == current_person

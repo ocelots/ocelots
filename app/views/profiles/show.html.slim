@@ -1,20 +1,19 @@
-div.hero-unit
+div.hero-unit.sexy-bg
   div.row.person
     div.span4
         =image_for @person
-    div.span4
+    div.span4 style="margin-top:0px"
       = render partial: 'shared/person', locals: {person: @person}
 
       p
         = phone_link_to @person.phone
-
       = render partial: 'shared/person_social_media', locals: {person: @person}
-
-      blockquote
-        ul.unstyled
-          - @person.facts.each do |fact|
-            li
-              p I #{fact.content}
+    div.span2
+      h2 Facts:
+      ul
+        - @person.facts.each do |fact|
+          li
+            p I #{fact.content}
 
 - if @person.lat and @person.lng
   div.row
