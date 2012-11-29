@@ -97,5 +97,5 @@ To add a new message:
     export TEAM_SLUG=ateam
     curl -H 'Content-Type: application/json' -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
 
-[1]: http://iocelot.com 'iocelots'
+[1]: http://iocelots.com 'iocelots'
 [2]: https://code.google.com/apis/console#access "Google API console"
