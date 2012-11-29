@@ -55,6 +55,13 @@ First, set a couple of environment variables:
     export OCELOTS_URL=http://localhost:3000
     export OCELOTS_AUTH_TOKEN=f1ac4214-5426-4597-9b74-ea63167f4750
 
+### Google OAuth API Config
+You should apply for the API token from [Google API console][1],then set it.
+
+    heroku config:add GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
+    heroku config:add GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
+    heroku config:add GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
+
 ### Membership Details
 
 To request information on all the teams you are a member of:
@@ -87,3 +94,6 @@ To add a new message:
 
     export TEAM_SLUG=ateam
     curl -H 'Content-Type: application/json' -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
+
+
+[1]: https://code.google.com/apis/console#access "Google API console"
