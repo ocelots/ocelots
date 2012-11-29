@@ -94,11 +94,11 @@ $ ->
         $("#uploadStatus").html "Uploading..."
         SC.recordUpload {
           track: {
-            title: "Untitled Recording",
-            sharing: "private"
+            title: $('#full_name').val() + ".voice",
+            sharing: "public"
           }
         }, (track) ->
-          $("#uploadStatus").html("Upload Success!");
+          $("#uploadStatus").html("Upload Success!<br>Please update your profile");
           $('#track').val(track.id)
           $('#secret').val(track.secret_token)
     }
