@@ -7,9 +7,9 @@ html
     = stylesheet_link_tag '/bootstrap/css/bootstrap-responsive.min.css'
     = stylesheet_link_tag 'application', media: 'all'
     = stylesheet_link_tag '/fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.css'
-    = stylesheet_link_tag 'example'
     = csrf_meta_tags
     = javascript_include_tag '/ga.js'
+    = yield :style_includes
 
   body
 

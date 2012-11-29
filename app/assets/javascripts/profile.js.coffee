@@ -38,9 +38,21 @@ $ ->
       $('.refresh-token').unbind('click');
       $('.refresh-token').removeClass('icon-refresh').addClass(' icon-ok-sign')
 
+  getCallback = () ->
+    switch (window.location.hostname)
+      when "127.0.0.1" then return "http://127.0.0.1:3000/soundcloud_oauth_callback.html"
+      when "ocelots-staging.herokuapp.com" then return "http://ocelots-staging.herokuapp.com/soundcloud_oauth_callback.html"
+      when "iocelots.com" then return "http://iocelots.com/soundcloud_oauth_callback.html"
+
+  getClientID = () ->
+    switch (window.location.hostname)
+      when "127.0.0.1" then return "ee3d987c0fa30e22edd251a7bd046851"
+      when "ocelots-staging.herokuapp.com" then return "40d2c306162dcea94436672679aa6c25"
+      when "iocelots.com" then return "bdb756070f00205c76a9563eafe8ca09"
+
   SC.initialize {
-    client_id: "ee3d987c0fa30e22edd251a7bd046851",
-    redirect_uri: "http://127.0.0.1:3000/soundcloud_oauth_callback.html"
+    client_id: getClientID()
+    redirect_uri: getCallback()
   }
 
   $("#recorderUI.reset #controlButton").live "click", (e) ->
