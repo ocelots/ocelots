@@ -47,7 +47,7 @@ $ ->
   getClientID = () ->
     switch (window.location.hostname)
       when "127.0.0.1" then return "ee3d987c0fa30e22edd251a7bd046851"
-      when "ocelots-staging.herokuapp.com" then return "40d2c306162dcea94436672679aa6c25z"
+      when "ocelots-staging.herokuapp.com" then return "40d2c306162dcea94436672679aa6c25"
       when "iocelots.com" then return "bdb756070f00205c76a9563eafe8ca09"
 
   SC.initialize {
