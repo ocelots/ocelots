@@ -71,7 +71,18 @@ body {
 .avatar-image{
   border-radius: 150px;
   box-shadow: 0 0 15px #333;
+  transition:transform 2s;
+  -moz-transition:-moz-transform 2s;
+  -webkit-transition:-webkit-transform 2s;
+  -o-transition:-o-transform 2s;
 }
+.avatar-image:hover{
+  transform:rotate(36deg);
+  -moz-transform:rotate(360deg);
+  -webkit-transform:rotate(360deg);
+  -o-transform:rotate(360deg);
+}
+
 
 .join-status-button{
   float: left;
@@ -95,3 +106,4 @@ body {
     filter: gray;
     -webkit-filter: grayscale(1);
 }
+
