@@ -1,36 +1,39 @@
 div.social_media
+
+- if person.url.blank?
+  img.image-gray.avatar-img src='/assets/url.png'
+- else
   a href="http://#{person.url}"
-    - if person.url.blank?
-      img.image-gray src='/assets/url.png'
-    - else
-      img src='/assets/url.png'
+    img.avatar-img src='/assets/url.png'
+- if person.twitter.blank?
+  img.image-gray.avatar-img src='/assets/twitter.png'
+-else
   a href="http://twitter.com/#{person.twitter}"
-    - if person.twitter.blank?
-        img.image-gray src='/assets/twitter.png'
-    -else
-        img src='/assets/twitter.png'
+    img.avatar-img src='/assets/twitter.png'
+- if person.facebook.blank?
+    img.image-gray.avatar-img src='/assets/facebook.png'
+-else
   a href="http://www.facebook.com/#{person.facebook}"
-    - if person.facebook.blank?
-      img.image-gray src='/assets/facebook.png'
-    -else
-      img src='/assets/facebook.png'
+    img.avatar-img src='/assets/facebook.png'
+- if person.weibo.blank?
+    img.image-gray src='/assets/weibo-1.png'
+-else
   a href="http://weibo.com/#{person.weibo}"
-    - if person.weibo.blank?
-      img.image-gray src='/assets/weibo-1.png'
-    -else
-      img src='/assets/weibo-1.png'
+    img.avatar-img src='/assets/weibo-1.png'
+- if person.appnet.blank?
+    img.image-gray.avatar-img src='/assets/appnet.png'
+-else
   a href="http://alpha.app.net/#{person.appnet}"
-    - if person.appnet.blank?
-      img.image-gray src='/assets/appnet.png'
-    -else
-      img src='/assets/appnet.png'
+    img.avatar-img src='/assets/appnet.png'
+- if person.github.blank?
+    img.image-gray.avatar-img src='/assets/github.png'
+-else
   a href="http://github.com/#{person.github}"
-    - if person.github.blank?
-      img.image-gray src='/assets/github.png'
-    -else
-      img src='/assets/github.png'
+    img.avatar-img src='/assets/github.png'
+- if person.flickr.blank?
+    img.image-gray.avatar-img src='/assets/flickr.png'
+-else
   a href="http://flickr.com/photos/#{person.flickr}"
-    - if person.flickr.blank?
-        img.image-gray src='/assets/flickr.png'
-    -else
-        img src='/assets/flickr.png'
+    img.avatar-img src='/assets/flickr.png'
+div.clear
+p
