@@ -67,7 +67,7 @@ h1 Edit
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_sc_embed_code" Soundcloudvalidate embed code
+        label.control-label for="person_sc_embed_code" Record Your Voice
         div.controls
           = form.text_field :track, id:'track', type:'hidden'
           = form.text_field :secret, id:'secret', type:'hidden'
@@ -82,6 +82,10 @@ h1 Edit
         label.control-label for="person_phone" Phone
         div.controls
           = form.text_field :phone
+      div.control-group
+              label.control-label for="person_phone" Job Title
+              div.controls
+                = form.text_field :job_title
       div.control-group
         label.control-label for="person_url" Personal site
         div.controls
