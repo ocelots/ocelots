@@ -2,6 +2,7 @@
   = javascript_include_tag 'profile'
   = javascript_include_tag 'soundcloud'
   = javascript_include_tag 'https://connect.soundcloud.com/sdk.js'
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API']}&sensor=false"
 - content_for :style_includes do
   = stylesheet_link_tag 'soundcloud'
 
