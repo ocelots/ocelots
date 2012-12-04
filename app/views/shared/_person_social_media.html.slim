@@ -1,22 +1,36 @@
 div.social_media
-  - unless person.url.blank?
-    a href="http://#{person.url}"
+  a href="http://#{person.url}"
+    - if person.url.blank?
+      img.image-gray src='/assets/url.png'
+    - else
       img src='/assets/url.png'
-  - unless person.twitter.blank?
-    a href="http://twitter.com/#{person.twitter}"
-      img src='/assets/twitter.png'
-  - unless person.facebook.blank?
-    a href="http://www.facebook.com/#{person.facebook}"
+  a href="http://twitter.com/#{person.twitter}"
+    - if person.twitter.blank?
+        img.image-gray src='/assets/twitter.png'
+    -else
+        img src='/assets/twitter.png'
+  a href="http://www.facebook.com/#{person.facebook}"
+    - if person.facebook.blank?
+      img.image-gray src='/assets/facebook.png'
+    -else
       img src='/assets/facebook.png'
-  - unless person.weibo.blank?
-    a href="http://weibo.com/#{person.weibo}"
+  a href="http://weibo.com/#{person.weibo}"
+    - if person.weibo.blank?
+      img.image-gray src='/assets/weibo-1.png'
+    -else
       img src='/assets/weibo-1.png'
-  - unless person.appnet.blank?
-    a href="http://alpha.app.net/#{person.appnet}"
+  a href="http://alpha.app.net/#{person.appnet}"
+    - if person.appnet.blank?
+      img.image-gray src='/assets/appnet.png'
+    -else
       img src='/assets/appnet.png'
-  - unless person.github.blank?
-    a href="http://github.com/#{person.github}"
+  a href="http://github.com/#{person.github}"
+    - if person.github.blank?
+      img.image-gray src='/assets/github.png'
+    -else
       img src='/assets/github.png'
-  - unless person.flickr.blank?
-      a href="http://flickr.com/photos/#{person.flickr}"
+  a href="http://flickr.com/photos/#{person.flickr}"
+    - if person.flickr.blank?
+        img.image-gray src='/assets/flickr.png'
+    -else
         img src='/assets/flickr.png'

@@ -1,7 +1,10 @@
 - content_for :javascript_includes do
   = javascript_include_tag 'profile'
+  = javascript_include_tag 'https://connect.soundcloud.com/sdk.js'
+- content_for :style_includes do
+  = stylesheet_link_tag 'soundcloud'
 
-div.hero-unit.highlight
+div.hero-unit.highlight.sexy-bg
   div.row
     div.span4
       a href="/profiles/#{@current_person.account}"
@@ -34,6 +37,10 @@ h1 Edit
         label.control-label for="photo" Photo
         div.controls
           = form.file_field :photo
+        div.controls style="margin-top:8px;"
+          span Or Set Your
+          span &nbsp;
+          a href="http://en.gravatar.com/" target="_blank" Gravatar
       div.control-group
         label.control-label for="person_account" Profile
         div.controls
@@ -45,7 +52,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_full_name" Full Name
         div.controls
-          = form.text_field :full_name
+          = form.text_field :full_name, id: "full_name"
       div.control-group
         label.control-label for="person_chinese_name" Chinese Name
         div.controls
@@ -59,9 +66,17 @@ h1 Edit
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_sc_embed_code" Soundcloud embed code
+        label.control-label for="person_sc_embed_code" Soundcloudvalidate embed code
         div.controls
-          = text_field_tag :sc_embed_code, nil
+          = form.text_field :track, id:'track', type:'hidden'
+          = form.text_field :secret, id:'secret', type:'hidden'
+          div id="recorderUI" class="reset"
+            a href="#" id="controlButton" class="record"
+              span id="timer" class="hidden" 0:00
+            div id="otherControls"
+              a href="#" id="reset" class="button" Reset
+              a href="#" id="upload" class="button" Upload
+            div id="uploadStatus"
       div.control-group
         label.control-label for="person_phone" Phone
         div.controls
@@ -104,7 +119,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_appnet" Appnet Preview
         div.controls.url-font
-          span http://alpha.appnet.com/
+          span http://alpha.app.net/
           span.appnet-preview #{@current_person.appnet}
       div.control-group
         label.control-label for="person_github" Github
