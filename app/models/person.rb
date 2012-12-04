@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
   attr_accessible :photo, :phone
   attr_accessible :url, :twitter, :facebook, :weibo, :appnet, :github ,:flickr
   attr_accessible :lat, :lng
-  attr_accessible :track, :secret, :show_avatar
+  attr_accessible :job_title, :track, :secret, :show_avatar
 
 
   validates_uniqueness_of :account

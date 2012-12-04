@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121081226) do
+ActiveRecord::Schema.define(:version => 20121204070333) do
 
   create_table "engagements", :force => true do |t|
     t.integer "organisation_id"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20121121081226) do
     t.float    "lng"
     t.boolean  "show_avatar",        :default => true
     t.string   "flickr"
+    t.string   "job_title"
   end
 
   create_table "teams", :force => true do |t|
