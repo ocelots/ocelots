@@ -2,5 +2,5 @@
   div.avatar
       =image_for person
       h2 #{person.full_name}
-      - if person.preferred_name
-        p #{person.preferred_name}
+      - if person.job_title
+         i #{person.job_title}
