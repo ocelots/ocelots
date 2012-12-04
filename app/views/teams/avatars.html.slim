@@ -1,6 +1,7 @@
 - @team.people.each do |person|
   div.avatar
+    a href="/profiles/#{person.account}" target="_blank"
       =image_for person
-      h2 #{person.full_name}
-      - if person.preferred_name
-        p #{person.preferred_name}
+    h2 #{person.full_name}
+    - if person.job_title
+       i #{person.job_title}

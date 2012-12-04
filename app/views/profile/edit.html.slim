@@ -1,6 +1,8 @@
 - content_for :javascript_includes do
   = javascript_include_tag 'profile'
+  = javascript_include_tag 'soundcloud'
   = javascript_include_tag 'https://connect.soundcloud.com/sdk.js'
+  = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API']}&sensor=false"
 - content_for :style_includes do
   = stylesheet_link_tag 'soundcloud'
 
@@ -66,7 +68,7 @@ h1 Edit
         div.controls
           = form.text_field :preferred_name
       div.control-group
-        label.control-label for="person_sc_embed_code" Soundcloudvalidate embed code
+        label.control-label for="person_sc_embed_code" Record Your Voice
         div.controls
           = form.text_field :track, id:'track', type:'hidden'
           = form.text_field :secret, id:'secret', type:'hidden'
@@ -81,6 +83,10 @@ h1 Edit
         label.control-label for="person_phone" Phone
         div.controls
           = form.text_field :phone
+      div.control-group
+              label.control-label for="person_phone" Job Title
+              div.controls
+                = form.text_field :job_title
       div.control-group
         label.control-label for="person_url" Personal site
         div.controls
@@ -137,7 +143,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_flickr" Flickr Preview
         div.controls.url-font
-          span http://flickr.com/
+          span http://flickr.com/photos/
           span.flickr-preview #{@current_person.flickr}
       div.control-group
         label.control-label for="lat" Birthplace
