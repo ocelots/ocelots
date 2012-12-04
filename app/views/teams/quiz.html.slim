@@ -1,11 +1,12 @@
 = render partial: 'shared/team_menu_items'
 
+h1 I have some facts:
 ul
   - @facts.each do |fact|
     li
       h3 = 'I ' + fact.content
 
-h1 am i ...
+h1 Guess who am I ...
 
 - @people.each do |person|
   a.quiz href="#" data-correct="#{person == @person ? 'true' : 'false'}"

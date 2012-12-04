@@ -54,13 +54,13 @@ class TeamsController < ApplicationController
 
   def quiz
     with_team do |team|
-      @people = team.people.select {|person| !person.facts.empty?}.sample 5
-      if @people.empty?
-        render :nofacts
-      else
-        @person = @people.sample
+      @people = team.people.sample 5
+      @person = team.people.select {|person| !person.facts.empty?}.sample
+      if @person
         @facts = @person.facts.sample 3
         render :quiz
+      else
+        render :nofacts
       end
     end
   end
