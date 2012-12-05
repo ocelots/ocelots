@@ -1,5 +1,7 @@
 # Ocelots
 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/wahyd4/ocelots)
+
 This is an application to allow members of a team to get to know each other.
 
 You log in using a mozilla persona id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).
