@@ -103,12 +103,6 @@ describe Person do
       person.organisation.name.should == tw.name
     end
 
-    #it 'ensure return the accurate orgisation by email when some orgisation has several domains' do
-    #  tw = Organisation.create(name: 'ThoughtWorks',domains:'thoughtworks.com,tw.com')
-    #  person = Person.create_for_email('test@thoughtworks.com')
-    #  person.get_organisation_by_email.name.should == tw.name
-    #end
-
   end
 
   describe :refresh_auth_token do

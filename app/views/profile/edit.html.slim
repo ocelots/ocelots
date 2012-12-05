@@ -3,6 +3,7 @@
   = javascript_include_tag 'soundcloud'
   = javascript_include_tag 'https://connect.soundcloud.com/sdk.js'
   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API']}&sensor=false"
+  = javascript_include_tag 'google_map'
 - content_for :style_includes do
   = stylesheet_link_tag 'soundcloud'
 
@@ -90,7 +91,7 @@ h1 Edit
       div.control-group
         label.control-label for="person_url" Personal site
         div.controls
-          p #{form.text_field :url,placeholder:'Need http://'}
+          p #{form.text_field :url,placeholder:'Without http://'}
       div.control-group
         label.control-label for="person_twitter" Twitter
         div.controls
@@ -146,11 +147,12 @@ h1 Edit
           span http://flickr.com/photos/
           span.flickr-preview #{@current_person.flickr}
       div.control-group
-        label.control-label for="lat" Birthplace
+        label.control-label for="lat" Location
         div.controls
-          div.label.label-info Please move the pin to choose your location.
-          p #{form.text_field :lat,:type => 'hidden'} #{form.text_field :lng,:type=> 'hidden'}
-        div id="map_canvas" style="width: 600px; height: 300px;"
+          input#address type="text"
+          button#address_btn style='margin-left:1em' Search
+          p #{form.text_field :lat,:type => 'hidden', :id => 'person_lat'} #{form.text_field :lng,:type=> 'hidden', :id => 'person_lng'}
+        div id="map_canvas" style="width: 600px; height: 300px;margin-left: 13em"
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'
       div.control-group

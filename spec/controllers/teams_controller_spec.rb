@@ -131,4 +131,19 @@ describe TeamsController do
       response.body.should be_include('failed')
     end
   end
+
+  describe :quiz do
+    it 'ensure select a person with facts' do
+      @person.facts.create(content: "I like food")
+      get :quiz, :slug => @team.slug
+      response.should render_template('quiz')
+      assigns(:people).should_not be_empty
+      assigns(:facts).should_not be_empty
+    end
+
+    it 'ensure show nofacts page when people who in a team have not a fact' do
+      get :quiz, :slug => @team.slug
+      response.should render_template('nofacts')
+    end
+  end
 end
