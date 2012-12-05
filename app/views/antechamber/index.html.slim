@@ -1,6 +1,8 @@
 - content_for :javascript_includes do
  = javascript_include_tag 'antechamber'
  = javascript_include_tag '/jquery.form.js'
+ = javascript_include_tag 'message'
+
 = render partial: 'shared/team_menu_items'
 
 h1 = @team.name
