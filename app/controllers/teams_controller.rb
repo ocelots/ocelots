@@ -11,7 +11,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
@@ -23,6 +22,7 @@ class TeamsController < ApplicationController
 
       redirect_to "/teams/#{@team.slug}"
     else
+      @memberships = current_person.memberships
       render :index
     end
   end
