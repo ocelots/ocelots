@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function(){
-    var address = "ws://"+window.location.hostname+':'+window.location.port+'/websocket';
+    var address = "ws://"+window.location.host+'/websocket';
     var dispatcher = new WebSocketRails(address);
 
     dispatcher.on_open = function(data) {
