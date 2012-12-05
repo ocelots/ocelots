@@ -16,6 +16,14 @@ div id="add_new" style="display:none;"
 
     div.form-actions
       = form.submit 'Create', class: 'btn'
+div style="overflow:hidden;margin-bottom:1em"
+  div.btn-group style="float:right;"
+    -if @sortby
+     a.btn href='/teams' Create Date
+     a.btn.btn-primary href='/teams?sortby=TeamName' Team Name
+    -else
+     a.btn.btn-primary href='/teams' Create Date
+     a.btn href='/teams?sortby=TeamName' Team Name
 
 - @memberships.each do |membership|
   a href="/teams/#{membership.team_slug}"
@@ -41,7 +49,7 @@ div.clearfix
 div style="margin-top:-30px"
   h3 style="text-align:center" Viewable Teams
 hr style="margin-top:-30px"
-- current_person.viewable_teams.each do |team|
+- @view_membership.each do |team|
    a href="/teams/#{team.slug}"
       div.hero-unit.highlight.viewable-team
             div.row

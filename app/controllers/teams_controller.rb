@@ -6,8 +6,13 @@ class TeamsController < ApplicationController
 
   def index
     @memberships = current_person.memberships.select { |membership| membership.ended==nil }
+    if params[:sortby]== 'TeamName'
+      @memberships = @memberships.sort_by {|mem| mem.team_name.downcase}
+      @sortby = params[:sortby]
+    end
     @team = Team.new
     @organisations = Organisation.find(:all)
+    @view_membership = current_person.viewable_teams
   end
 
   def create
@@ -23,6 +28,7 @@ class TeamsController < ApplicationController
       redirect_to "/teams/#{@team.slug}"
     else
       @memberships = current_person.memberships
+      @view_membership = current_person.viewable_teams
       render :index
     end
   end
