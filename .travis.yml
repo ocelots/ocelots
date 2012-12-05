@@ -4,6 +4,6 @@ rvm:
 env:
   - DB=postgresql
 script:
-  - RAILS_ENV=test bundle exec rake ci --trace db:migrate test
+  - RAILS_ENV=test bundle exec rake ci --trace db:migrate
 before_script:
   - psql -c 'create database ocelots_test' -U postgres
