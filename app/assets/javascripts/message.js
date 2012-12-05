@@ -7,7 +7,7 @@
  */
 $(document).ready(function(){
     var address = "ws://"+window.location.host+'/websocket';
-    console.log(address)
+    console.log('ws://0.0.0.0/websocket')
     var dispatcher = new WebSocketRails(address);
 
     dispatcher.on_open = function(data) {
