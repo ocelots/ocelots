@@ -10,19 +10,22 @@ $(document).ready(function(){
 
     dispatcher.on_open = function(data) {
         console.log('Connection has been established: ' + data);
-        // You can trigger new server events inside this callback if you wish.
     }
+    $('.submit-mess').click(function(){
+        if ($('#content').val().replace(/\s+/, "") == ""){
+            return ;
+        }
+        params= {};
+        params.content = $('#content').val();
+        params.slug = $('#slug').val()
+        dispatcher.trigger('new_message',params);
 
-    var comment = {
-        title: 'This post was awful',
-        body: 'really awful',
-        post_id: 9
-    }
 
-    dispatcher.trigger('new_message',comment)
+    });
 
-    dispatcher.bind('new_message', function(message) {
-        console.log(message.title);
+    dispatcher.bind('new_message', function(content) {
+        $('#content').val("");
+        $('.message-list').prepend(content).show('slow');
     });
 
 });
