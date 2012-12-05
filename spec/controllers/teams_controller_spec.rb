@@ -54,6 +54,21 @@ describe TeamsController do
       new_team.name.should == 'CDI'
       new_team.organisations.first.should == @organisation
     end
+
+    it 'not create team with null name' do
+      lambda do
+        post :create, team: {name: nil, slug: 'cdi'}, org_ids: [@organisation.id.to_s]
+      end.should_not change(Team, :count)
+      assigns(:memberships).should_not be_nil
+    end
+
+    it 'not create team with null name' do
+      lambda do
+        post :create, team: {name: 'CDI', slug: nil}, org_ids: [@organisation.id.to_s]
+      end.should_not change(Team, :count)
+      assigns(:memberships).should_not be_nil
+    end
+
   end
 
   describe :join do
