@@ -1,5 +1,4 @@
 - content_for :javascript_includes do
- = javascript_include_tag 'antechamber'
  = javascript_include_tag '/jquery.form.js'
  = javascript_include_tag 'message'
 
@@ -7,6 +6,7 @@
 
 h1 = @team.name
 form.form-inline  action="/antechamber/#{@team.slug}"
+  input type="hidden" id="slug" value="#{@team.slug}"
   p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4,class:'message-body'}
   a.btn.submit-mess  Send
 
