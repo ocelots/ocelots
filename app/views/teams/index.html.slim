@@ -19,11 +19,11 @@ div id="add_new" style="display:none;"
 div style="overflow:hidden;margin-bottom:1em"
   div.btn-group style="float:right;"
     -if @sortby
-     a.btn href='/teams' Create Date
-     a.btn.btn-primary href='/teams?sortby=TeamName' Team Name
+     a.btn.btn-primary href='/teams?sortby=CreateDate' Create Date
+     a.btn href='/teams' Team Name
     -else
-     a.btn.btn-primary href='/teams' Create Date
-     a.btn href='/teams?sortby=TeamName' Team Name
+     a.btn href='/teams?sortby=CreateDate' Create Date
+     a.btn.btn-primary href='/teams' Team Name
 
 - @memberships.each do |membership|
   a href="/teams/#{membership.team_slug}"

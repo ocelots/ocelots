@@ -37,6 +37,7 @@ $ ->
           }
           $('#person_lat').val(results[0].geometry.location.$a)
           $('#person_lng').val(results[0].geometry.location.ab)
+          $('.error_maps').addClass 'hidden'
         else
-          alert "Geocode was not successful for the following reason: " + status
+          $('.error_maps').removeClass 'hidden'
       false

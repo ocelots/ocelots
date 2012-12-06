@@ -5,9 +5,9 @@ class TeamsController < ApplicationController
   include TeamFilter
 
   def index
-    @memberships = current_person.memberships.select { |membership| membership.ended==nil }
-    if params[:sortby]== 'TeamName'
-      @memberships = @memberships.sort_by {|mem| mem.team_name.downcase}
+    @memberships = current_person.memberships.select { |membership| membership.ended==nil }.sort_by {|mem| mem.team_name.downcase}
+    if params[:sortby]== 'CreateDate'
+      @memberships = @memberships.sort_by {|mem| mem.id}
       @sortby = params[:sortby]
     end
     @team = Team.new
