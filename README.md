@@ -50,6 +50,12 @@ To use google maps, you will need to provide a google api key
 
     heroku config:add GOOGLE_API=your_api_key
 
+To use Pusher to auto-fresh messages,you need to add Pusher addon on heroku,and to use it in local you need config it like following:
+
+   export  PUSHER_APP_ID=32953
+   export  PUSHER_KEY='d7f89f6f647afd76e667'
+   export   PUSHER_SECRET='8bf576ce7079c9916e55'
+
 ## API
 
 You can experiment with the API from the command line
@@ -65,6 +71,11 @@ You should apply for the API token from [Google API console][2],then set it.
     heroku config:add GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
     heroku config:add GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
     heroku config:add GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
+
+To use it in local, you need export variables:
+     export GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
+     export GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
+     export GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
 
 ### Membership Details
 
