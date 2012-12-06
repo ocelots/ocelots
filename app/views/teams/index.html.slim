@@ -1,3 +1,5 @@
+- content_for :javascript_includes do
+  = javascript_include_tag 'teams'
 - content_for :menu_items do
   li
     = link_to 'add team', '#add_new', class: 'fancybox'
@@ -16,6 +18,16 @@ div id="add_new" style="display:none;"
 
     div.form-actions
       = form.submit 'Create', class: 'btn'
+div style="overflow:hidden;margin-bottom:1em"
+  div.btn-group style="float:left;"
+    -if @sortby
+     a.btn href='/teams' Team Name
+     a.btn.btn-primary href='/teams?sortby=CreateDate' Create Date
+    -else
+     a.btn.btn-primary href='/teams' Team Name
+     a.btn href='/teams?sortby=CreateDate' Create Date
+  div.btn-group style="float:right;"
+      input.span2.search-query id="show-filter" type="text" placeholder="search"
 
 - @memberships.each do |membership|
   a href="/teams/#{membership.team_slug}"
@@ -24,7 +36,7 @@ div id="add_new" style="display:none;"
         div.span4
           img src="/assets/team.png"
         div.span4
-          h1 = membership.team_name
+          h1.team_name = membership.team_name
           p = membership.team_description
         div.span1
           - if membership.pending?
@@ -41,14 +53,14 @@ div.clearfix
 div style="margin-top:-30px"
   h3 style="text-align:center" Viewable Teams
 hr style="margin-top:-30px"
-- current_person.viewable_teams.each do |team|
+- @view_membership.each do |team|
    a href="/teams/#{team.slug}"
       div.hero-unit.highlight.viewable-team
             div.row
               div.span4
                 img src="/assets/team.png"
               div.span4
-                h1 = team.name
+                h1.team_name = team.name
                 p = team.description
               div.span1
               div.span1 style="margin:60px 0 0 65px"

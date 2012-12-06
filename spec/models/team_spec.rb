@@ -19,4 +19,14 @@ describe Team do
 
   end
 
+	describe 'create team' do
+
+		it 'ensure when create a team,if team"s slug has blanks, it will be format to url string "' do
+			@person = Person.create_for_email 'test@thoughworks.com'
+			@team = @person.teams.create(name: 'LSP', slug: 'l s p')
+			@team.slug.should == 'l_s_p'
+
+		end
+	end
+
 end

@@ -1,11 +1,15 @@
 - content_for :javascript_includes do
- = javascript_include_tag 'antechamber'
  = javascript_include_tag '/jquery.form.js'
+ = javascript_include_tag 'http://js.pusher.com/1.12/pusher.min.js'
+ = javascript_include_tag 'antechamber'
+
 = render partial: 'shared/team_menu_items'
 
 h1 = @team.name
 form.form-inline  action="/antechamber/#{@team.slug}"
-  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4,class:'message-body'}
+  input type="hidden" id="pusher_key" value="#{ENV['PUSHER_KEY']}"
+  input type="hidden" id="team_slug" value="#{@team.slug}"
+  p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4 ,class:'message-body',style:"width:30%"}
   a.btn.submit-mess  Send
 
 div.message-list

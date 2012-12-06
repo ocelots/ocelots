@@ -152,6 +152,7 @@ h1 Edit
           input#address type="text"
           button#address_btn style='margin-left:1em' Search
           p #{form.text_field :lat,:type => 'hidden', :id => 'person_lat'} #{form.text_field :lng,:type=> 'hidden', :id => 'person_lng'}
+        div.error_maps.alert.alert-error.hidden style="color:red;margin-left: 13em" The place you just searched does not exist.
         div id="map_canvas" style="width: 600px; height: 300px;margin-left: 13em"
       div.form-actions
         = form.submit 'Update Profile', class: 'btn btn-primary'

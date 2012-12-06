@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :slug
   validates_uniqueness_of :slug
+  validate :format_slug ,:on => :create
 
   has_many :memberships
   has_many :people, through: :memberships
@@ -26,4 +27,10 @@ class Team < ActiveRecord::Base
   def add_to (organisation)
     organisations << organisation if organisation
   end
+
+	def format_slug
+
+		slug.gsub!(/ /, "_") if slug
+	end
+
 end
