@@ -14,7 +14,7 @@ class AntechamberController < ApplicationController
     with_team do |team|
       message = Message.create team: team, person: current_person, content: params[:content]
 
-      Pusher.trigger(team.name, 'new_message',{content:render_to_string( partial: 'shared/one_message', locals: {message: message})})
+      Pusher.trigger(team.slug, 'new_message',{content:render_to_string( partial: 'shared/one_message', locals: {message: message})})
 
 	    render text:'ok'
     end
