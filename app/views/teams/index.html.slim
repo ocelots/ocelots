@@ -1,3 +1,5 @@
+- content_for :javascript_includes do
+  = javascript_include_tag 'teams'
 - content_for :menu_items do
   li
     = link_to 'add team', '#add_new', class: 'fancybox'
@@ -17,13 +19,15 @@ div id="add_new" style="display:none;"
     div.form-actions
       = form.submit 'Create', class: 'btn'
 div style="overflow:hidden;margin-bottom:1em"
-  div.btn-group style="float:right;"
+  div.btn-group style="float:left;"
     -if @sortby
-     a.btn.btn-primary href='/teams?sortby=CreateDate' Create Date
      a.btn href='/teams' Team Name
+     a.btn.btn-primary href='/teams?sortby=CreateDate' Create Date
     -else
-     a.btn href='/teams?sortby=CreateDate' Create Date
      a.btn.btn-primary href='/teams' Team Name
+     a.btn href='/teams?sortby=CreateDate' Create Date
+  div.btn-group style="float:right;"
+      input.span2.search-query id="show-filter" type="text" placeholder="search"
 
 - @memberships.each do |membership|
   a href="/teams/#{membership.team_slug}"
