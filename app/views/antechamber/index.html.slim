@@ -8,7 +8,7 @@
 h1 = @team.name
 form.form-inline  action="/antechamber/#{@team.slug}"
   input type="hidden" id="pusher_key" value="#{ENV['PUSHER_KEY']}"
-  input type="hidden" id="team_name" value="#{@team.slug}"
+  input type="hidden" id="team_slug" value="#{@team.slug}"
   p #{text_area_tag :content, nil, placeholder: 'Enter Message', rows: 4 ,class:'message-body',style:"width:30%"}
   a.btn.submit-mess  Send
 
