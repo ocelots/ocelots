@@ -10,6 +10,6 @@ $ ->
     $('.form-inline').ajaxSubmit options
 
   pusher = new Pusher $('#pusher_key').val()
-  channel = pusher.subscribe $('#team_name').val()
+  channel = pusher.subscribe $('#team_slug').val()
   channel.bind 'new_message', (data) ->
     $('.message-list').prepend(data.content).show('slow')
