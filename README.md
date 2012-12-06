@@ -52,9 +52,9 @@ To use google maps, you will need to provide a google api key
 
 To use Pusher to auto-fresh messages,you need to add Pusher addon on heroku,and to use it in local you need config it like following:
 
-   export  PUSHER_APP_ID=32953
-   export  PUSHER_KEY='d7f89f6f647afd76e667'
-   export   PUSHER_SECRET='8bf576ce7079c9916e55'
+    export  PUSHER_APP_ID=32953
+    export  PUSHER_KEY='d7f89f6f647afd76e667'
+    export  PUSHER_SECRET='8bf576ce7079c9916e55'
 
 ## API
 
