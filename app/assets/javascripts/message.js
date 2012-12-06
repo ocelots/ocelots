@@ -7,10 +7,12 @@
  */
 $(document).ready(function(){
     var address = window.location.host+'/websocket';
-    var dispatcher = new WebSocketRails(address);
+    console.log('addr==============='+address)
+    var dispatcher = new WebSocketRails('localhost:3000/websocket');
 
     dispatcher.on_open = function(data) {
-        console.log('Connection has been established: ' + data);
+        console.log('Connection has been established: ');
+        console.log(dispatcher)
     }
     $('.submit-mess').click(function(){
         if ($('#content').val().replace(/\s+/, "") == ""){
@@ -28,6 +30,7 @@ $(document).ready(function(){
         $('#content').val("");
         $('.message-list').prepend(content).show('slow');
     });
+
 
 });
 
