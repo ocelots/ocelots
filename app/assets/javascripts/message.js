@@ -6,11 +6,13 @@
  * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function(){
-    var address = "ws://"+window.location.host+'/websocket';
-    var dispatcher = new WebSocketRails(address);
+
+    var dispatcher = new WebSocketRails('localhost:3000/websocket');
+    dispatcher.use_websockets = false;
 
     dispatcher.on_open = function(data) {
-        console.log('Connection has been established: ' + data);
+        console.log('Connection has been established: ');
+        console.log(dispatcher)
     }
     $('.submit-mess').click(function(){
         if ($('#content').val().replace(/\s+/, "") == ""){
@@ -28,6 +30,7 @@ $(document).ready(function(){
         $('#content').val("");
         $('.message-list').prepend(content).show('slow');
     });
+
 
 });
 

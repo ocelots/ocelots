@@ -1,4 +1,6 @@
 require 'team_filter'
+require "socket"
+
 
 class Realtime_message_controller < WebsocketRails::BaseController
 	include TeamFilter
@@ -8,9 +10,10 @@ class Realtime_message_controller < WebsocketRails::BaseController
 	end
 
 	def new_message
-
 		 with_team(message[:slug]) do
 			 @message = Message.create team: @team, person: current_person, content: message[:content]
+
+			 puts "<<,<<<<<<<<<<<<<<<<<<<<<<<<<#{message}"
 			 broadcast_message :new_message,render_to_string( partial: 'shared/one_message', locals: {message: @message})
 		 end
 
