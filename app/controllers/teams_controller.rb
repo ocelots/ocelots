@@ -6,13 +6,14 @@ class TeamsController < ApplicationController
 
   def index
     @memberships = current_person.memberships.select { |membership| membership.ended==nil }.sort_by {|mem| mem.team_name.downcase}
+    @view_membership = current_person.viewable_teams.sort_by {|team| team.name.downcase}
     if params[:sortby]== 'CreateDate'
       @memberships = @memberships.sort_by {|mem| mem.id}
+      @view_membership = @view_membership.sort_by {|team| team.id}
       @sortby = params[:sortby]
     end
     @team = Team.new
     @organisations = Organisation.find(:all)
-    @view_membership = current_person.viewable_teams
   end
 
   def create
