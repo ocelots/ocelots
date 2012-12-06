@@ -5,8 +5,11 @@ $ ->
     beforeSubmit: ->
       if $('.message-body').val().replace(/\s+/, "") == ""
         false
-    success: (data) ->
-      $('.message-list').prepend(data)
 
   $('.submit-mess').click ->
     $('.form-inline').ajaxSubmit options
+
+  pusher = new Pusher $('#pusher_key').val()
+  channel = pusher.subscribe $('#team_slug').val()
+  channel.bind 'new_message', (data) ->
+    $('.message-list').prepend(data.content).show('slow')

@@ -5,13 +5,17 @@ class TeamsController < ApplicationController
   include TeamFilter
 
   def index
-    @memberships = current_person.memberships.select { |membership| membership.ended==nil }
+    @memberships = current_person.memberships.select { |membership| membership.ended==nil }.sort_by {|mem| mem.team_name.downcase}
+    if params[:sortby]== 'CreateDate'
+      @memberships = @memberships.sort_by {|mem| mem.id}
+      @sortby = params[:sortby]
+    end
     @team = Team.new
     @organisations = Organisation.find(:all)
+    @view_membership = current_person.viewable_teams
   end
 
   def create
-
     @teams = current_person.teams
     @team = Team.new params[:team].merge creator: current_person
     if @team.save
@@ -23,6 +27,8 @@ class TeamsController < ApplicationController
 
       redirect_to "/teams/#{@team.slug}"
     else
+      @memberships = current_person.memberships
+      @view_membership = current_person.viewable_teams
       render :index
     end
   end

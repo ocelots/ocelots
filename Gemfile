@@ -15,6 +15,7 @@ gem 'google-api-client'
 gem 'gravtastic'
 gem 'rdiscount'
 gem 'thin'
+gem 'pusher'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

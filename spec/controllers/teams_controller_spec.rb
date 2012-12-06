@@ -11,15 +11,25 @@ describe TeamsController do
 
   describe :index do
     it 'fetches all organisations' do
+      @person.teams.create(name: 'IBM', slug: 'IBM')
       get :index
       all_organisations = assigns[:organisations]
       all_organisations.should_not be_nil
       all_organisations.should_not be_empty
+      all_memberships = assigns[:memberships]
+      all_memberships[0].team_name.should <= all_memberships[1].team_name
+    end
+
+    it 'fetches teams which sort by create date' do
+      @person.teams.create(name: 'IBM', slug: 'ibm')
+      get :index, sortby: 'CreateDate'
+      all_memberships = assigns[:memberships]
+      all_memberships[0].team_name.should_not <= all_memberships[1].team_name
+      assigns[:sortby].should == 'CreateDate'
     end
   end
 
   describe :show do
-
     it 'shows selected team' do
       get :show, :slug => @team.slug
       response.should be_success
@@ -54,6 +64,22 @@ describe TeamsController do
       new_team.name.should == 'CDI'
       new_team.organisations.first.should == @organisation
     end
+
+    it 'not create team with null name' do
+      lambda do
+        post :create, team: {name: nil, slug: 'cdi'}, org_ids: [@organisation.id.to_s]
+      end.should_not change(Team, :count)
+      assigns(:memberships).should_not be_nil
+    end
+
+    it 'not create team with null name' do
+      lambda do
+        post :create, team: {name: 'CDI', slug: nil}, org_ids: [@organisation.id.to_s]
+      end.should_not change(Team, :count)
+      assigns(:memberships).should_not be_nil
+      assigns[:view_membership].should_not be_nil
+    end
+
   end
 
   describe :join do
