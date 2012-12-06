@@ -1,3 +1,5 @@
+- content_for :javascript_includes do
+  = javascript_include_tag 'teams'
 - content_for :menu_items do
   li
     = link_to 'add team', '#add_new', class: 'fancybox'
@@ -34,7 +36,7 @@ div style="overflow:hidden;margin-bottom:1em"
         div.span4
           img src="/assets/team.png"
         div.span4
-          h1 = membership.team_name
+          h1.team_name = membership.team_name
           p = membership.team_description
         div.span1
           - if membership.pending?
@@ -58,7 +60,7 @@ hr style="margin-top:-30px"
               div.span4
                 img src="/assets/team.png"
               div.span4
-                h1 = team.name
+                h1.team_name = team.name
                 p = team.description
               div.span1
               div.span1 style="margin:60px 0 0 65px"
