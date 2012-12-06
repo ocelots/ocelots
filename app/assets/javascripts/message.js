@@ -6,8 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 $(document).ready(function(){
-    var address = "ws://"+window.location.host+'/websocket';
-    var dispatcher = new WebSocketRails('localhost:3000/websocket');
+    var address = window.location.host+'/websocket';
+    var dispatcher = new WebSocketRails(address);
 
     dispatcher.on_open = function(data) {
         console.log('Connection has been established: ' + data);
