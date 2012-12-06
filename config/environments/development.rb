@@ -1,3 +1,5 @@
+require 'pusher'
+
 Ocelots::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -53,4 +55,8 @@ Ocelots::Application.configure do
       path: "/development/:persona_id/photos/:style/:basename.:extension"
     }
   end
+
+  Pusher.app_id = ENV['PUSHER_APP_ID']
+  Pusher.key = ENV['PUSHER_KEY']
+  Pusher.secret = ENV['PUSHER_SECRET']
 end

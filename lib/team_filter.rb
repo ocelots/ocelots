@@ -1,10 +1,6 @@
 module TeamFilter
-  def with_team (slug = nil)
-	  if slug
-		  @team = Team.find_by_slug slug
-		else
+  def with_team
 		  @team = Team.find_by_slug params[:slug]
-		end
     unless current_person.allowed_to_view_team?(@team)
       @team = nil
     end

@@ -1,4 +1,5 @@
 require 'team_filter'
+require 'pusher'
 
 class AntechamberController < ApplicationController
   include TeamFilter
@@ -12,7 +13,10 @@ class AntechamberController < ApplicationController
   def create
     with_team do |team|
       message = Message.create team: team, person: current_person, content: params[:content]
-      render partial: 'shared/one_message', locals: {message: message}
+
+      Pusher.trigger('antechamber', 'new_message',{content:render_to_string( partial: 'shared/one_message', locals: {message: message})})
+
+	    render text:'ok'
     end
   end
 
