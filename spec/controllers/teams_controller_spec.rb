@@ -72,7 +72,7 @@ describe TeamsController do
       assigns(:memberships).should_not be_nil
     end
 
-    it 'not create team with null name' do
+    it 'not create team with null slug' do
       lambda do
         post :create, team: {name: 'CDI', slug: nil}, org_ids: [@organisation.id.to_s]
       end.should_not change(Team, :count)

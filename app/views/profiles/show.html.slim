@@ -1,5 +1,6 @@
 - content_for :javascript_includes do
   = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API']}&sensor=false"
+  = javascript_include_tag "profiles"
 div.hero-unit.sexy-bg
   div.row.person
     div.span4
