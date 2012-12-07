@@ -4,11 +4,37 @@
 
 This is an application to allow members of a team to get to know each other.
 
-You log in using a mozilla persona id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).
+You log in using a mozilla persona or google account id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).
 
 You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
 
-Everyone can try it [iocelots.com][1]
+In Ocelots every team is private,and it's only accessible by the people who belong to the same organisation with team creator.
+Once someone in the team invite someone else to join in,the team will be accessible to the organisation which the invitee belongs to.
+If invitee doesn't belong to any organisation,the team's viewable people  will only add  invitee himself.
+In Ocelots we have a important defination is "Organisation". Organisation should be created by manually in 'script/create_default_organisations.rb'.
+You can modify it and run it by 'rails runner script/create_default_organisations.rb' at any time.
+
+   eg:
+   Organisation.create!(:name => 'ThoughtWorks', :domains => 'thoughtworks.com')
+   so if anyone use xx@thoughtworks.com will automatically belongs to Thoughtworks.
+
+Everyone can try it through [iocelots.com][1]
+
+# Install and run Ocelots
+
+## Install Ocelots on your computer
+
+   At first you need apply for Google oauth token and Pusher API key ,then put them into /install_ocelots.sh
+
+   Next, run 'chmod +x  install_ocelots.sh' to make this script executable.
+
+   Then, modify 'script/create_default_organisations.rb' and run it  to create Organisation.
+
+   Finally,run 'rails server' to run the server.
+
+   Notice, you may need to run it when you closed the terminal every time if you need to use login page and Pusher.
+
+## Install Ocelots on heroku
 
 To setup your own instance on heroku:
 
@@ -56,11 +82,13 @@ To use Pusher to auto-fresh messages,you need to add Pusher addon on heroku,and 
     heroku config:add PUSHER_KEY='your_pusher_key'
     heroku config:add PUSHER_SECRET='your_pusher_secret'
 
-To use it in local you need config it like following:
+### Google OAuth API Config
+You should apply for the API token from [Google API console][2],then set it.
 
-    export  PUSHER_APP_ID=your_pusher_app_id
-    export  PUSHER_KEY='your_pusher_key'
-    export  PUSHER_SECRET='your_pusher_secret'
+    heroku config:add GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
+    heroku config:add GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
+    heroku config:add GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
+
 
 ## API
 
@@ -70,18 +98,6 @@ First, set a couple of environment variables:
 
     export OCELOTS_URL=http://localhost:3000
     export OCELOTS_AUTH_TOKEN=f1ac4214-5426-4597-9b74-ea63167f4750
-
-### Google OAuth API Config
-You should apply for the API token from [Google API console][2],then set it.
-
-    heroku config:add GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
-    heroku config:add GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
-    heroku config:add GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
-
-To use it in local, you need export variables:
-     export GOOGLE_OAUTH_CLIENT_ID=yourid --app ocelots
-     export GOOGLE_OAUTH_CLIENT_SECRET=yourSecret
-     export GOOGLE_OAUTH_REDIRECT=http://replace to your domain/home/verify_g_callback
 
 ### Membership Details
 
