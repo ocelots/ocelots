@@ -8,10 +8,15 @@ You log in using a mozilla persona or Google account id (linked to your email ad
 
 
 You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
+
 In Ocelots every team is private,and it's only accessible by the people who belong to the same organisation with team creator.
+
 Once someone in the team invite someone else to join in,the team will be accessible to the organisation which the invitee belongs to.
+
 If invitee doesn't belong to any organisation,the team's viewable people  will only add  invitee himself.
+
 In Ocelots we have a important defination is "Organisation". Organisation should be created by manually in 'script/create_default_organisations.rb'.
+
 You can modify it and run it by 'rails runner script/create_default_organisations.rb' at any time.
 
        eg:
@@ -27,11 +32,8 @@ Everyone can try it through [iocelots.com][1]
 ## Install Ocelots on your computer
 
      * At first you need apply for Google oauth token and Pusher API key ,then put them into /install_ocelots.sh
-
      * Next, run 'chmod +x  install_ocelots.sh' to make this script executable.
-
      * Then, modify 'script/create_default_organisations.rb' and run it  to create Organisation.
-
      * Finally,run 'rails server' to run the server.
 
      Notice: you may need to run the install script when you closed the terminal every time if you need to use login page and Pusher.
