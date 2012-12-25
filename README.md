@@ -3,29 +3,19 @@
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/wahyd4/ocelots)
 
 This is an application to allow members of a team to get to know each other.
+You can log in using a mozilla persona or Google account id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
 
-You log in using a mozilla persona or Google account id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).
-
-
-You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
-
-In Ocelots every team is private,and it's only accessible by the people who belong to the same organisation with team creator.
-
-Once someone in the team invite someone else to join in,the team will be accessible to the organisation which the invitee belongs to.
-
+In Ocelots every team is private,and it's only accessible by the people who belong to the same organisation with team creator.Once someone in the team invite someone else to join in,the team will be accessible to the organisation which the invitee belongs to.
 If invitee doesn't belong to any organisation,the team's viewable people  will only add  invitee himself.
-
 In Ocelots we have a important defination is "Organisation". Organisation should be created by manually in 'script/create_default_organisations.rb'.
 
 You can modify it and run it by 'rails runner script/create_default_organisations.rb' at any time.
 
        eg:
-
        Organisation.create!(:name => 'ThoughtWorks', :domains => 'thoughtworks.com')
-
        so if anyone use xx@thoughtworks.com will automatically belongs to Thoughtworks.
 
-Everyone can try it through [iocelots.com][1]
+Everyone can try it through <http://iocelots.com>
 
 # Install and run Ocelots
 
@@ -36,7 +26,7 @@ Everyone can try it through [iocelots.com][1]
      * Then, modify 'script/create_default_organisations.rb' and run it  to create Organisation.
      * Finally,run 'rails server' to run the server.
 
-     Notice: you may need to run the install script when you closed the terminal every time if you need to use login page and Pusher.
+*Notice: you may need to run the install script when you closed the terminal every time if you need to use login page and Pusher.*
 
 ## Install Ocelots on heroku
 
@@ -136,5 +126,4 @@ To add a new message:
     export TEAM_SLUG=ateam
     curl -H 'Content-Type: application/json' -d '{"content":"message"}' "$OCELOTS_URL/api/antechamber/$TEAM_SLUG?auth_token=$OCELOTS_AUTH_TOKEN"
 
-[1]: http://iocelots.com 'iocelots'
 [2]: https://code.google.com/apis/console#access "Google API console"
