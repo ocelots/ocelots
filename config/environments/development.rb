@@ -37,9 +37,6 @@ Ocelots::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  #config.threadsafe! enables allow_concurrency, cache_classes, dependency_loading and preload_frameworks to make the application threadsafe.
-  config.threadsafe!
-
   # paperclip will save to public/system/[object] when running local
   if(ENV['S3_BUCKET'].nil?)
     config.paperclip_storage_options = {}
