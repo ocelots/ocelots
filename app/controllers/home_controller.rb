@@ -13,7 +13,8 @@ class HomeController < ApplicationController
       session[:initial_url] = nil
       redirect_to redirect_url
     else
-      @people = Person.find(:all, :conditions => ["show_avatar=true"], :order => "RANDOM()", :limit => 4)
+      #@people = Person.find(:all, :conditions => ["show_avatar=true"], :order => "RANDOM()", :limit => 4)
+      @people = Person.where(show_avatar:true).order("RANDOM()").limit(4)
       @google_login = google_oauth_url
       render layout: 'landing'
     end
