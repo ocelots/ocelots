@@ -1,6 +1,9 @@
 # Ocelots
 [![Build Status](https://secure.travis-ci.org/wahyd4/ocelots.png)](https://travis-ci.org/wahyd4/ocelots)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/wahyd4/ocelots)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/wahyd4/ocelots)  
+
+### Screenshots  
+![Home page](home.jpg)
 
 This is an application to allow members of a team to get to know each other.
 You can log in using a mozilla persona or Google account id (linked to your email address) and then you'll be presented with the list of groups you belong to (which will be none initially).You can now create a team and invite new members to join by entering their email address (including yourself - you can administer a team without being a member).
