@@ -2,7 +2,7 @@
 [![Build Status](https://secure.travis-ci.org/wahyd4/ocelots.png)](https://travis-ci.org/wahyd4/ocelots)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/wahyd4/ocelots)  
 
-### Screenshots  
+## Screenshots  
 ![Home page](home.jpg)
 
 This is an application to allow members of a team to get to know each other.
