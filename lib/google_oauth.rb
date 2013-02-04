@@ -3,7 +3,7 @@ require 'google/api_client'
 
 module GoogleOauth
   def google_oauth_url
-    google_client.authorization.authorization_uri.to_s
+    google_client.authorizNation.authorization_uri.to_s
   end
 
   def verify_google_oauth
