@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   include Gravtastic ,UuidGenerator
   gravtastic  :secure => false,
               :size => 300,
-              :default=> "wavatar"
+              :default=> "retro"
 
   attr_accessible :email, :persona_id, :account, :auth_token
   attr_accessible :full_name, :chinese_name, :pinyin_name, :preferred_name
