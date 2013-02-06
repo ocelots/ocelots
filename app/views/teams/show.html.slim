@@ -42,9 +42,9 @@ div.team-content
     input.span2.search-query id="show-filter" type="text" placeholder="search" style="float:right;margin-bottom: 10px;margin-right: 10px;"
 
   div.clear
-
-  - @team.memberships.each do |membership|
-    = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}
+  div.row-fluid
+    - @team.memberships.each do |membership|
+      = render partial: membership_partial(membership), locals: {membership: membership, current_person: @current_person}
 
 div#new-content style="display:none;"
   p.lead Add new team members

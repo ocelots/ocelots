@@ -1,11 +1,9 @@
-div.hero-unit.highlight.sexy-bg class="#{membership.status}"
-  div.row
-    div.span4
-      a href="/profiles/#{membership.account}"
-           =image_for membership.person
-    div.span4
-      = render partial: 'shared/person', locals: {person: membership.person}
-      = render partial: 'shared/membership', locals: {membership: membership}
+div.highlight.con4avatar class="#{membership.status}"
+  div.avatar-info
+     =image_for membership.person
+  div.avatar-hover
+    a href="/profiles/#{membership.account}"
+      h1 style="margin-top:3.5em" = membership.person.full_name
       -if membership.person == @current_person
       = link_to 'edit membership', '#add_sc', class: 'fancybox btn btn-primary'
           div id="add_sc" style="display:none;"

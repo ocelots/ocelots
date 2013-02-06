@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 gem 'slim'
 gem 'paperclip'
 gem 'aws-sdk'
@@ -24,11 +24,11 @@ group :assets do
 end
 
 group :development, :test do
+	gem 'rspec-rails'
   gem 'github'
   gem 'tddium'
   gem "rails_best_practices", "~> 1.11.1"
   gem "flay"
-  gem 'rspec-rails'
   gem 'simplecov'
   gem 'machinist'
   gem 'cucumber-rails' , :require => false
