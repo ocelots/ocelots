@@ -2,19 +2,15 @@ doctype html
 html
   head
     = render partial: 'layouts/gace'
+    = render partial: 'layouts/ga'
     title Ocelots
-
     = stylesheet_link_tag '/bootstrap/css/bootstrap.min.css'
-
     =stylesheet_link_tag 'style', media: 'all'
     =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Patrick+Hand'
     =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Unica+One'
     =stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Titillium+Web:400,700'
     = csrf_meta_tags
-    = javascript_include_tag '/ga.js'
-
   body
-
     div.container
       = yield
 
